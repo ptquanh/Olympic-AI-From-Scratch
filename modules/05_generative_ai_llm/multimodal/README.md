@@ -26,7 +26,7 @@ Sau chương này, bạn sẽ có thể:
 ```text
 [CNN/ViT] ───────┐
                  v
-                 ├──→ [MULTIMODAL VLM] ──→ [Document AI]
+                 ├--> [MULTIMODAL VLM] --> [Document AI]
                  ^
 [Language Model] ┘
 ```

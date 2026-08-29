@@ -25,7 +25,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Python Essentials] ──→ [CHƯƠNG NÀY] ──→ [Feature Engineering]
+[Python Essentials] --> [CHƯƠNG NÀY] --> [Feature Engineering]
                              │
                              ├── dùng trong [Linear Regression]
                              └── nền tảng cho [Mọi thao tác dữ liệu]

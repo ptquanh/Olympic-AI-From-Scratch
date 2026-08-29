@@ -26,7 +26,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[NumPy & Pandas] ──→ [CHƯƠNG NÀY] ──→ [Exploratory Data Analysis (EDA)]
+[NumPy & Pandas] --> [CHƯƠNG NÀY] --> [Exploratory Data Analysis (EDA)]
                              │
                              └── dùng trong [Theo dõi Loss curve khi Train]
 ```

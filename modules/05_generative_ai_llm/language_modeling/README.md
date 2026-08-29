@@ -25,7 +25,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Embeddings & Transformer] ──→ [LANGUAGE MODELING] ──→ [Fine-tuning Patterns]
+[Embeddings & Transformer] --> [LANGUAGE MODELING] --> [Fine-tuning Patterns]
                                       │
                                       ├── nền tảng cho [Prompt Engineering]
                                       └── ứng dụng trong [Text Generation]

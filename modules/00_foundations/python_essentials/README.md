@@ -28,7 +28,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Bắt đầu học AI] ──→ [CHƯƠNG NÀY] ──→ [Regex & Data Handling]
+[Bắt đầu học AI] --> [CHƯƠNG NÀY] --> [Regex & Data Handling]
                              │
                              └── nền tảng cho [Mọi code AI sau này]
 ```

@@ -26,7 +26,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Python Essentials] ──→ [CHƯƠNG NÀY] ──→ [NumPy & Pandas]
+[Python Essentials] --> [CHƯƠNG NÀY] --> [NumPy & Pandas]
                              │
                              ├── dùng trong [Text Preprocessing]
                              └── nền tảng cho [Data Loading Pipeline]

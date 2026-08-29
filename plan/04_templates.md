@@ -36,7 +36,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Chương trước] ──→ [CHƯƠNG NÀY] ──→ [Chương sau]
+[Chương trước] --> [CHƯƠNG NÀY] --> [Chương sau]
                         │
                         ├── dùng trong [Detection]
                         └── nền tảng cho [Transformer]

@@ -25,7 +25,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Language Modeling] ──→ [FINE-TUNING PATTERNS] ──→ [Prompt Engineering]
+[Language Modeling] --> [FINE-TUNING PATTERNS] --> [Prompt Engineering]
                               │
                               └── ứng dụng trong [Text/Audio/Vision Classification]
 ```
