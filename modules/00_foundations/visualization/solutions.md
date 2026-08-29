@@ -2,33 +2,27 @@
 
 <details><summary><b>Tầng 1: Understand</b></summary>
 
-Matplotlib như một thư viện vẽ đồ thị ở mức độ gốc, kiểm soát đến từng pixel, trục tọa độ, label.
-Seaborn là lớp bọc bên ngoài Matplotlib, được thiết kế ĐẶC BIỆT cho việc vẽ đồ thị dựa trên Pandas DataFrame một cách đẹp mắt và nhanh gọn nhất.
-Khi cần đồ thị đẹp + nhanh -> Dùng Seaborn. Khi cần custom các chi tiết cực khó -> Matplotlib.
+**1. Matplotlib vs Seaborn**
 
+- Matplotlib giống như thư viện core, kiểm soát linh hoạt từng nét vẽ, trục tọa độ. Dùng khi cần customize rất sâu (vd đồ thị nhiều lớp phức tạp, làm subplots phức tạp).
+- Seaborn bọc ngoài Matplotlib, tương thích xuất sắc với Pandas DataFrame. Dùng khi muốn thăm dò dữ liệu (EDA) nhanh, đẹp, và vẽ các đồ thị thống kê (boxplot, violin plot, heatmap).
+
+**2. Outlier**
+
+- Trên Boxplot, outlier là các điểm chấm nhỏ nằm ngoài hai thanh râu (whiskers).
 </details>
 
 <details><summary><b>Tầng 2: Implement</b></summary>
 
+**1. Heatmap Ma trận Tương quan**
+
 ```python
-import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 
-df = pd.DataFrame({
-    'Income': np.random.normal(50000, 10000, 100),
-    'Age': np.random.randint(20, 60, 100)
-})
-
-# Scatter Plot
-sns.scatterplot(data=df, x='Age', y='Income')
-plt.title('Relationship between Age and Income')
-plt.show()
-
-# Histogram
-sns.histplot(data=df, x='Income', bins=20)
-plt.title('Income Distribution')
+corr = df.corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm')
+plt.title("Correlation Matrix")
 plt.show()
 ```
 
@@ -36,6 +30,22 @@ plt.show()
 
 <details><summary><b>Tầng 3: Experiment</b></summary>
 
-Trong Boxplot, điểm Outlier được vẽ thành các dấu chấm nhỏ nằm bên ngoài hai thanh râu (whiskers). Công thức mặc định thường là $Q1 - 1.5 \times IQR$ và $Q3 + 1.5 \times IQR$.
+**1. Subplots Layout**
+
+```python
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+# axes[0] là biểu đồ bên trái
+# axes[1] là biểu đồ bên phải
+axes[0].plot([1, 2, 3], [1, 4, 9])
+axes[0].set_title("Plot 1")
+
+axes[1].bar(["A", "B"], [5, 10])
+axes[1].set_title("Plot 2")
+
+plt.tight_layout()
+plt.show()
+```
 
 </details>

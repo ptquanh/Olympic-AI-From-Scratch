@@ -2,31 +2,36 @@
 
 <details><summary><b>Tầng 1: Understand</b></summary>
 
-Đạo hàm riêng biểu thị độ dốc (sự thay đổi) của hàm số khi chỉ xét sự thay đổi của MỘT BIẾN DUY NHẤT (giữ các biến khác không đổi). Trong AI, ta dùng đạo hàm riêng để tính xem mỗi trọng số $W_i$ đóng góp bao nhiêu vào việc làm sai số tăng lên/giảm xuống.
+**1. Đạo hàm (Derivative/Gradient)**
+Gradient vector chỉ ra hướng mà hàm số sẽ TĂNG LÊN dốc nhất. Trong AI, ta muốn làm GIẢM hàm lỗi (Loss), nên ta đi ngược hướng gradient (Gradient Descent).
+
+**2. Tích vô hướng (Dot Product)**
+Nếu Dot Product lớn, tức là hai vector chiếu lên nhau dài, góc giữa chúng nhỏ -> Chúng "giống nhau" (Cosine Similarity).
+Nếu bằng 0, hai vector vuông góc -> Hoàn toàn không liên quan.
 
 </details>
 
 <details><summary><b>Tầng 2: Implement</b></summary>
 
-```python
-import numpy as np
-X = np.random.randn(10, 5) # 10 mẫu, 5 đặc trưng
-W = np.random.randn(5)     # 5 trọng số
-b = 1.5
+**1. MSE Gradient from scratch**
 
-y_pred = X @ W + b
+```python
+# L = (W*X - Y)^2
+# dL/dW = 2 * X * (W*X - Y)
+# Tính tay:
+# W*X = 2 * 3 = 6
+# W*X - Y = 6 - 5 = 1
+# dL/dW = 2 * 3 * 1 = 6
 ```
 
 </details>
 
 <details><summary><b>Tầng 3: Experiment</b></summary>
 
-Softmax function.
+**1. Chấm dứt vòng lặp vô tận**
+Một hàm Gradient Descent cần điểm dừng.
 
-```python
-def softmax(z):
-    exp_z = np.exp(z)
-    return exp_z / np.sum(exp_z)
-```
-
+1. `max_epochs`: Chạy cố định N vòng.
+2. `patience` / `early_stopping`: Nếu Loss không giảm thêm quá `epsilon` (ví dụ `1e-5`) sau vài vòng thì dừng sớm.
+3. Nếu Loss bùng nổ ra `NaN` (ví dụ learning rate quá to) thì cũng phải bẫy lỗi và break.
 </details>

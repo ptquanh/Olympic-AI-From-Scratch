@@ -1,45 +1,31 @@
 # Lời giải: SVM & KNN
 
 <details><summary><b>Tầng 1: Understand</b></summary>
-
-Bước tiền xử lý BẮT BUỘC là **Chuẩn hóa dữ liệu (Data Scaling)**, sử dụng `StandardScaler` hoặc `MinMaxScaler`. Điều này đưa tất cả các đặc trưng về cùng một khoảng giá trị, giúp khoảng cách Euclidean không bị thiên lệch bởi một vài biến có giá trị quá lớn.
-
+Cả hai đều nhạy cảm với việc Scale dữ liệu (đều dùng khoảng cách hình học), nên BẮT BUỘC phải dùng StandardScaler trước.
+Tuy nhiên, KNN là "Lazy learning", nó không hề có quá trình "học" (Loss, Gradient, Weight). Nó chỉ đơn giản là nhớ toàn bộ tập Train vào RAM, rồi lúc Predict thì mang ra đo khoảng cách. Do đó KNN predict rất chậm nếu dữ liệu lớn.
 </details>
 
 <details><summary><b>Tầng 2: Implement</b></summary>
 
-`SVC(kernel='linear')` sẽ có độ chính xác khoảng 50% vì nó cố gắng kẻ 1 đường thẳng xuyên qua 2 hình tròn lồng nhau, điều này là bất khả thi.
-`SVC(kernel='rbf')` (Radial Basis Function) sẽ có độ chính xác 100% vì nó dùng "Kernel Trick" để đẩy dữ liệu lên số chiều cao hơn, biến nó thành có thể phân tách bằng mặt phẳng, rồi khi chiếu về 2D sẽ có hình vòng tròn bao bọc.
+```python
+from sklearn.datasets import make_circles
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+X, y = make_circles(n_samples=100, noise=0.1, factor=0.1)
+
+svc_linear = SVC(kernel='linear').fit(X, y)
+print("Linear Kernel:", accuracy_score(y, svc_linear.predict(X)))
+
+svc_rbf = SVC(kernel='rbf').fit(X, y)
+print("RBF Kernel:", accuracy_score(y, svc_rbf.predict(X)))
+```
+
+Kết quả: Kernel `linear` sẽ thất bại nặng nề (khoảng 50%). Kernel `rbf` (phóng dữ liệu lên chiều không gian vô hạn) sẽ dễ dàng tìm được đường bao vòng tròn (100%).
 
 </details>
 
 <details><summary><b>Tầng 3: Experiment</b></summary>
-
-```python
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-
-X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-accs = []
-for k in range(1, 21):
-    knn = KNeighborsClassifier(n_neighbors=k)
-    knn.fit(X_train, y_train)
-    accs.append(accuracy_score(y_test, knn.predict(X_test)))
-
-plt.plot(range(1, 21), accs, marker='o')
-plt.xlabel('K')
-plt.ylabel('Accuracy')
-plt.title('KNN Accuracy vs K')
-plt.xticks(range(1, 21))
-plt.grid()
-plt.show()
-```
-
-Khi $k=1$, mô hình dễ bị nhiễu. Khi $k$ lớn dần, mô hình ổn định hơn, nhưng nếu $k$ quá lớn (gần bằng số lượng tập Train), mô hình lại bị thiên lệch về class đa số.
-
+- Khi K = 1: Mô hình tin tưởng tuyệt đối vào người hàng xóm gần nhất (Overfitting kinh khủng). Nếu có nhiễu (noise) thì sẽ phân loại sai ngay.
+- Khi K = N (Tổng số data): Mô hình sẽ bỏ phiếu theo số đông, và luôn luôn dự đoán ra Class có số lượng áp đảo nhất trong tập dữ liệu (Underfitting).
 </details>

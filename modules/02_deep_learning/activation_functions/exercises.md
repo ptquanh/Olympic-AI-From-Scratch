@@ -3,6 +3,8 @@
 ## Tầng 1: Understand
 
 **1. Tại sao Sigmoid thường chỉ dùng ở Layer cuối cùng?**
+**2. Hạn chế của ReLU**
+Tại sao ReLU lại gây ra hiện tượng "Dead Neurons" (Nơ-ron chết)?
 
 ## Tầng 2: Implement
 

@@ -1,55 +1,44 @@
-# Lời giải: Tuning
+# Lời giải: Hyperparameter Tuning
 
 <details><summary><b>Tầng 1: Understand</b></summary>
-
-Learning rate ảnh hưởng lớn nhất ở dải từ 0.01 đến 0.1. Nếu dùng uniform scale từ 0.0001 đến 0.1, Optuna sẽ lãng phí phần lớn thời gian để thử ở dải (0.05 - 0.1) và rất hiếm khi rà trúng các giá trị bé như 0.005. Log scale giúp thuật toán thử nghiệm **đều đặn** ở mọi bậc độ lớn (vd: 1e-4, 1e-3, 1e-2, 1e-1).
-
+Trong nhiều trường hợp, chỉ có 1-2 tham số là thực sự quan trọng ảnh hưởng đến độ chính xác (ví dụ learning_rate). Grid Search rà quét toàn bộ kết hợp lưới nên mất quá nhiều thời gian kiểm tra các giá trị vô nghĩa của các tham số không quan trọng. Random Search lấy mẫu ngẫu nhiên, giúp phân bố thời gian hợp lý hơn và khám phá được nhiều giá trị dọc theo trục của tham số quan trọng.
 </details>
 
 <details><summary><b>Tầng 2: Implement</b></summary>
 
 ```python
 from sklearn.model_selection import RandomizedSearchCV
-import scipy.stats as stats
+from sklearn.ensemble import RandomForestClassifier
+from scipy.stats import randint
 
+model = RandomForestClassifier()
 param_dist = {
-    'n_estimators': stats.randint(50, 300),
-    'max_depth': stats.randint(3, 10),
-    'learning_rate': stats.uniform(0.01, 0.2)
+    'n_estimators': randint(50, 200),
+    'max_depth': randint(3, 10)
 }
 
-rs = RandomizedSearchCV(model, param_dist, n_iter=20, cv=3, random_state=42)
+rs = RandomizedSearchCV(model, param_distributions=param_dist, n_iter=10, cv=3)
 rs.fit(X_train, y_train)
 ```
-
-Thời gian chạy của RandomSearch cố định bởi `n_iter`, trong khi GridSearch sẽ chạy tất cả tổ hợp.
 
 </details>
 
 <details><summary><b>Tầng 3: Experiment</b></summary>
 
-Sử dụng thư viện `optuna`.
-
 ```python
 import optuna
-import lightgbm as lgb
 from sklearn.model_selection import cross_val_score
-from sklearn.datasets import load_breast_cancer
-
-X, y = load_breast_cancer(return_X_y=True)
+from sklearn.ensemble import RandomForestClassifier
 
 def objective(trial):
-    params = {
-        'n_estimators': trial.suggest_int('n_estimators', 50, 500),
-        'learning_rate': trial.suggest_float('learning_rate', 1e-3, 1e-1, log=True),
-        'num_leaves': trial.suggest_int('num_leaves', 10, 50),
-        'max_depth': trial.suggest_int('max_depth', 3, 10)
-    }
-    clf = lgb.LGBMClassifier(**params, random_state=42)
-    return cross_val_score(clf, X, y, cv=3, scoring='f1').mean()
+    depth = trial.suggest_int('max_depth', 3, 15)
+    split = trial.suggest_int('min_samples_split', 2, 10)
+
+    model = RandomForestClassifier(max_depth=depth, min_samples_split=split)
+    return cross_val_score(model, X, y, cv=3).mean()
 
 study = optuna.create_study(direction='maximize')
-study.optimize(objective, n_trials=50)
+study.optimize(objective, n_trials=10)
 print(study.best_params)
 ```
 

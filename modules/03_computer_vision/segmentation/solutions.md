@@ -1,7 +1,7 @@
 # Lời giải: Segmentation
 
 <details><summary><b>Tầng 1: Understand</b></summary>
-    inter = (a * b).sum()
+Kỹ thuật Skip-connection ngang trong U-Net giúp nhánh Decoder lấy lại được các chi tiết không gian (spatial details) cực kỳ sắc nét đã bị mất đi do các phép Max Pooling ở nhánh Encoder, từ đó tạo ra mask dự đoán có biên mượt mà và chính xác hơn.
 </details>
 
 <details><summary><b>Tầng 2: Implement</b></summary>

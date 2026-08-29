@@ -12,5 +12,6 @@ Cho cột `Date` dạng chuỗi `2024-05-12`. Dùng pandas chuyển về kiểu 
 
 ## Tầng 3: Experiment
 
-**1. Label vs One-Hot Encoding**
-Thử nghiệm trên bộ dữ liệu Titanic. Sử dụng Label Encoding cho cột 'Embarked' và đo điểm. Sau đó chuyển sang One-Hot Encoding và đo lại điểm. Xem độ chính xác thay đổi như thế nào trên mô hình Logistic Regression.
+**1. Outlier Clipping**
+Tạo ra mảng `X = np.random.randn(100)` (phân phối chuẩn). Thêm một Outlier `X[0] = 1000`.
+Dùng `np.clip()` để cắt (clip) mảng này ở ngưỡng phần vị thứ 1 (1st percentile) và 99 (99th percentile). In ra giá trị Max mới của mảng.
