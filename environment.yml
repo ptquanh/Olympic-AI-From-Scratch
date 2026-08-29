@@ -1,0 +1,15 @@
+name: olympic-ai
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1  # Require NVIDIA GPU. Remove this line if using Mac or no GPU.
+  - pip
+  - pip:
+    - -r requirements.txt
