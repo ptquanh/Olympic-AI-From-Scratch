@@ -103,56 +103,56 @@ def gradient_descent(X, y, lr=0.01, epochs=100):
 
 ## 📋 API Cheat Sheet
 
-| Việc cần làm | Code | Docs |
-|-------------|------|------|
+| Việc cần làm   | Code                                               | Docs                                              |
+| -------------- | -------------------------------------------------- | ------------------------------------------------- |
 | Tạo DataLoader | `DataLoader(dataset, batch_size=32, shuffle=True)` | [link](https://pytorch.org/docs/stable/data.html) |
-| K-Fold split | `KFold(n_splits=5, shuffle=True, random_state=42)` | [link](https://scikit-learn.org/stable/) |
+| K-Fold split   | `KFold(n_splits=5, shuffle=True, random_state=42)` | [link](https://scikit-learn.org/stable/)          |
 
 ## 🏋️ Bài Luyện Code Tay
 
 **Quy tắc:** Đóng tất cả tài liệu. Mở notebook trống. Hẹn giờ.
 
-| # | Bài | Thời gian | Hint (chỉ xem khi bí) |
-|---|-----|-----------|----------------------|
-| 1 | Code gradient descent cho linear regression | 15 phút | `dw = X.T @ error / n` |
-| 2 | Code training loop PyTorch (không nhìn) | 10 phút | `zero → forward → loss → backward → step` |
+| #   | Bài                                         | Thời gian | Hint (chỉ xem khi bí)                     |
+| --- | ------------------------------------------- | --------- | ----------------------------------------- |
+| 1   | Code gradient descent cho linear regression | 15 phút   | `dw = X.T @ error / n`                    |
+| 2   | Code training loop PyTorch (không nhìn)     | 10 phút   | `zero → forward → loss → backward → step` |
 
 ## 🧠 Flashcards (Hỏi → Trả lời)
 
-| Hỏi | Trả lời |
-|-----|---------|
-| Learning rate quá lớn → gì xảy ra? | Loss oscillate hoặc diverge |
-| `model.eval()` làm gì? | Tắt dropout + BN dùng running stats |
+| Hỏi                                | Trả lời                             |
+| ---------------------------------- | ----------------------------------- |
+| Learning rate quá lớn → gì xảy ra? | Loss oscillate hoặc diverge         |
+| `model.eval()` làm gì?             | Tắt dropout + BN dùng running stats |
 ````
 
 ---
 
 ## references.md Template
 
-````markdown
+```markdown
 # References: [Tên Topic]
 
 ## 📚 Official Documentation
 
-| Thư viện | Đọc gì | Link |
-|----------|--------|------|
-| NumPy | Broadcasting rules | [numpy.org/.../broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) |
-| PyTorch | `nn.Linear`, `autograd` | [pytorch.org/.../nn](https://pytorch.org/docs/stable/nn.html) |
-| scikit-learn | `cross_val_score` | [scikit-learn.org/.../cross_validation](https://scikit-learn.org/stable/modules/cross_validation.html) |
+| Thư viện     | Đọc gì                  | Link                                                                                                   |
+| ------------ | ----------------------- | ------------------------------------------------------------------------------------------------------ |
+| NumPy        | Broadcasting rules      | [numpy.org/.../broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html)               |
+| PyTorch      | `nn.Linear`, `autograd` | [pytorch.org/.../nn](https://pytorch.org/docs/stable/nn.html)                                          |
+| scikit-learn | `cross_val_score`       | [scikit-learn.org/.../cross_validation](https://scikit-learn.org/stable/modules/cross_validation.html) |
 
 ## 📖 Textbook Chapters
 
-| Sách | Chương | Tại sao đọc |
-|------|--------|-------------|
-| D2L (d2l.ai) | Ch.3 | Derivation chuẩn + code |
-| Bishop PRML | Ch.3.1 | Bayesian perspective |
+| Sách         | Chương | Tại sao đọc             |
+| ------------ | ------ | ----------------------- |
+| D2L (d2l.ai) | Ch.3   | Derivation chuẩn + code |
+| Bishop PRML  | Ch.3.1 | Bayesian perspective    |
 
 ## 🎥 Video
 
-| Video | Tác giả | Nên xem khi |
-|-------|---------|-------------|
+| Video                   | Tác giả     | Nên xem khi   |
+| ----------------------- | ----------- | ------------- |
 | [Neural Networks](link) | 3Blue1Brown | Cần trực giác |
-| [Backprop](link) | Karpathy | Cần hiểu code |
+| [Backprop](link)        | Karpathy    | Cần hiểu code |
 
 ## 📝 Blog Posts
 
@@ -162,18 +162,19 @@ def gradient_descent(X, y, lr=0.01, epochs=100):
 
 - [Kaggle notebook](link) — winning solution
 - [aichallenge.ptit.edu.vn](https://aichallenge.ptit.edu.vn) — luyện tập
-````
+```
 
 ---
 
 ## olympiad_transfer.md Template
 
-````markdown
+```markdown
 # Olympiad Transfer: [Tên Concept]
 
 ## Nhận diện trong đề
 
 Dấu hiệu nào cho thấy nên dùng kiến thức này?
+
 - VD: "Nếu đề nói 'dự đoán nhãn liên tục' → regression"
 - VD: "Nếu đề cho ảnh + bbox annotations → detection pipeline"
 
@@ -203,30 +204,30 @@ Dấu hiệu nào cho thấy nên dùng kiến thức này?
 
 ### Vòng Sơ loại (4 giờ: 3h Public + 1h Private)
 
-| Giai đoạn | Thời gian | Việc |
-|-----------|-----------|------|
-| 0-20 phút | Đọc đề, EDA nhanh |
-| 20-60 phút | Baseline chạy được |
-| 60-150 phút | Improve + experiments |
-| 150-180 phút | Nộp Public Test |
-| 180-240 phút | Private Test → nộp |
+| Giai đoạn    | Thời gian             | Việc |
+| ------------ | --------------------- | ---- |
+| 0-20 phút    | Đọc đề, EDA nhanh     |
+| 20-60 phút   | Baseline chạy được    |
+| 60-150 phút  | Improve + experiments |
+| 150-180 phút | Nộp Public Test       |
+| 180-240 phút | Private Test → nộp    |
 
 ### Vòng Chung kết (6 giờ: 5h Public + 1h Private)
 
-| Giai đoạn | Thời gian | Việc |
-|-----------|-----------|------|
-| 0-30 phút | Đọc đề, EDA |
-| 30-90 phút | Baseline pipeline |
-| 90-200 phút | Improve model |
+| Giai đoạn    | Thời gian              | Việc |
+| ------------ | ---------------------- | ---- |
+| 0-30 phút    | Đọc đề, EDA            |
+| 30-90 phút   | Baseline pipeline      |
+| 90-200 phút  | Improve model          |
 | 200-300 phút | Experiments + ensemble |
-| 300-320 phút | Cleanup + nộp Public |
-| 320-360 phút | Private Test → FINAL |
+| 300-320 phút | Cleanup + nộp Public   |
+| 320-360 phút | Private Test → FINAL   |
 
 ## Bài thi thực tế liên quan
 
-| Bài | Nguồn | Concept chính | Difficulty |
-|-----|-------|---------------|-----------|
-| ... | IOAI 2025 | ... | ⭐⭐⭐ |
-| ... | OlpAI SV | ... | ⭐⭐ |
-| ... | aichallenge.ptit | ... | ⭐⭐ |
-````
+| Bài | Nguồn            | Concept chính | Difficulty |
+| --- | ---------------- | ------------- | ---------- |
+| ... | IOAI 2025        | ...           | ⭐⭐⭐     |
+| ... | OlpAI SV         | ...           | ⭐⭐       |
+| ... | aichallenge.ptit | ...           | ⭐⭐       |
+```

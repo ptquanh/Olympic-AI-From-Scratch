@@ -98,13 +98,13 @@ topic/
 
 Mỗi chương có bài tập chia **5 tầng**:
 
-| Tầng | Tên | Mô tả | Ví dụ |
-| --- | --- | --- | --- |
-| 1 | **Understand** | Giải thích, derive, dự đoán | "Tại sao QKᵀ có variance tăng theo dk?" |
-| 2 | **Implement** | Hoàn thành hoặc sửa code | "Thêm causal mask vào attention" |
-| 3 | **Experiment** | Thiết kế thí nghiệm, giải thích kết quả | "Bỏ sqrt(dk), plot softmax — gì xảy ra?" |
-| 4 | **Transfer** | Áp dụng vào dữ liệu/bài toán mới | "Dùng attention cho time series" |
-| 5 | **Olympiad** | Bài thật hoặc mô phỏng có giới hạn thời gian | "Giải IOAI task X trong 90 phút" |
+| Tầng | Tên            | Mô tả                                        | Ví dụ                                    |
+| ---- | -------------- | -------------------------------------------- | ---------------------------------------- |
+| 1    | **Understand** | Giải thích, derive, dự đoán                  | "Tại sao QKᵀ có variance tăng theo dk?"  |
+| 2    | **Implement**  | Hoàn thành hoặc sửa code                     | "Thêm causal mask vào attention"         |
+| 3    | **Experiment** | Thiết kế thí nghiệm, giải thích kết quả      | "Bỏ sqrt(dk), plot softmax — gì xảy ra?" |
+| 4    | **Transfer**   | Áp dụng vào dữ liệu/bài toán mới             | "Dùng attention cho time series"         |
+| 5    | **Olympiad**   | Bài thật hoặc mô phỏng có giới hạn thời gian | "Giải IOAI task X trong 90 phút"         |
 
 > [!TIP]
 > Concept Lesson chỉ cần tầng 1-3. Competition Lab chỉ cần tầng 3-5.
@@ -133,22 +133,22 @@ Template đầy đủ: xem [`04_templates.md`](04_templates.md)
 
 ### Core Chapters — cần pass ít nhất 4/6
 
-| Gate | Cách verify |
-|------|-------------|
-| 🗣️ **Explain** | Đóng tài liệu, giải thích 5-10 phút |
-| ✍️ **Derive** | Viết công thức chính trên giấy trắng |
-| 💻 **Re-implement** | Code lại từ notebook trống |
-| 🔮 **Predict** | Dự đoán kết quả experiment trước khi chạy |
-| 🐛 **Diagnose** | Tìm bug trong implementation cài lỗi |
-| 🆕 **Apply** | Giải 1 bài chưa từng thấy dùng concept này |
+| Gate                | Cách verify                                |
+| ------------------- | ------------------------------------------ |
+| 🗣️ **Explain**      | Đóng tài liệu, giải thích 5-10 phút        |
+| ✍️ **Derive**       | Viết công thức chính trên giấy trắng       |
+| 💻 **Re-implement** | Code lại từ notebook trống                 |
+| 🔮 **Predict**      | Dự đoán kết quả experiment trước khi chạy  |
+| 🐛 **Diagnose**     | Tìm bug trong implementation cài lỗi       |
+| 🆕 **Apply**        | Giải 1 bài chưa từng thấy dùng concept này |
 
 ### Concept Lessons — cần pass ít nhất 2/3
 
-| Gate | Cách verify |
-|------|-------------|
+| Gate           | Cách verify                      |
+| -------------- | -------------------------------- |
 | 🗣️ **Explain** | Biết khi nào dùng, khi nào không |
-| 🐛 **Debug** | Nhận ra failure modes phổ biến |
-| 🆕 **Apply** | Dùng đúng trong pipeline thực tế |
+| 🐛 **Debug**   | Nhận ra failure modes phổ biến   |
+| 🆕 **Apply**   | Dùng đúng trong pipeline thực tế |
 
 ---
 
@@ -175,6 +175,7 @@ Diagnostic Test → Validation & Baselines → Gap Remediation
 ### Đánh dấu trong mỗi module
 
 Mỗi module ghi rõ:
+
 - ⭐ **Bắt buộc** — phải học
 - 📖 **Nên đọc lướt** — review nhanh
 - ⏭️ **Bỏ qua** nếu pass diagnostic
