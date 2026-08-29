@@ -1,0 +1,56 @@
+# ==========================================
+# CUSTOM RULES FOR SELF-STUDY & PRACTICE
+# ==========================================
+# Bỏ qua các file duplicate để bạn tự code tay/luyện tập
+*_practice.ipynb
+*_draft.ipynb
+*_self.ipynb
+*_learn.ipynb
+*practice*.*
+
+# Bỏ qua các thư mục không gian làm việc cá nhân (nếu bạn muốn tạo riêng)
+workspace/
+practice/
+my_code/
+.scratch/
+
+# ==========================================
+# STANDARD PYTHON & JUPYTER RULES
+# ==========================================
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+
+# IDEs / Editors
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Data & Models (Tránh push nhầm model/data lớn)
+*.csv
+*.dat
+*.out
+*.log
+*.model
+*.pth
+*.pt
+*.h5
+*.pkl
