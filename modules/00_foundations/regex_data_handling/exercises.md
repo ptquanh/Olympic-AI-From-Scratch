@@ -21,7 +21,28 @@ Hãy viết một function dùng regex để chuyển tất cả về định d�
 _Kỳ vọng:_ `"Sinh nhật: 12/05/2000, Ngày thi: 01/11/2026, Hết hạn: 31/12/2026"`
 
 **2. File Parser**
-Viết script dùng `pathlib` tìm tất cả các file có đuôi `.log` trong thư mục `./logs/`, đọc nội dung, tìm tất cả các dòng chứa từ khóa `[ERROR]`, và ghi các dòng đó ra một file mới tên `errors_summary.txt`.
+
+_Chạy đoạn code sau để tạo dữ liệu giả lập (mock data):_
+
+```python
+from pathlib import Path
+import random
+
+log_dir = Path('./logs')
+log_dir.mkdir(exist_ok=True)
+
+for i in range(3):
+    with (log_dir / f'server_{i}.log').open('w', encoding='utf-8') as f:
+        f.write(f"INFO: Server {i} started\n")
+        if random.choice([True, False]):
+            f.write(f"[ERROR] Failed to connect to DB on server {i}\n")
+        f.write("INFO: Processing data...\n")
+        if random.choice([True, False]):
+            f.write(f"[ERROR] Timeout on server {i}\n")
+print("Đã tạo xong file log sample!")
+```
+
+**Yêu cầu:** Viết script dùng `pathlib` tìm tất cả các file có đuôi `.log` trong thư mục `./logs/`, đọc nội dung, tìm tất cả các dòng chứa từ khóa `[ERROR]`, và ghi các dòng đó ra một file mới tên `errors_summary.txt`.
 
 ## Tầng 3: Experiment
 

@@ -8,8 +8,8 @@
 
 Trước khi bắt đầu, bạn cần trả lời được:
 
-1. Làm sao để đọc nội dung một file `.txt` bằng Python?
-2. Kiểu dữ liệu list và dictionary trong Python khác nhau thế nào?
+1. Cấu trúc dữ liệu List và Dictionary trong Python khác biệt cơ bản nhất ở điểm nào?
+2. Làm sao để duyệt qua một list và lấy được cả vị trí (index) lẫn giá trị của phần tử?
 
 Nếu chưa → quay lại chương `python_essentials`.
 
@@ -26,10 +26,10 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Python Essentials] --> [CHƯƠNG NÀY] --> [NumPy & Pandas]
-                             │
-                             ├── dùng trong [Text Preprocessing]
-                             └── nền tảng cho [Data Loading Pipeline]
+[NumPy & Pandas] --> [CHƯƠNG NÀY] --> [Math Essentials]
+                          │
+                          ├── dùng trong [Text Preprocessing]
+                          └── nền tảng cho [Data Loading Pipeline]
 ```
 
 ## 1. Intuition — Tại Sao Cần Regex & Pathlib?

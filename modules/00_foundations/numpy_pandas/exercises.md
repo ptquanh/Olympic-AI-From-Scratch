@@ -13,10 +13,30 @@ Phân biệt sự khác nhau về kết quả (kiểu dữ liệu) giữa `df['c
 
 **1. Chuẩn hóa hình ảnh (Min-Max Scaling)**
 Cho một ảnh RGB (ảnh màu) được biểu diễn bằng NumPy array có kích thước `(height, width, 3)` với giá trị pixel từ 0 đến 255.
-Viết code NumPy (không dùng vòng lặp) để chuẩn hóa ảnh này về khoảng `[0, 1]`.
+
+```python
+import numpy as np
+np.random.seed(42)
+image = np.random.randint(0, 256, size=(1080, 1920, 3))
+```
+
+Viết code NumPy (không dùng vòng lặp) để chuẩn hóa biến `image` về khoảng `[0, 1]`.
 
 **2. RFM Analysis (Recency, Frequency, Monetary)**
 Cho DataFrame `sales` gồm các cột `['customer_id', 'order_date', 'order_value']`.
+
+```python
+import pandas as pd
+import numpy as np
+
+np.random.seed(42)
+sales = pd.DataFrame({
+    'customer_id': np.random.randint(1, 6, 20),
+    'order_date': pd.date_range(start='2023-01-01', periods=20, freq='D'),
+    'order_value': np.random.randint(100, 1000, 20)
+})
+```
+
 Viết pipeline Pandas (càng ít dòng càng tốt) để tính:
 
 - Tổng số tiền mua (Monetary) của mỗi khách hàng.
@@ -27,6 +47,14 @@ Viết pipeline Pandas (càng ít dòng càng tốt) để tính:
 
 **1. Tốc độ của `.apply()` so với Vectorization**
 Tạo một DataFrame với 1 cột `A` chứa 5 triệu số ngẫu nhiên.
+
+```python
+import pandas as pd
+import numpy as np
+
+np.random.seed(42)
+df = pd.DataFrame({'A': np.random.rand(5_000_000)})
+```
 
 1. Dùng `df['A'].apply(lambda x: x**2 + x)`
 2. Dùng phép toán trực tiếp `df['A']**2 + df['A']`

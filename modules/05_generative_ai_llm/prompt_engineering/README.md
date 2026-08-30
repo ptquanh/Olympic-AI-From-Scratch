@@ -24,7 +24,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[Language Modeling] --> [PROMPT ENGINEERING] --> [Multimodal]
+[Language Modeling] --> [PROMPT ENGINEERING] --> [Finetuning Patterns]
                               │
                               └── ứng dụng cực mạnh vào [Competition Pipeline]
 ```

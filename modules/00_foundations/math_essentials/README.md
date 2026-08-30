@@ -25,7 +25,7 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[NumPy & Pandas] --> [CHƯƠNG NÀY]  --> [Machine Learning Fundamentals]
+[Regex & Data Handling] --> [CHƯƠNG NÀY]  --> [Visualization]
                           │
                           ├── dùng trong [Tính Loss & Backpropagation]
                           └── nền tảng cho [Đọc hiểu các paper/công thức]
@@ -87,8 +87,8 @@ $x_{new} = x_{old} - \text{learning\_rate} \times \nabla f(x_{old})$
 
 ## 5. Common Mistakes & Misconceptions
 
-> - ❌ **Sai:** Nhân 2 ma trận bằng phép nhân `*` trong Python.
-> - ✅ **Đúng:** Phép `*` trong NumPy là Element-wise multiplication (nhân từng phần tử). Để nhân ma trận thật sự, phải dùng `np.dot(A, B)` hoặc toán tử `@` (ví dụ `A @ B`).
+> ❌ **Sai:** Nhân 2 ma trận bằng phép nhân `*` trong Python.
+> ✅ **Đúng:** Phép `*` trong NumPy là Element-wise multiplication (nhân từng phần tử). Để nhân ma trận thật sự, phải dùng `np.dot(A, B)` hoặc toán tử `@` (ví dụ `A @ B`).
 
-> - ❌ **Sai:** Học thuộc lòng các quy tắc đạo hàm phức tạp (như đạo hàm của hàm lượng giác, logarit bậc cao) để thi AI.
-> - ✅ **Đúng:** Các framework (PyTorch/TensorFlow) có cơ chế AutoGrad (tự động tính đạo hàm). Bạn chỉ cần hiểu Chain Rule (quy tắc chuỗi) để biết gradient chảy từ đầu ra về đầu vào như thế nào.
+> ❌ **Sai:** Học thuộc lòng các quy tắc đạo hàm phức tạp (như đạo hàm của hàm lượng giác, logarit bậc cao) để thi AI.
+> ✅ **Đúng:** Các framework (PyTorch/TensorFlow) có cơ chế AutoGrad (tự động tính đạo hàm). Bạn chỉ cần hiểu Chain Rule (quy tắc chuỗi) để biết gradient chảy từ đầu ra về đầu vào như thế nào.

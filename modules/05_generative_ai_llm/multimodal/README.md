@@ -24,11 +24,9 @@ Sau chương này, bạn sẽ có thể:
 ## Concept Map
 
 ```text
-[CNN/ViT] ───────┐
-                 v
-                 ├--> [MULTIMODAL VLM] --> [Document AI]
-                 ^
-[Language Model] ┘
+[Finetuning Patterns] --> [MULTIMODAL VLM]
+                                 │
+                                 └── Kết hợp [CNN/ViT] và [Language Modeling]
 ```
 
 ## 1. Intuition — Tại Sao Cần Multimodal?
