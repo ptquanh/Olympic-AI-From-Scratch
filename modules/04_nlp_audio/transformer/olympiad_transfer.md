@@ -1,41 +1,38 @@
-# Olympiad Transfer: Transformer
+# Olympic transfer: Transformer
 
-## 1. Nhận diện trong đề
+> **Profile mặc định:** General. Model pretrained, Internet và Hugging Face không được coi là có sẵn. Xem [competition profiles](../../../COMPETITION_PROFILES.md).
 
-Bất kỳ bài toán nào về phân tích văn bản (Text Classification, NER, QA, Translation), Transformer (cụ thể là BERT/RoBERTa/T5/GPT) đều là SOTA.
+## Nhận diện trong đề
 
-## 2. Baseline tối thiểu
+Transformer phù hợp với dữ liệu chuỗi hoặc token khi quan hệ xa quan trọng. Với dữ liệu ít, giới hạn thời gian ngắn hoặc không có model cache, TF–IDF + linear model là baseline NLP bắt buộc trước khi fine-tune encoder.
 
-Thay vì build from scratch, baseline là dùng thư viện HuggingFace `transformers`.
+## Baseline tối thiểu
 
-- Import `AutoModelForSequenceClassification`
-- Gọi hàm `model(input_ids, attention_mask)`
+- Offline/general: tokenizer xác định, vocabulary cố định, encoder nhỏ hoặc TF–IDF baseline.
+- Learning online: `AutoTokenizer`/`AutoModel...` chỉ sau khi khai báo model ID, revision, cache và phương án mất mạng.
+- Contest: chỉ dùng model/package đã được profile cho phép và chuẩn bị trước; notebook không tải ngầm.
 
-Tuy nhiên, kiến thức from scratch trong bài này giúp bạn hiểu cấu trúc đầu vào `attention_mask` của HuggingFace chính là cái "mask" ta đã học, và `hidden_states` chứa các output của từng Encoder Block.
+Mọi pipeline phải assert `input_ids.shape == attention_mask.shape`, kiểm padding mask và chạy được infer trên một batch trước khi train.
 
-## 3. Failure modes
+## Metric và validation
 
-- **Quên Padding Mask:** Nếu câu ngắn được đệm bằng padding token `0`, mà bạn KHÔNG dùng Padding Mask trong Attention, các từ thật sẽ "chú ý" (attention) sang phần padding (vì padding vector có giá trị). Dẫn đến output bị nhiễu.
-- **Learning rate warmup:** Transformer RẤT khó huấn luyện from scratch nếu không có Learning Rate Warmup (tăng dần LR từ 0 lên max trong khoảng 10% quá trình đầu, sau đó giảm dần). Nếu train mà loss bị `NaN` hoặc kẹt, hãy thêm warmup scheduler.
+- Classification: Macro F1 khi lệch lớp; thêm confusion matrix.
+- Translation: BLEU hoặc chrF, nêu tokenizer/casing.
+- Summarization: ROUGE, kèm ví dụ lỗi định tính.
+- Không fit tokenizer, scaler hoặc chọn threshold trên test/private data.
 
-### 3. Metric & Validation
+## Failure modes
 
-- **Metric:** Thường là BLEU/ROUGE cho Machine Translation hoặc F1 cho Classification.
-- **Validation:** Giữ nguyên một tập Hold-out lớn để đánh giá khả năng generalisation.
+- Padding/causal mask sai làm mô hình dùng thông tin không hợp lệ.
+- Learning rate quá lớn có thể phá trọng số pretrained; không có một ngưỡng như `5e-5` đúng cho mọi model/batch.
+- Cắt chuỗi làm mất phần chứa tín hiệu; chọn `max_length` từ train/validation distribution.
+- OOM do sequence dài; giảm batch/length trước khi đổi kiến trúc.
+- Model cache thiếu khi offline; fail sớm với thông báo chỉ cách chuẩn bị cache.
 
-### 4. Failure modes
+## Sau baseline
 
-- **Catastrophic Forgetting:** Nếu fine-tune với Learning Rate quá lớn. Bắt buộc lr < 5e-5.
-- **Vanishing Gradient:** Xảy ra nếu quên LayerNorm trong các block sâu.
+So sánh từng cải tiến trên cùng split: pooling, max length, class weights, layer freezing, learning rate. Pretrained model không “luôn thắng”; quyết định bằng validation và runtime. Lưu checkpoint tốt nhất theo metric công bố, không theo test leaderboard.
 
-### 5. Sau baseline
+## Timebox
 
-- Thay vì dùng Transformer From Scratch, hãy sử dụng RoBERTa/DeBERTa pre-trained (luôn thắng trong mọi kỳ thi).
-- Dùng kỹ thuật Layer-wise Learning Rate Decay (LLRD).
-
-### 6. Phân bổ thời gian (Chung kết 6h)
-
-- 1h: EDA text, tìm max_length phù hợp.
-- 1h: Dựng baseline bằng Pre-trained Transformer.
-- 3h: Luyện tập mô hình (thường train rất chậm, cần setup sớm).
-- 1h: Phân tích lỗi, tuning.
+Không áp mặc định “chung kết 6 giờ”. Dùng tỷ lệ: 15% EDA/baseline, 55% train có kiểm soát, 15% error analysis, 15% infer và kiểm submission; điều chỉnh theo profile chính thức.

@@ -1,18 +1,28 @@
-# Postmortem: Phân tích lỗi thường gặp
+# Postmortem: Image Classification Competition
 
-Sau khi chấm chéo hàng trăm bài dự thi Olympic và bài tập lớn, đây là những lỗi "chết người" sinh viên hay mắc phải nhất trong bài Image Classification:
+## Kết quả baseline Beta
 
-## 1. Quên `model.eval()` hoặc `torch.no_grad()` khi Validation/Inference
+Dữ liệu được sinh deterministically: mỗi lớp có một hình học khác nhau cộng nhiễu nhẹ, vì vậy validation score phải tốt hơn random chance. Pipeline đi đủ `Data → EDA → Train → Validate → Infer → Submit` và chạy offline; nó không giả vờ đánh giá pretrained CNN trên nhãn ngẫu nhiên.
 
-**Triệu chứng:** Hết RAM (OOM - Out of Memory) một cách vô lý.
-**Lý do:** Nếu không có `torch.no_grad()`, PyTorch vẫn âm thầm xây dựng đồ thị đạo hàm khổng lồ trong bộ nhớ kể cả lúc đang tính Val Loss. Còn nếu thiếu `model.eval()`, các lớp như Dropout, BatchNorm sẽ hoạt động sai lệch, khiến độ chính xác trên tập Validation giảm sốc so với tập Train.
+## Điều làm đúng
 
-## 2. Leakage (Rò rỉ) Data Augmentation sang tập Validation
+- Split trước mọi bước học từ dữ liệu; seed và class balance được ghi.
+- Baseline đơn giản giúp kiểm chứng dữ liệu/metric/submission trước khi tăng độ phức tạp.
+- Validation và test transform là deterministic; submission giữ đúng ID.
 
-**Triệu chứng:** Accuracy trên tập Validation rất thấp và rất bất ổn định (nhảy lên nhảy xuống).
-**Lý do:** Bạn đã truyền nhầm `train_transforms` (chứa các lệnh xoay ảnh ngẫu nhiên, nhiễu ngẫu nhiên) cho tập Validation.
+## Failure modes cần kiểm
 
-## 3. Khởi tạo Learning Rate quá cao khi Fine-Tuning
+- Ảnh/mask/label lệch hàng sau khi shuffle metadata.
+- Augmentation làm đổi semantics nhãn hoặc vô tình áp lên validation.
+- Accuracy che khuất lớp hiếm; dùng Macro F1/confusion matrix khi lệch lớp.
+- `model.eval()` hoặc `no_grad()` bị quên trong pipeline PyTorch.
+- Resize/interpolation khác giữa train và infer.
+- Chọn checkpoint/threshold theo public leaderboard gây overfit.
 
-**Triệu chứng:** Loss tụt rất nhanh lúc đầu, nhưng sau đó Loss bỗng dưng văng lên trời (NaN) hoặc Loss đi ngang mãi mãi.
-**Lý do:** Mô hình Pre-trained đã được train hội tụ từ trước. Việc bạn dùng Learning Rate quá to (ví dụ: `0.1` hay `0.01` thay vì `1e-4`) sẽ làm phá vỡ các trọng số đã được tinh chỉnh của mô hình cũ, gây sốc (Catastrophic Forgetting). Khi Fine-Tuning, luôn bắt đầu bằng Learning Rate nhỏ (VD: `1e-4` cho mạng AdamW).
+## Cải tiến hợp lệ
+
+Theo thứ tự: feature có cấu trúc → CNN nhỏ → augmentation có giả thuyết → pretrained encoder đã cache và được profile cho phép. Mỗi bước dùng cùng split, báo metric, runtime và memory. Không có learning rate hoặc kiến trúc nào luôn tốt; quyết định bằng validation.
+
+## Checklist trước nộp
+
+Chạy lại kernel sạch/offline, load artifact, infer toàn bộ test một lần, assert schema/row count/ID/NaN và lưu config + seed + metric cạnh submission.

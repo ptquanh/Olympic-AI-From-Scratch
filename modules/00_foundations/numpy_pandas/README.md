@@ -29,6 +29,7 @@ Sau chương này, bạn sẽ có thể:
                              │
                              ├── dùng trong [Linear Regression]
                              └── nền tảng cho [Mọi thao tác dữ liệu]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần NumPy & Pandas?
@@ -77,15 +78,20 @@ start = time.time()
 dot_product_np = np.dot(A, B) # Hoặc A @ B
 print(f"NumPy mất: {time.time() - start:.4f} giây")
 # ~ 0.01 giây (Nhanh hơn 250 lần!)
+
 ```
 
 ## 5. Common Mistakes & Misconceptions
 
-> ❌ **Sai:** Dùng vòng lặp `for` duyệt qua từng dòng của Pandas DataFrame (bằng `iterrows`).
-> ✅ **Đúng:** Luôn tìm cách dùng các hàm có sẵn của Pandas (như `.apply`, `.str`, các phép toán vector). Việc lặp qua DataFrame là anti-pattern.
+> ❌ **Sai:** Dùng `iterrows()` cho mọi phép biến đổi dù đã có phép toán vectorized.
+> ✅ **Đúng:** Ưu tiên NumPy ufunc, Pandas `.str` và phép toán theo cột. `.apply()` vẫn gọi Python cho nhiều trường hợp; loop chỉ hợp lý khi logic không thể biểu diễn rõ bằng API vectorized và đã đo hiệu năng.
 
 > ❌ **Sai:** Thay đổi dữ liệu trực tiếp trên slice của DataFrame mà không rõ nó là View hay Copy, dẫn đến lỗi `SettingWithCopyWarning`.
 > ✅ **Đúng:** Dùng `.copy()` nếu bạn thực sự muốn tách riêng một bảng mới. Dùng `.loc[]` để gán giá trị một cách an toàn.
 
-> ❌ **Sai:** Dùng `list` thay vì `np.array` cho các phép toán số học.
-> ✅ **Đúng:** `list` của Python là mảng các con trỏ (pointers). `np.array` là khối bộ nhớ liên tục chứa các số C thuần. Xử lý số lượng lớn bắt buộc phải dùng NumPy.
+> ❌ **Sai:** Dùng `list` rồi kỳ vọng `a * 2` nhân từng phần tử.
+> ✅ **Đúng:** Dùng `np.ndarray` có dtype/shape rõ cho tính toán vectorized; `list` vẫn phù hợp với collection nhỏ, không đồng nhất hoặc logic Python thông thường.
+
+## ⑯ Time Estimate
+
+Theory: ~2h · Code: ~2h · Exercises: ~1.5h

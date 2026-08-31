@@ -26,6 +26,7 @@ def scaled_dot_product_attention(Q, K, V, mask=None):
     # 4. Nhân với V
     output = torch.matmul(attention_weights, V)
     return output, attention_weights
+
 ```
 
 ### Pattern 2: Multi-Head Attention Shape Transformation
@@ -63,6 +64,7 @@ class MultiHeadAttention(nn.Module):
 
         # 4. Linear cuối
         return self.W_o(out)
+
 ```
 
 ## 📋 API Cheat Sheet

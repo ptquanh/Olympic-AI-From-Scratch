@@ -34,7 +34,7 @@ Nhưng cần nắm vững:
 
 ## ⑥ Worked Example
 
-Thay vì làm 1 cây Decision Tree khổng lồ sâu 100 tầng (chắc chắn overfit vì nó nhớ từng data point), ta làm 100 cây nhỏ sâu 5 tầng. Trọng số của các cây sẽ được cộng gộp (Boosting). Tốc độ train sẽ lâu hơn nhưng độ chính xác cực cao.
+Thay vì phụ thuộc một cây sâu có variance cao, ensemble kết hợp nhiều cây. Random Forest trung bình hóa các cây được bootstrap; boosting thêm cây tuần tự để sửa residual/gradient. Độ sâu, số cây, learning rate và regularization quyết định trade-off, không bảo đảm accuracy cao hơn trên mọi dữ liệu.
 
 ## ⑧ Framework / Lab
 
@@ -43,7 +43,7 @@ Xem `lab.ipynb`
 ## ⑩ Misconceptions
 
 - ❌ **Sai:** XGBoost luôn tốt hơn Random Forest.
-- ✅ **Đúng:** XGBoost mạnh hơn nhưng rất dễ Overfitting nếu chỉnh tham số không khéo. Random Forest gần như không thể Overfitting dù bạn cho 1000 cây, rất an toàn để làm Baseline.
+- ✅ **Đúng:** XGBoost và Random Forest có inductive bias khác nhau; cả hai đều có thể overfit. Chọn bằng validation nhất quán, đồng thời so runtime và memory.
 - ❌ **Sai:** Tree-based models cần phải Scale dữ liệu (StandardScaler) giống Linear/Logistic Regression.
 - ✅ **Đúng:** Không cần! Việc phân tách nhánh `X > 5` không phụ thuộc vào việc 5 hay 500.
 

@@ -19,6 +19,7 @@ b = model.intercept_  # Bias (hệ số tự do)
 
 # 4. Dự đoán
 y_pred = model.predict(X_test)
+
 ```
 
 **Ghi nhớ:** Luôn đảm bảo `X_train` là mảng 2D (vd: shape `(N, 1)` chứ không phải `(N,)`).
@@ -30,6 +31,7 @@ from sklearn.linear_model import Ridge, Lasso
 
 ridge = Ridge(alpha=1.0) # L2 penalty
 lasso = Lasso(alpha=0.1) # L1 penalty
+
 ```
 
 **Ghi nhớ:** Tham số `alpha` càng lớn, mức độ "phạt" (regularization) càng mạnh, trọng số càng bị ép nhỏ lại.

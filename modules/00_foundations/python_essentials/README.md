@@ -31,6 +31,7 @@ Sau chương này, bạn sẽ có thể:
 [Bắt đầu học AI] --> [CHƯƠNG NÀY] --> [Regex & Data Handling]
                              │
                              └── nền tảng cho [Mọi code AI sau này]
+
 ```
 
 ## 1. Intuition — Tại Sao Lại Phải Học Kỹ Python?
@@ -55,12 +56,14 @@ squares = []
 for i in range(10):
     if i % 2 == 0:
         squares.append(i**2)
+
 ```
 
 Pythonic way (List Comprehension):
 
 ```python
 squares = [i**2 for i in range(10) if i % 2 == 0]
+
 ```
 
 **Generator (`yield`)**: Nếu bạn tạo list 1 triệu phần tử, máy tính có thể hết RAM. Generator dùng `yield` để trả về từng phần tử một mỗi khi được gọi, gần như không tốn RAM. Rất hay dùng khi đọc tập dữ liệu khổng lồ (Dataloader).
@@ -83,3 +86,7 @@ AI dùng OOP rất nhiều (vd: định nghĩa mô hình Neural Network, Dataset
 
 > ❌ **Sai:** Để default argument là một list/dict trống trong hàm: `def add_item(item, lst=[]):`. Nó sẽ giữ lại giá trị của các lần gọi trước.
 > ✅ **Đúng:** Đặt mặc định là `None`: `def add_item(item, lst=None): if lst is None: lst = []`.
+
+## ⑯ Time Estimate
+
+Theory: ~1.5h · Code: ~1.5h · Exercises: ~1h

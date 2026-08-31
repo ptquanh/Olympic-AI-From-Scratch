@@ -15,6 +15,7 @@ for i, name in enumerate(names):
 # Kết hợp 2 list cùng lúc
 for name, score in zip(names, scores):
     print(f"{name} được {score} điểm")
+
 ```
 
 **Ghi nhớ:** Bỏ thói quen `range(len())`. Luôn dùng `enumerate` và `zip`.
@@ -28,6 +29,7 @@ except ZeroDivisionError as e:
     print("Lỗi chia cho 0:", e)
 finally:
     print("Luôn chạy dù có lỗi hay không")
+
 ```
 
 **Ghi nhớ:** Dùng để bắt các lỗi runtime (vd: không tìm thấy file, chia cho 0) để chương trình không bị crash ngang.
@@ -40,6 +42,7 @@ def my_func(*args, **kwargs):
     print("Tham số có tên (dict):", kwargs)
 
 my_func(1, 2, 3, a='hello', b=True)
+
 ```
 
 **Ghi nhớ:** Dùng khi không biết trước người dùng sẽ truyền vào bao nhiêu tham số.
@@ -60,6 +63,7 @@ class MyDataset:
 dataset = MyDataset([10, 20, 30])
 print(len(dataset)) # Gọi __len__
 print(dataset[1])   # Gọi __getitem__
+
 ```
 
 **Ghi nhớ:** Các hàm có 2 dấu gạch dưới (Dunder methods) là các hàm đặc biệt, giúp Class của bạn tương tác với các toán tử Python có sẵn (`len()`, `[]`).

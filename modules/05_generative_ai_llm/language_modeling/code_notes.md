@@ -1,5 +1,7 @@
 # Code Notes: Language Modeling
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: HuggingFace Pipeline (Text Generation)
@@ -12,6 +14,7 @@ from transformers import pipeline
 generator = pipeline("text-generation", model="gpt2")
 out = generator("Artificial Intelligence is", max_length=30, num_return_sequences=1)
 print(out[0]['generated_text'])
+
 ```
 
 **Ghi nhớ:** Dùng `pipeline("text-generation")` cho Causal LM.
@@ -32,6 +35,7 @@ targets = torch.tensor([0, 1])
 loss = loss_fn(logits, targets)
 perplexity = math.exp(loss.item())
 print(f"Loss: {loss.item():.4f}, Perplexity: {perplexity:.4f}")
+
 ```
 
 **Ghi nhớ:** `PPL = exp(CrossEntropyLoss)`.

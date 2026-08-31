@@ -1,5 +1,7 @@
 # 📦 Nội Dung Giáo Trình — Cấu Trúc Module & Chapters
 
+> **Phạm vi bản Beta:** Chỉ module 00–05 đã được triển khai. Các mô tả module 06–08 và `templates/_dev` bên dưới là roadmap, không phải inventory file hiện có. Inventory và archetype chính thức nằm trong `../curriculum.yml`.
+
 > [← Quay lại Tổng Quan](00_tong_quan.md)
 
 ---
@@ -252,6 +254,7 @@ _dev/
 ├── authoring_checklist.md
 ├── review_log.md
 └── learner_test_log.md
+
 ```
 
 ---
@@ -324,6 +327,7 @@ graph TD
     style ATT fill:#4CAF50,color:#fff
     style TRANS fill:#4CAF50,color:#fff
     style FT fill:#4CAF50,color:#fff
+
 ```
 
 <small>🟢 = Core Chapter (from-scratch bắt buộc)</small>

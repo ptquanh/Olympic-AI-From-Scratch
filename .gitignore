@@ -54,3 +54,14 @@ Thumbs.db
 *.pt
 *.h5
 *.pkl
+
+# Third-party handbook: keep a local copy only; the project does not redistribute it.
+*.pdf
+
+# Execution reports are transient CI/release artifacts, not repository content.
+_dev/*.log
+_dev/*_report.json
+_dev/repro_smoke.json
+_dev/notebook_retry.json
+_dev/jupyter/
+_dev/cpu_patch_*.json

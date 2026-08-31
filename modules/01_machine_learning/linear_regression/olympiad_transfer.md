@@ -1,5 +1,7 @@
 # Olympiad Transfer: Linear Regression
 
+> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
+
 ## 1. Nhận diện trong đề
 
 Nếu đề bài là bài toán **Dự đoán một giá trị thực liên tục** (vd: Giá nhà, số lượng sản phẩm bán được, tuổi thọ...). Metric đánh giá là **MSE, RMSE, MAE**.

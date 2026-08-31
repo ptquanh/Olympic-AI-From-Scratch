@@ -13,7 +13,16 @@ loss = criterion(y_pred, y_true)
 # LƯU Ý: Không dùng Softmax ở lớp mạng cuối cùng, vì CrossEntropyLoss ĐÃ BAO GỒM Softmax bên trong nó!
 criterion = nn.CrossEntropyLoss()
 loss = criterion(y_pred_logits, y_class_indices)
+
 ```
+
+## 📋 API Cheat Sheet
+
+| API                          | Dùng khi                        |
+| ---------------------------- | ------------------------------- |
+| `torch.nn.CrossEntropyLoss`  | multiclass logits + class index |
+| `torch.nn.BCEWithLogitsLoss` | binary/multilabel logits        |
+| `torch.nn.MSELoss`           | regression                      |
 
 ## 🧠 Flashcards
 

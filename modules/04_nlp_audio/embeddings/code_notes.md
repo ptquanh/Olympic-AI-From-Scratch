@@ -17,6 +17,7 @@ input_ids = torch.tensor([[5, 200, 9999]])
 # Trích xuất vector nhúng
 word_vectors = embed_layer(input_ids)
 print(word_vectors.shape) # (1, 3, 256)
+
 ```
 
 ## 🏋️ Bài Luyện Code Tay
@@ -26,6 +27,14 @@ print(word_vectors.shape) # (1, 3, 256)
 | 1   | Viết hàm tính Cosine Similarity giữa 2 vector A và B (Pytorch 1D Tensors) | 3 phút    | `(A @ B) / (torch.norm(A) * torch.norm(B))` |
 
 | 2 | Viết code tính TF-IDF thuần bằng numpy | 20p | Count frequency, chia cho document freq |
+
+## 📋 API Cheat Sheet
+
+| API                                     | Dùng khi         |
+| --------------------------------------- | ---------------- |
+| `torch.nn.Embedding`                    | ID lookup table  |
+| `torch.nn.functional.cosine_similarity` | batched cosine   |
+| `torch.nn.functional.normalize`         | L2 normalization |
 
 ### 🧠 Flashcards
 

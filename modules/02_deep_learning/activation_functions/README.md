@@ -34,7 +34,7 @@ Khi mạng học được đặc trưng "cái tai mèo" mang giá trị âm ($x 
 ## ⑩ Misconceptions
 
 ❌ **Sai:** ReLU luôn là hàm tốt nhất.
-✅ **Đúng:** ReLU tốt nhất cho Hidden Layers của các mạng CNN truyền thống. Nhưng với LLM (Transformer), GELU hoặc SwiGLU mới là chuẩn mực. Output layer thì phải dùng Sigmoid (phân loại nhị phân) hoặc Softmax (phân loại đa lớp).
+✅ **Đúng:** ReLU là baseline phổ biến cho CNN; GELU/SiLU/SwiGLU thường gặp trong Transformer nhưng phải đánh giá theo kiến trúc. Với `BCEWithLogitsLoss` hoặc `CrossEntropyLoss`, output layer trả **logits** trong lúc train; chỉ áp sigmoid/softmax khi cần xác suất ở bước đánh giá/infer.
 
 ## ⑮ Mastery Check
 

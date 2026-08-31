@@ -1,24 +1,42 @@
-# Competition Lab: Image Classification
+# Competition Lab — Image Classification
 
 > **Track:** Foundation ⭐ | Contest ⭐
 
-## Giới thiệu
+## Learning Outcomes
 
-Chào mừng bạn đến với mô hình thi đấu (Competition Lab). Đây không phải là chương lý thuyết. Bạn sẽ đóng vai trò là một chiến binh Olympic AI, nhận một bộ dữ liệu chưa qua chỉnh sửa và phải nộp một pipeline hoàn chỉnh (thường là dưới dạng file `.ipynb` hoặc `submission.csv`).
+- Xây pipeline Data → EDA → Split → Train → Validate → Infer → Submit chạy tuần tự.
+- Bắt đầu bằng baseline nhỏ, sau đó so sánh CNN/transfer learning trong cùng validation protocol.
+- Ngăn leakage giữa ảnh gần trùng, subject/group hoặc augmentation.
+- Lưu seed, config, checkpoint và kiểm tra submission contract.
 
-## Nhiệm vụ: Dog vs Cat Classification (Nhưng khó hơn)
+## Problem và dữ liệu
 
-Trong cuộc thi này, bạn sẽ xây dựng một mô hình phân loại ảnh. Bạn KHÔNG ĐƯỢC train model từ con số 0 (vì mất quá nhiều thời gian). Bắt buộc phải sử dụng **Transfer Learning**.
+CPU smoke path tạo ảnh `16×16` có hai pattern dọc/ngang cùng noise, nên label có tín hiệu thật và pipeline có thể học được. Đây là test kỹ thuật, không đại diện độ khó dữ liệu thi. Full practice phải thay bằng dataset công khai có license và split rõ.
 
-### Yêu cầu cụ thể:
+## Metric
 
-1. Tải một mô hình Pre-trained từ `torchvision.models` hoặc `timm` (Ví dụ: ResNet18 hoặc EfficientNet).
-2. Viết Custom `Dataset` và `DataLoader` để đọc ảnh từ folder (sử dụng thư viện `PIL` hoặc `cv2`).
-3. Thực hiện Data Augmentation ngẫu nhiên (chỉ trên tập Train, tập Val phải giữ nguyên).
-4. Thay thế lớp cuối cùng của mô hình để Output ra 2 classes thay vì 1000 classes như ImageNet.
-5. Huấn luyện mô hình, lưu lại Checkpoint có Loss trên tập validation nhỏ nhất (`best_model.pth`).
-6. Trình bày được Test Accuracy và vẽ Confusion Matrix.
+Smoke task cân bằng dùng Accuracy. Khi class imbalance hoặc chi phí lỗi khác nhau, đề có thể dùng Macro F1, log loss hoặc metric riêng. Metric của đề là nguồn quyết định cuối; không đổi threshold dựa trên test labels.
 
-## ⑯ Time Estimate
+## Validation
 
-Lab: ~3h (Bao gồm thời gian cho GPU train mô hình)
+- Baseline dùng một hold-out cố định với seed 42.
+- Dữ liệu có nhiều ảnh cùng đối tượng phải split theo group trước augmentation.
+- Fit normalization/statistics chỉ trên train; augmentation ngẫu nhiên chỉ áp dụng train.
+- Dùng validation để chọn model/checkpoint, không dùng test như validation thứ hai.
+
+## Starter và Solution
+
+- `starter.ipynb`: nearest-centroid baseline chạy được và TODO thay bằng CNN.
+- `solution.ipynb`: CNN nhỏ, deterministic DataLoader, validation metric và submission array.
+- Transfer learning là một lựa chọn khi model/cache được phép, không phải quy tắc bắt buộc. `timm` không thuộc danh sách PTIT 2026 trong PDF nên không được giả định có trong phòng thi.
+
+## Failure Modes
+
+1. Random split làm ảnh cùng source xuất hiện ở train và validation.
+2. Normalize/augment validation như train khiến metric không phản ánh inference.
+3. Chọn checkpoint theo training loss thay vì metric validation.
+4. Submission sai thứ tự sample, dtype, header hoặc số dòng.
+
+## Time Estimate
+
+Starter baseline: ~45m · Improvement: ~2h · Postmortem: ~30m

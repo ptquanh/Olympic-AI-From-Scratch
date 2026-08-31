@@ -1,32 +1,39 @@
 # Lời giải: Fine-tuning Patterns
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 1. Số lượng tham số Linear gốc: $1024 \times 1024 = 1,048,576$.
    Số lượng tham số LoRA ($r=8$): $A(8 \times 1024) + B(1024 \times 8) = 8192 + 8192 = 16,384$.
 2. Nếu cả A và B đều bằng 0, gradient truyền ngược qua phép nhân $B \times A$ sẽ bằng 0 cho cả 2 ma trận (do đạo hàm của u\*v là u'v + uv'). Cả A và B sẽ không bao giờ được cập nhật. Do đó, A được khởi tạo random (phá vỡ tính đối xứng) và B bằng 0.
 3. `scaling` giúp làm mượt quá trình học. Khi ta đổi rank $r$, tổng các giá trị trong phép nhân $B \times A$ sẽ thay đổi. Chia cho $r$ giúp output luôn ổn định dù cấu hình rank khác nhau.
 
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 ```python
 # Xem code trong phần Code Notes Pattern 1.
 class LoRALinear(nn.Module):
     # ...
+
 ```
 
-</details>
-
-<details><summary><b>Tầng 3: Experiment</b></summary>
-
-1. Đúng, khi rank cao hơn, năng lực biểu diễn của mô hình cũng lớn hơn, vì vậy trên tập huấn luyện loss có thể giảm nhanh hơn. Tuy nhiên, r quá lớn làm mất lợi thế về tốc độ và dễ bị overfit trên tập dữ liệu nhỏ. Thông thường, r=8 hoặc r=16 là điểm cân bằng tốt nhất.
-2. Áp dụng LoRA vào cả `query` và `value` thường mang lại chất lượng tốt nhất trong khi số lượng tham số vẫn giữ ở mức cực nhỏ so với full fine-tuning.
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 4: Transfer</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
+
+1. Rank cao hơn tăng số bậc tự do nhưng không bảo đảm train loss giảm nhanh hay validation tốt hơn. So sánh rank trên cùng split, budget và seed; không có `r=8/16` tối ưu chung.
+2. `query`/`value` là lựa chọn thường gặp, không phải luôn tốt nhất. Tên target module phụ thuộc kiến trúc; kiểm trainable parameter count và ablation thay vì copy cấu hình.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
+
+</details>
+
+<details><summary><b>T-1 — Transfer</b></summary>
 
 Trong PyTorch, `peft` đã hỗ trợ sẵn LoRA cho Conv2d, nhưng nếu viết tay:
 
@@ -50,13 +57,16 @@ class LoRAConv2d(nn.Module):
         # Cách dễ hơn: Dùng 2 lớp conv1x1
         # self.lora_A = nn.Conv2d(in_c, r, kernel_size, bias=False)
         # self.lora_B = nn.Conv2d(r, out_c, 1, bias=False)
+
 ```
 
 _Cách chuẩn: Dùng 2 hàm nn.Conv2d liên tiếp, 1 cái giảm chiều xuống $r$ (với kernel gốc), 1 cái tăng lên $out\_channels$ (kernel 1x1)._
 
+**Lỗi thường gặp:** fit preprocessing/chọn threshold trên test, dùng metric sai hoặc bỏ qua failure mode.
+
 </details>
 
-<details><summary><b>Tầng 5: Olympiad</b></summary>
+<details><summary><b>O-1 — Olympiad</b></summary>
 
 ```python
 # Cấu hình LoRA cho phân loại văn bản với PhoBERT
@@ -73,6 +83,9 @@ peft_config = LoraConfig(
 )
 peft_model = get_peft_model(model, peft_config)
 peft_model.print_trainable_parameters()
+
 ```
+
+**Lỗi thường gặp:** áp luật của kỳ thi khác, không lưu config/artifact hoặc hết timebox mà chưa chạy infer cuối.
 
 </details>

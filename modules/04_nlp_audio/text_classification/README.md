@@ -1,34 +1,42 @@
-# Text Classification Competition Lab
+# Competition Lab — Text Classification
 
 > **Track:** Foundation ⭐ | Contest ⭐
 
-## ① Giới thiệu
+## Learning Outcomes
 
-Chào mừng đến với Đấu trường Phân loại Văn bản! Khác với các bài toán CV (xử lý ảnh) mà bạn đã làm, xử lý văn bản yêu cầu một quy trình tiền xử lý khá lằng nhằng (Tokenization, Padding, Truncation) trước khi có thể đưa vào mạng Neural Network.
+- Xây pipeline Split → Vectorize/Tokenize → Train → Macro F1 → Infer → Submit.
+- Tạo TF-IDF + linear baseline trước khi fine-tune encoder.
+- Ngăn vocabulary, duplicate, author/thread hoặc temporal leakage.
+- Phân tích confusion/error slices và chọn threshold trên validation.
 
-## ② Learning Outcomes
+## Problem và dữ liệu
 
-- Xây dựng thành công pipeline tiền xử lý văn bản bằng `AutoTokenizer` của thư viện HuggingFace.
-- Áp dụng Transfer Learning: tải mô hình pre-trained BERT/PhoBERT bằng `AutoModelForSequenceClassification`.
-- Fine-tune (huấn luyện tinh chỉnh) mô hình bằng PyTorch training loop chuẩn.
-- Ghi log và đánh giá kết quả bằng metric F1-Score (rất quan trọng trong NLP).
+CPU smoke path dùng câu sentiment nhỏ, deterministic và không tải mạng. Nó kiểm tra data contract chứ không mô phỏng đầy đủ toxic-comment data. Full practice phải ghi nguồn/license, language, label policy và class distribution.
 
-## ③ Bài toán: Nhận diện bình luận độc hại (Toxic Comment Classification)
+## Metric
 
-**Mô tả:**
-Trên các nền tảng mạng xã hội, việc tự động phát hiện và lọc các bình luận mang tính chất công kích, thù ghét là bài toán sống còn. Bạn được cung cấp một tập dữ liệu gồm các bình luận và nhãn 0 (Bình thường) hoặc 1 (Độc hại).
+Lab dùng Macro F1: tính F1 riêng từng class rồi lấy trung bình không trọng số. Metric này không tự động là lựa chọn đúng cho mọi task; luôn theo định nghĩa chính xác trong đề, gồm averaging và label order.
 
-**Metric đánh giá:** F1-Score (Macro)
-Trong bài toán này, số lượng bình luận bình thường thường áp đảo bình luận độc hại (Mất cân bằng dữ liệu). Do đó, Accuracy (độ chính xác tổng thể) sẽ không phản ánh đúng thực tế. Ta dùng F1-Score để đánh giá độ hiệu quả của việc bắt đúng các bình luận độc hại mà không nhận diện nhầm quá nhiều bình luận bình thường.
+## Validation
 
-## ④ Hướng dẫn triển khai
+- Fit vocabulary/TF-IDF chỉ trên train fold.
+- Group split theo author/thread/source khi các mẫu liên quan.
+- Deduplicate trước split hoặc giữ duplicate trong cùng group.
+- Chọn threshold/checkpoint trên validation; khóa pipeline trước test/private inference.
 
-1. **Dữ liệu:** (Giả lập) Tải tập dữ liệu text (tiếng Anh hoặc tiếng Việt).
-2. **Tokenizer:** Văn bản không thể nhân ma trận được. Bạn phải chuyển nó thành số. Gọi `tokenizer(text, padding=True, truncation=True, max_length=128)` để biến câu thành các mảng số nguyên (input_ids) và mảng mặt nạ (attention_mask).
-3. **Mô hình:** Tải pre-trained model (VD: `bert-base-uncased` hoặc `vinai/phobert-base`). Thay thế lớp phân loại (Classifier head) bằng một lớp mới có `num_labels=2`.
-4. **Huấn luyện:** Sử dụng `AdamW` với Learning Rate siêu nhỏ (VD: `2e-5`) vì mô hình đã được huấn luyện rất tốt rồi, ta chỉ "tinh chỉnh" (fine-tune) nhẹ lại mà thôi.
-5. **Nộp bài:** Chạy tập test, in kết quả ra file `submission.csv` và kiểm tra trên rubric.
+## Starter và Solution
 
-## ⑯ Time Estimate
+- `starter.ipynb`: keyword baseline chạy được, có Macro F1 và submission contract.
+- `solution.ipynb`: TF-IDF bigram + Logistic Regression, phù hợp CPU/offline.
+- BERT/PhoBERT là bước cải thiện khi cache, compute và luật cho phép; không phải baseline bắt buộc.
 
-Theory: ~1h, Code: ~4h (Fine-tuning BERT khá tốn thời gian chạy)
+## Failure Modes
+
+1. Fit tokenizer/vectorizer trên toàn bộ dữ liệu.
+2. Accuracy cao do class majority nhưng Macro F1 thấp.
+3. Truncation cắt mất phần chứa tín hiệu.
+4. Text normalization xóa emoji, dấu câu hoặc casing có ích.
+
+## Time Estimate
+
+Starter baseline: ~45m · Improvement: ~2h · Postmortem: ~30m

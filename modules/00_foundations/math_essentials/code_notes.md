@@ -13,6 +13,7 @@ dot_prod = np.dot(a, b) # 1*4 + 2*5 + 3*6 = 32
 A = np.random.rand(4, 3)
 B = np.random.rand(3, 2)
 C = A @ B # Nhân ma trận (Matrix Multiplication). Shape: (4, 2)
+
 ```
 
 **Ghi nhớ:** Dùng `@` cho Matrix Multiplication. Bắt buộc chiều kích thước giữa $(M, N) \times (N, K)$.
@@ -25,6 +26,7 @@ W = np.array([[0.1, 0.2], [0.3, 0.4]]) # Shape (2, 2)
 
 # Y = X * W^T
 Y = X @ W.T
+
 ```
 
 **Ghi nhớ:** Ký hiệu `.T` là ma trận chuyển vị (đảo hàng thành cột). Thường xuyên dùng khi tính $X \cdot W^T$.
@@ -40,6 +42,7 @@ h = 1e-5 # Số rất nhỏ
 # Định nghĩa đạo hàm: (f(x+h) - f(x-h)) / 2h (Central difference)
 grad = (f(x + h) - f(x - h)) / (2 * h)
 # KQ: ~6.0
+
 ```
 
 **Ghi nhớ:** Đây là cách máy tính "xấp xỉ" đạo hàm bằng cách tính độ dốc của đoạn thẳng rất nhỏ.

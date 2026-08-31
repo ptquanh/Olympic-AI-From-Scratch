@@ -44,6 +44,7 @@ Sử dụng hàm mất mát SVM (Max-Margin Loss) hoặc Mean Squared Error.
 Ví dụ mạng dự đoán ra kết quả `y_pred = 0.8`, nhãn thật `y_true = 1.0`.
 Hàm MSE: $L = (0.8 - 1.0)^2 = 0.04$.
 Sau khi gọi `L.backward()`, ta cập nhật toàn bộ `w` và `b` của mạng bằng lệnh:
+
 `p.data -= 0.01 * p.grad` (với `p` là từng tham số trong mạng).
 
 ## ⑩ Misconceptions

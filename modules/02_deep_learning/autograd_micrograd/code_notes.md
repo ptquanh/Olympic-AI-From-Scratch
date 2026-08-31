@@ -16,6 +16,7 @@ class Value:
 
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
+
 ```
 
 ### Pattern 2: Cài đặt phép Cộng với Local Gradient
@@ -33,6 +34,7 @@ class Value:
 
         out._backward = _backward
         return out
+
 ```
 
 ### Pattern 3: Cài đặt phép Nhân
@@ -49,15 +51,20 @@ class Value:
 
         out._backward = _backward
         return out
+
 ```
 
 ## 📋 API Cheat Sheet
 
 Bài học này xây dựng API from-scratch nên không có cheat sheet thư viện.
 Trong PyTorch, logic này tương ứng với:
+
 `x = torch.tensor([2.0], requires_grad=True)`
+
 `y = x * 3`
+
 `y.backward()`
+
 `print(x.grad)`
 
 ## 🏋️ Bài Luyện Code Tay

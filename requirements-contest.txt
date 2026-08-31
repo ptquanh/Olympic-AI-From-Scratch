@@ -1,0 +1,33 @@
+# Reference snapshot only: planned preinstalled libraries in the supplied
+# Olympic AI PTIT 2026 handbook, Part 08. Verify the actual task environment.
+torch
+torchvision
+pytorch-lightning
+transformers
+sentence-transformers
+datasets
+evaluate
+faiss-cpu
+rank_bm25
+spacy
+nltk
+gensim
+fasttext-wheel
+opencv-python
+Pillow
+scikit-image
+scikit-learn
+xgboost
+catboost
+lightgbm
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+plotly
+tensorboard
+tqdm
+joblib
+jupyter
+

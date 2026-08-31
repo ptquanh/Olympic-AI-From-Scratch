@@ -1,88 +1,71 @@
 # 🏆 Olympic AI From Scratch
 
-Chào mừng bạn đến với **Olympic AI From Scratch**! Đây là giáo trình AI open-source bằng tiếng Việt, được thiết kế đặc biệt để giúp bạn học từ con số 0 đến khi đủ kiến thức và kỹ năng tham gia các kỳ thi Olympic Trí tuệ Nhân tạo (OlpAI SV, Olympic AI PTIT, VOAI, IOAI...).
+> **Technical Review Beta · v0.2.0**  
+> Phạm vi hiện có: Module 00–05. Nội dung chưa được gọi là `Published` cho đến khi hoàn thành learner testing với người học thật.
 
----
+Giáo trình AI tiếng Việt, open-source, đi từ nền tảng Python và toán đến Machine Learning, Deep Learning, Computer Vision, NLP/Audio và Generative AI. Hai mục tiêu được duy trì song song:
 
-## 📌 Bắt đầu từ đâu?
+- **Foundation Track:** học từ con số 0, hiểu bản chất và tự cài đặt phần cốt lõi.
+- **Contest Track:** tập trung validation, pipeline, failure modes và khả năng tái lập trong Olympic AI.
 
-Trước khi lao vào code, hãy dành chút thời gian đọc các tài liệu sau để định hướng cách học:
+Giáo trình không coi luật của một cuộc thi là luật chung. Nội dung ổn định được trình bày ở profile `general`; quy định về thời lượng, Internet, LLM, thư viện và nộp bài phải ghi rõ kỳ thi, năm và nguồn.
 
-1. 📖 **[Hướng dẫn tự học (HOW TO STUDY)](HOW_TO_STUDY.md)**: Cách học hiệu quả, quy trình 5 bước để làm chủ 1 thuật toán.
-2. ⚙️ **[Hướng dẫn cài đặt (SETUP)](SETUP.md)**: Cách setup môi trường chạy code trên máy cá nhân hoặc Google Colab / Kaggle.
-3. ✅ **[Tiến độ học tập (PROGRESS TRACKER)](PROGRESS_TRACKER.md)**: Đánh dấu các phần đã học để theo dõi lộ trình của bản thân.
+## Bắt đầu
 
----
+1. Đọc [hướng dẫn học](HOW_TO_STUDY.md) và chọn track.
+2. Cài môi trường theo [SETUP.md](SETUP.md).
+3. Chọn đúng luật tại [COMPETITION_PROFILES.md](COMPETITION_PROFILES.md) nếu học Contest Track.
+4. Xem [PROGRESS_TRACKER.md](PROGRESS_TRACKER.md) và `curriculum.yml` để biết trạng thái thật của từng chương.
+5. Trong mỗi chương: README → notebook → code notes → exercises → solutions.
 
-## 📚 Mục lục Giáo trình (Table of Contents)
+## Nội dung hiện có
 
-### [Module 00: Python & Toán Nền Tảng](modules/00_foundations/MODULE_README.md)
+### [Module 00 — Python & Toán nền tảng](modules/00_foundations/MODULE_README.md)
 
-Xây dựng nền móng vững chắc về lập trình và toán học trước khi vào học AI.
+Python Essentials · NumPy & Pandas · Regex & Data Handling · Math Essentials · Visualization
 
-- 1. [Python Essentials](modules/00_foundations/python_essentials/README.md)
-- 2. [NumPy & Pandas](modules/00_foundations/numpy_pandas/README.md)
-- 3. [Regex & Data Handling](modules/00_foundations/regex_data_handling/README.md)
-- 4. [Math Essentials](modules/00_foundations/math_essentials/README.md)
-- 5. [Visualization](modules/00_foundations/visualization/README.md)
+### [Module 01 — Machine Learning](modules/01_machine_learning/MODULE_README.md)
 
-### [Module 01: Machine Learning](modules/01_machine_learning/MODULE_README.md)
+Linear Regression · Logistic Regression · Metrics & Validation · Tree Ensembles · SVM & KNN · Unsupervised Learning · Feature Engineering · Hyperparameter Tuning
 
-Nắm vững các thuật toán cốt lõi của Học máy truyền thống.
+### [Module 02 — Deep Learning](modules/02_deep_learning/MODULE_README.md)
 
-- 1. [Linear Regression](modules/01_machine_learning/linear_regression/README.md)
-- 2. [Logistic Regression](modules/01_machine_learning/logistic_regression/README.md)
-- 3. [Metrics & Validation](modules/01_machine_learning/metrics_and_validation/README.md)
-- 4. [Tree Ensembles](modules/01_machine_learning/tree_ensembles/README.md)
-- 5. [SVM & KNN](modules/01_machine_learning/svm_knn/README.md)
-- 6. [Unsupervised Learning](modules/01_machine_learning/unsupervised/README.md)
-- 7. [Feature Engineering](modules/01_machine_learning/feature_engineering/README.md)
-- 8. [Hyperparameter Tuning](modules/01_machine_learning/hyperparameter_tuning/README.md)
+PyTorch Fundamentals · Autograd & Micrograd · Backprop & Training Loop · Activation Functions · Loss Functions · Optimization · Regularization
 
-### [Module 02: Deep Learning](modules/02_deep_learning/MODULE_README.md)
+### [Module 03 — Computer Vision](modules/03_computer_vision/MODULE_README.md)
 
-Học sâu, mạng Nơ-ron và thuật toán Backpropagation.
+Image Fundamentals · Augmentation · Convolution · CNN Architectures · Image Classification Competition · Object Detection · Segmentation · Generative CV
 
-- 1. [PyTorch Fundamentals](modules/02_deep_learning/pytorch_fundamentals/README.md)
-- 2. [Autograd & Micrograd](modules/02_deep_learning/autograd_micrograd/README.md)
-- 3. [Backprop & Training Loop](modules/02_deep_learning/backprop_training_loop/README.md)
-- 4. [Activation Functions](modules/02_deep_learning/activation_functions/README.md)
-- 5. [Loss Functions](modules/02_deep_learning/loss_functions/README.md)
-- 6. [Optimization](modules/02_deep_learning/optimization/README.md)
-- 7. [Regularization](modules/02_deep_learning/regularization/README.md)
+### [Module 04 — NLP & Audio](modules/04_nlp_audio/MODULE_README.md)
 
-### [Module 03: Computer Vision](modules/03_computer_vision/MODULE_README.md)
+Text Preprocessing · Embeddings · Attention · Transformer · Pre-trained Encoders · Text Classification Competition · Document AI · Audio Fundamentals · Speech Recognition
 
-Thị giác máy tính, từ biến đổi ảnh đến CNN và YOLO.
+### [Module 05 — Generative AI & LLM](modules/05_generative_ai_llm/MODULE_README.md)
 
-- 1. [Image Fundamentals](modules/03_computer_vision/image_fundamentals/README.md)
-- 2. [Augmentation](modules/03_computer_vision/augmentation/README.md)
-- 3. [Convolution](modules/03_computer_vision/convolution/README.md)
-- 4. [CNN Architectures](modules/03_computer_vision/cnn_architectures/README.md)
-- 5. [Image Classification](modules/03_computer_vision/image_classification/README.md)
-- 6. [Object Detection](modules/03_computer_vision/detection/README.md)
-- 7. [Image Segmentation](modules/03_computer_vision/segmentation/README.md)
-- 8. [Generative CV](modules/03_computer_vision/generative_cv/README.md)
+Language Modeling · Prompt Engineering · Fine-tuning Patterns · Multimodal
 
-### [Module 04: NLP & Audio](modules/04_nlp_audio/MODULE_README.md)
+## Ba loại chương
 
-Xử lý ngôn ngữ tự nhiên và âm thanh với Transformer, BERT.
+| Loại        | Mục tiêu                                     | Bài thực hành                                         |
+| ----------- | -------------------------------------------- | ----------------------------------------------------- |
+| Core        | Derive và implement thuật toán nền tảng      | `01_from_scratch`, `02_framework`, `03_experiments`   |
+| Concept     | Dùng đúng API, giải thích và debug           | `lab.ipynb`                                           |
+| Competition | Xây pipeline và ra quyết định trong giới hạn | `starter.ipynb`, `solution.ipynb`, rubric, postmortem |
 
-- 1. [Text Preprocessing](modules/04_nlp_audio/text_preprocessing/README.md)
-- 2. [Embeddings](modules/04_nlp_audio/embeddings/README.md)
-- 3. [Attention Mechanism](modules/04_nlp_audio/attention/README.md)
-- 4. [Transformer (Encoder/Decoder)](modules/04_nlp_audio/transformer/README.md)
-- 5. [Pre-trained Encoders](modules/04_nlp_audio/pretrained_encoders/README.md)
-- 6. [Text Classification Lab](modules/04_nlp_audio/text_classification/README.md)
-- 7. [Document AI](modules/04_nlp_audio/document_ai/README.md)
-- 8. [Audio Fundamentals](modules/04_nlp_audio/audio_fundamentals/README.md)
-- 9. [Speech Recognition](modules/04_nlp_audio/speech_recognition/README.md)
+`solutions.md` là bắt buộc cho cả Core và Concept. Bài tập Core dùng năm tầng U/I/E/T/O; Concept dùng U/I/E; Competition đánh giá E/T/O qua rubric.
 
-### [Module 05: Generative AI & LLM](modules/05_generative_ai_llm/MODULE_README.md)
+## Trạng thái chất lượng
 
-Mô hình tạo sinh, LLM, Prompt Engineering và Fine-tuning.
+`curriculum.yml` là nguồn trạng thái duy nhất. Luồng hợp lệ:
 
-- 1. [Language Modeling](modules/05_generative_ai_llm/language_modeling/README.md)
-- 2. [Prompt Engineering](modules/05_generative_ai_llm/prompt_engineering/README.md)
-- 3. [Finetuning Patterns](modules/05_generative_ai_llm/finetuning_patterns/README.md)
-- 4. [Multimodal](modules/05_generative_ai_llm/multimodal/README.md)
+`outlined → drafted → technically_reviewed → learner_tested → revised → published`
+
+Beta này đặt mục tiêu `technically_reviewed`. Hiện 31/41 chương đã đạt; 10 chương GPU vẫn ở `drafted` dù local CUDA full-run pass vì còn thiếu portability evidence trên Colab/Kaggle. Một chương chỉ đạt mốc khi lý thuyết và đáp án đã được đối chiếu, notebook chạy từ đầu đến cuối, audit cấu trúc pass và có review log. Xem `_dev/review_checklist.md` và `_dev/review_log.md`.
+
+## Roadmap ngoài phạm vi Beta
+
+Module 06 Competition Pipeline, Module 07 Olympiad Problems và Module 08 Team Competition vẫn là roadmap. Chúng chưa tồn tại trong bản phát hành này và không được tính vào tỷ lệ hoàn thành 00–05.
+
+## Đóng góp và giấy phép
+
+Xem [CONTRIBUTING.md](CONTRIBUTING.md) và [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Code/notebook dùng MIT; nội dung giáo dục gốc dùng CC BY-SA 4.0. PDF cẩm nang và tài sản bên thứ ba không được cấp lại theo các giấy phép này; xem [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

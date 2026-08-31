@@ -8,12 +8,12 @@ Nắm vững cách máy tính hiểu văn bản và âm thanh, từ tiền xử 
 
 | Chương                                                      | Loại          | Nội dung chính                              | Foundation Track | Contest Track |
 | ----------------------------------------------------------- | ------------- | ------------------------------------------- | ---------------- | ------------- |
-| 1. [Text Preprocessing](text_preprocessing/README.md)       | [Concept]     | Làm sạch, tokenization, vocabulary, padding | ⭐ Bắt buộc      | 📖 Đọc lướt   |
-| 2. [Embeddings](embeddings/README.md)                       | [Concept]     | Word2Vec, Dense embeddings, Cosine          | ⭐ Bắt buộc      | 📖 Đọc lướt   |
+| 1. [Text Preprocessing](text_preprocessing/README.md)       | [Concept]     | Làm sạch, tokenization, vocabulary, padding | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
+| 2. [Embeddings](embeddings/README.md)                       | [Concept]     | Word2Vec, Dense embeddings, Cosine          | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 3. [Attention Mechanism](attention/README.md)               | [Core]        | Self-attention, Multi-head attention        | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 4. [Transformer (Encoder/Decoder)](transformer/README.md)   | [Core]        | Transformer block, Positional encoding      | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 5. [Pre-trained Encoders](pretrained_encoders/README.md)    | [Concept]     | BERT, Sentence-transformers                 | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
-| 6. [Text Classification Lab](text_classification/README.md) | [Competition] | Fine-tune BERT cho phân loại độc hại        | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
+| 6. [Text Classification Lab](text_classification/README.md) | [Competition] | TF-IDF baseline → encoder fine-tuning       | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 7. [Document AI](document_ai/README.md)                     | [Concept]     | OCR, LayoutLM, Multi-modal NLP              | ⚡ Nâng cao      | ⭐ Bắt buộc   |
 | 8. [Audio Fundamentals](audio_fundamentals/README.md)       | [Concept]     | Waveform, Spectrogram, torchaudio           | ⚡ Nâng cao      | 📖 Đọc lướt   |
-| 9. [Speech Recognition](speech_recognition/README.md)       | [Concept]     | ASR, Whisper, WER                           | ⚡ Nâng cao      | 📖 Đọc lướt   |
+| 9. [Speech Recognition](speech_recognition/README.md)       | [Concept]     | ASR, Whisper, WER/CER                       | ⚡ Nâng cao      | ⭐ Bắt buộc   |

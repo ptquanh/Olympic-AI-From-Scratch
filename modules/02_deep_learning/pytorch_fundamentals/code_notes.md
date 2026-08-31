@@ -20,6 +20,7 @@ x = x.to(device)
 
 # Chuyển từ PyTorch về NumPy (phải kéo về CPU trước)
 x_numpy = x.cpu().numpy()
+
 ```
 
 ### Pattern 2: DataLoader Pattern
@@ -44,6 +45,7 @@ dataset = MyDataset(X_data, y_data)
 
 # 3. Đưa vào DataLoader (chia batch, xáo trộn)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+
 ```
 
 ## 📋 API Cheat Sheet

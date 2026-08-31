@@ -16,6 +16,7 @@ for param in model.parameters():
 # 3. Sửa lớp cuối (Linear) cho bài toán 2 classes của mình
 # ResNet18 có lớp cuối tên là 'fc' (Fully Connected), in_features = 512
 model.fc = nn.Linear(512, 2)
+
 ```
 
 ## 📋 API Cheat Sheet
@@ -24,6 +25,11 @@ model.fc = nn.Linear(512, 2)
 | ---------------------- | --------------------------------------------------- | --------------------------------------------------------------- |
 | torchvision.transforms | `transforms.Compose([transforms.Resize(256), ...])` | [Transforms](https://pytorch.org/vision/stable/transforms.html) |
 | PIL Image              | `Image.open("path.jpg").convert('RGB')`             | [Pillow Docs](https://pillow.readthedocs.io/)                   |
+
+## 🏋️ Bài Luyện Code Tay
+
+1. Viết hàm split stratified từ metadata, không đọc test label.
+2. Viết kiểm tra submission: đúng cột, đúng số dòng, ID duy nhất.
 
 ## 🧠 Flashcards
 

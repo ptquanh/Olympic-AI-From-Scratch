@@ -9,6 +9,7 @@ import re
 text = "Hóa đơn: 150000 VND, Tiền thừa: 5000 VND."
 # Trích xuất số
 numbers = re.findall(r'\d+', text) # ['150000', '5000']
+
 ```
 
 **Ghi nhớ:** `findall` trả về list các chuỗi khớp. Dùng `r'...'` để viết regex (raw string) tránh lỗi escape `\`.
@@ -19,6 +20,7 @@ numbers = re.findall(r'\d+', text) # ['150000', '5000']
 text = "Giá   là    100    đô."
 # Chuẩn hóa khoảng trắng
 clean_text = re.sub(r'\s+', ' ', text) # "Giá là 100 đô."
+
 ```
 
 **Ghi nhớ:** `sub` (substitute) thay thế phần khớp pattern bằng chuỗi mới.
@@ -29,6 +31,7 @@ clean_text = re.sub(r'\s+', ' ', text) # "Giá là 100 đô."
 from pathlib import Path
 # Tìm tất cả file .csv trong folder data và các folder con
 csv_files = list(Path('data').glob('**/*.csv'))
+
 ```
 
 **Ghi nhớ:** `glob('**/*.ext')` đệ quy tìm trong tất cả subdirectories.
@@ -39,6 +42,7 @@ csv_files = list(Path('data').glob('**/*.csv'))
 import json
 with open('data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
+
 ```
 
 **Ghi nhớ:** Luôn truyền `encoding='utf-8'` khi thao tác với text tiếng Việt.

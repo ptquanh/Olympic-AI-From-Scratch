@@ -20,6 +20,7 @@ ax.set_ylabel("Triệu VND")
 ax.legend() # Hiện chú thích
 
 plt.show()
+
 ```
 
 **Ghi nhớ:** Luôn dùng `fig, ax = plt.subplots()`. Luôn set title, xlabel, ylabel.
@@ -38,6 +39,7 @@ ax2.set_title("Biểu đồ 2")
 
 plt.tight_layout() # Tránh các chữ đè lên nhau
 plt.show()
+
 ```
 
 **Ghi nhớ:** Dùng `plt.tight_layout()` trước khi `show()`.
@@ -52,6 +54,7 @@ sns.histplot(data=df, x='age', bins=20, kde=True)
 
 # Vẽ Scatter có tô màu theo cột nhóm (Hue)
 sns.scatterplot(data=df, x='height', y='weight', hue='gender')
+
 ```
 
 **Ghi nhớ:** Seaborn nhận trực tiếp tham số `data=DataFrame`, `x` và `y` là tên cột. Rất nhàn!

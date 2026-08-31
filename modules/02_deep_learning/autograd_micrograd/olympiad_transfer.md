@@ -1,5 +1,7 @@
 # Olympiad Transfer: Autograd & Micrograd
 
+> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
+
 ## 1. Tầm quan trọng trong thi đấu
 
 Bài học này chủ yếu tập trung vào việc **xây dựng tư duy gốc rễ**. Bạn hiếm khi phải code một autograd engine thủ công trong phòng thi (PyTorch đã làm quá tốt điều đó). Tuy nhiên, hiểu về cách dòng chảy gradient đi qua mạng nơ-ron giúp bạn Debug những lỗi "chết người" trong phòng thi, ví dụ như **Vanishing Gradient** hay **Exploding Gradient**.

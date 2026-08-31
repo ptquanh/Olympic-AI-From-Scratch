@@ -9,6 +9,7 @@ import numpy as np
 a = np.zeros((3, 4)) # Mảng 3x4 toàn số 0
 b = np.arange(12)    # [0, 1, ..., 11]
 c = b.reshape(3, 4)  # Đổi hình dạng thành 3x4
+
 ```
 
 **Ghi nhớ:** Luôn check `shape` của array khi debug lỗi. Dùng `-1` trong reshape để NumPy tự tính (vd: `reshape(-1, 4)`).
@@ -20,6 +21,7 @@ matrix = np.ones((4, 3)) # Shape: (4, 3)
 vector = np.array([1, 2, 3]) # Shape: (3,)
 # Vector sẽ được "kéo giãn" (broadcast) thành (4,3) để cộng vào matrix
 result = matrix + vector
+
 ```
 
 **Ghi nhớ:** Căn lề phải shape. Trùng nhau hoặc bằng 1 thì broadcast được.
@@ -31,6 +33,7 @@ import pandas as pd
 df = pd.read_csv('data.csv')
 # Lọc khách hàng VIP và tuổi > 30
 vip_df = df[(df['is_vip'] == True) & (df['age'] > 30)]
+
 ```
 
 **Ghi nhớ:** Dùng dấu `&`, `|` thay cho `and`, `or`. Luôn đóng ngoặc tròn `()` cho từng điều kiện.
@@ -40,6 +43,7 @@ vip_df = df[(df['is_vip'] == True) & (df['age'] > 30)]
 ```python
 # Tính giá trị hóa đơn trung bình theo từng thành phố
 avg_bill = df.groupby('city')['bill_amount'].mean()
+
 ```
 
 **Ghi nhớ:** `groupby(cot_nhom)[cot_tinh_toan].ham_tinh_toan()`

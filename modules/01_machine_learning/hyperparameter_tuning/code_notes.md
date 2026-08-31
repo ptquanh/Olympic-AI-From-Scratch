@@ -1,5 +1,7 @@
 # Code Notes: Hyperparameter Tuning
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: Optuna Cơ Bản
@@ -22,6 +24,7 @@ def objective(trial):
 study = optuna.create_study(direction='maximize')
 study.optimize(objective, n_trials=20)
 print(study.best_params)
+
 ```
 
 ## 📋 API Cheat Sheet

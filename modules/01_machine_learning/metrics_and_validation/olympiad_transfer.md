@@ -1,5 +1,7 @@
 # Olympiad Transfer: Metrics & Validation
 
+> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
+
 ## 1. Nhận diện trong đề
 
 Metrics & Validation không phải là một bài toán cụ thể, mà là **BẮT BUỘC** trong mọi bài toán Olympic. Nếu bạn chọn sai chiến lược Cross-Validation, Leaderboard Public có thể rất cao (Top 1), nhưng khi kết thúc giải, điểm Private sẽ tụt thê thảm (Rơi xuống Top 50) - Hiện tượng này gọi là **Shake-up**.

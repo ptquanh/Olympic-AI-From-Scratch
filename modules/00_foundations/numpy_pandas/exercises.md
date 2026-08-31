@@ -1,6 +1,8 @@
 # Exercises: NumPy & Pandas
 
-## Tầng 1: Understand
+## U-1 — Understand
+
+**Learning outcome:** Giải thích đúng khái niệm, giả định và giới hạn bằng lập luận kiểm chứng được.
 
 **1. Giải thích lỗi Broadcasting**
 Cho `A.shape = (4, 3)` và `B.shape = (4,)`. Phép toán `A + B` sẽ báo lỗi `ValueError: operands could not be broadcast together`.
@@ -9,7 +11,11 @@ Giải thích tại sao? Làm thế nào để sửa B sao cho phép cộng hợ
 **2. Pandas Indexing**
 Phân biệt sự khác nhau về kết quả (kiểu dữ liệu) giữa `df['col_name']` và `df[['col_name']]`. Tại sao điều này quan trọng?
 
-## Tầng 2: Implement
+**Kết quả mong đợi:** Một lập luận ngắn nêu giả định, các bước suy luận và kết luận kiểm chứng được.
+
+## I-1 — Implement
+
+**Learning outcome:** Cài đặt phần cốt lõi, nêu input/output và vượt qua shape/edge-case tests.
 
 **1. Chuẩn hóa hình ảnh (Min-Max Scaling)**
 Cho một ảnh RGB (ảnh màu) được biểu diễn bằng NumPy array có kích thước `(height, width, 3)` với giá trị pixel từ 0 đến 255.
@@ -18,6 +24,7 @@ Cho một ảnh RGB (ảnh màu) được biểu diễn bằng NumPy array có k
 import numpy as np
 np.random.seed(42)
 image = np.random.randint(0, 256, size=(1080, 1920, 3))
+
 ```
 
 Viết code NumPy (không dùng vòng lặp) để chuẩn hóa biến `image` về khoảng `[0, 1]`.
@@ -35,6 +42,7 @@ sales = pd.DataFrame({
     'order_date': pd.date_range(start='2023-01-01', periods=20, freq='D'),
     'order_value': np.random.randint(100, 1000, 20)
 })
+
 ```
 
 Viết pipeline Pandas (càng ít dòng càng tốt) để tính:
@@ -43,7 +51,11 @@ Viết pipeline Pandas (càng ít dòng càng tốt) để tính:
 - Số lần mua (Frequency) của mỗi khách hàng.
 - (Khó hơn) Kết quả trả về một DataFrame mới có index là `customer_id` và 2 cột `Monetary`, `Frequency`.
 
-## Tầng 3: Experiment
+**Kết quả mong đợi:** Code chạy được với test/shape mô tả trong đề; nêu rõ input và output.
+
+## E-1 — Experiment
+
+**Learning outcome:** Thiết kế thí nghiệm một biến, tái lập được và giải thích kết quả bằng evidence.
 
 **1. Tốc độ của `.apply()` so với Vectorization**
 Tạo một DataFrame với 1 cột `A` chứa 5 triệu số ngẫu nhiên.
@@ -54,8 +66,11 @@ import numpy as np
 
 np.random.seed(42)
 df = pd.DataFrame({'A': np.random.rand(5_000_000)})
+
 ```
 
 1. Dùng `df['A'].apply(lambda x: x**2 + x)`
 2. Dùng phép toán trực tiếp `df['A']**2 + df['A']`
    Đo và so sánh thời gian chạy. Rút ra kết luận khi nào nên/không nên dùng `.apply()`.
+
+**Kết quả mong đợi:** Bảng hoặc biểu đồ kết quả cho từng cấu hình, kèm observation và giải thích nguyên nhân.

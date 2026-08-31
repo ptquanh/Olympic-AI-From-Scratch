@@ -1,0 +1,15 @@
+name: olympic-ai-gpu
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch=2.7.1
+  - torchvision=0.22.1
+  - pytorch-cuda=12.8
+  - pip
+  - pip:
+      - -r requirements.txt
+      - -c constraints-py310.txt

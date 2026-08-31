@@ -1,20 +1,25 @@
 # Bài tập: Speech Recognition
 
-## Tầng 1: Understand
+## U-1 — Understand
 
-Thử tự tính tay WER: Nhãn gốc "mẹ đi chợ mua rau". Mô hình dự đoán "mẹ đi chợ rau". Có sự thay đổi gì? Tính WER.
+**Learning outcome:** Giải thích đúng khái niệm, giả định và giới hạn bằng lập luận kiểm chứng được.
 
-## Tầng 2: Implement
+Reference “mẹ đi chợ mua rau”, hypothesis “mẹ đi chợ rau”. Xác định edit operation và WER.
 
-**Mục tiêu:** Sử dụng HuggingFace Pipeline.
+**Kết quả mong đợi:** Một deletion trên năm reference words, WER `1/5 = 0.2`.
 
-- Dùng model `openai/whisper-tiny`.
-- Load một đoạn ghi âm ngắn (< 10s) tiếng Anh và in ra văn bản.
+## I-1 — Implement
 
-## Tầng 3: Experiment
+**Learning outcome:** Cài đặt phần cốt lõi, nêu input/output và vượt qua shape/edge-case tests.
 
-**Mục tiêu:** Đánh giá lỗi (WER).
+Tự viết Levenshtein distance và `wer(reference,hypothesis)` theo word tokens. Xử lý reference rỗng bằng lỗi rõ ràng.
 
-- Ghi âm chính giọng bạn đọc một câu tiếng Anh khó.
-- Chạy Whisper để nhận diện.
-- Tự viết hàm tính WER (hoặc dùng `jiwer`) giữa kết quả của máy và câu bạn thực sự đọc.
+**Kết quả mong đợi:** Ví dụ trên trả 0.2; identical strings trả 0; insertion-only case có thể trả WER lớn hơn 1.
+
+## E-1 — Experiment
+
+**Learning outcome:** Thiết kế thí nghiệm một biến, tái lập được và giải thích kết quả bằng evidence.
+
+So sánh WER trước/sau ba normalization policy: lowercase, bỏ punctuation và chuẩn hóa số. Dùng ít nhất năm cặp transcript cố định.
+
+**Kết quả mong đợi:** Bảng policy–WER và ví dụ lỗi; nêu policy nào hợp lệ theo evaluation contract thay vì chọn policy chỉ vì score thấp.

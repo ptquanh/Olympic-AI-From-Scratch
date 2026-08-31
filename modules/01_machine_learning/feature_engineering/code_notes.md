@@ -9,6 +9,7 @@
 target_mean = df_train.groupby('category_col')['target'].mean()
 df_train['category_col_encoded'] = df_train['category_col'].map(target_mean)
 df_test['category_col_encoded'] = df_test['category_col'].map(target_mean) # Dùng MAP của TRAIN
+
 ```
 
 **Ghi nhớ:** KHÔNG ĐƯỢC tính `target_mean` trên tập Test, phải lấy dictionary từ Train map sang Test (tránh Leakage).
@@ -18,6 +19,7 @@ df_test['category_col_encoded'] = df_test['category_col'].map(target_mean) # Dù
 ```python
 import pandas as pd
 df = pd.get_dummies(df, columns=['Color', 'Size'])
+
 ```
 
 ## 📋 API Cheat Sheet

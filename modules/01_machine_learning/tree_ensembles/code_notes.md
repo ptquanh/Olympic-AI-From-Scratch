@@ -1,5 +1,7 @@
 # Code Notes: Tree Ensembles
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: LightGBM cơ bản
@@ -17,6 +19,7 @@ model.fit(X_train, y_train)
 # 3. Predict
 y_pred = model.predict(X_test)
 print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+
 ```
 
 ### Pattern 2: Xem mức độ quan trọng của Features (Feature Importance)
@@ -35,6 +38,7 @@ importance_df = pd.DataFrame({
 sns.barplot(x='Importance', y='Feature', data=importance_df.head(10))
 plt.title('Top 10 Quan Trọng Nhất')
 plt.show()
+
 ```
 
 **Ghi nhớ:** Plot Feature Importance là bước cực kỳ quan trọng trong thi đấu để biết cột dữ liệu nào đóng góp nhiều nhất, từ đó tập trung Feature Engineering vào cột đó.

@@ -1,6 +1,8 @@
 # Exercises: Visualization
 
-## Tầng 1: Understand
+## U-1 — Understand
+
+**Learning outcome:** Giải thích đúng khái niệm, giả định và giới hạn bằng lập luận kiểm chứng được.
 
 **1. Chọn Plot Đúng**
 Bạn có các yêu cầu phân tích dữ liệu sau. Hãy đề xuất loại biểu đồ phù hợp nhất:
@@ -18,13 +20,20 @@ ax.plot([1, 2, 3], [10, 20, 10])
 ax.plot([1, 2, 3], [5, 15, 25])
 ax.legend()
 plt.show()
+
 ```
 
-## Tầng 2: Implement
+**Kết quả mong đợi:** Một lập luận ngắn nêu giả định, các bước suy luận và kết luận kiểm chứng được.
+
+## I-1 — Implement
+
+**Learning outcome:** Cài đặt phần cốt lõi, nêu input/output và vượt qua shape/edge-case tests.
 
 **1. Vẽ đường Training và Validation Loss**
 Cho 2 list dữ liệu ghi nhận sai số sau 10 Epochs:
+
 `train_loss = [0.9, 0.7, 0.5, 0.4, 0.35, 0.3, 0.28, 0.25, 0.22, 0.2]`
+
 `val_loss =   [0.9, 0.75, 0.6, 0.55, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75]`
 Hãy vẽ 2 đường này lên **cùng một đồ thị**.
 Yêu cầu bắt buộc:
@@ -36,7 +45,11 @@ Yêu cầu bắt buộc:
 
 Bạn nhận xét gì về hiện tượng xảy ra từ Epoch thứ 5 trở đi?
 
-## Tầng 3: Experiment
+**Kết quả mong đợi:** Code chạy được với test/shape mô tả trong đề; nêu rõ input và output.
+
+## E-1 — Experiment
+
+**Learning outcome:** Thiết kế thí nghiệm một biến, tái lập được và giải thích kết quả bằng evidence.
 
 **Trực quan hóa nhiễu**
 
@@ -47,3 +60,5 @@ Bạn nhận xét gì về hiện tượng xảy ra từ Epoch thứ 5 trở đi
 5. Vẽ đè `x` và `y_true` dưới dạng Line plot (đường thẳng màu đỏ, nét liền dày) lên cùng một biểu đồ.
 
 Đây là một trực quan hóa kinh điển mô tả dữ liệu thật (nhiễu) và đường dự đoán lý tưởng (mô hình).
+
+**Kết quả mong đợi:** Bảng hoặc biểu đồ kết quả cho từng cấu hình, kèm observation và giải thích nguyên nhân.

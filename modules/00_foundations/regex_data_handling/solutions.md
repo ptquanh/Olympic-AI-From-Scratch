@@ -1,6 +1,6 @@
 # Lời giải: Regex & Data Handling
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 **1. Giải thích ý nghĩa của biểu thức Regex `r'^[A-Z][a-z]+ \d{2,4}$'`**
 
@@ -18,9 +18,11 @@
 - `Path('data').glob('*.json')`: Chỉ tìm các file có đuôi `.json` nằm **trực tiếp** trong thư mục `data/` (không quét vào các thư mục con).
 - `Path('data').glob('**/*.json')`: Tìm tất cả các file có đuôi `.json` nằm trong thư mục `data/` **và đệ quy toàn bộ các thư mục con** bên trong nó.
 
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 **1. Chuẩn hóa ngày tháng**
 
@@ -47,6 +49,7 @@ result = re.sub(pattern, format_date, text)
 
 print(result)
 # Output: Sinh nhật: 12/05/2000, Ngày thi: 01/11/2026, Hết hạn: 31/12/2026
+
 ```
 
 **2. File Parser**
@@ -70,11 +73,14 @@ with output_file.open('w', encoding='utf-8') as f_out:
                 # Nếu dòng có chứa [ERROR] thì ghi lại
                 if '[ERROR]' in line:
                     f_out.write(line)
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 **Regex Performance Benchmarking**
 
@@ -93,10 +99,13 @@ print(f"a*b time: {time.time() - start:.4f}s")
 start = time.time()
 re.match(r'a+b', text)
 print(f"a+b time: {time.time() - start:.4f}s")
+
 ```
 
 **Giải thích hiện tượng Catastrophic Backtracking (Quay lui thảm họa):**
 Khi bạn chạy thử pattern không hợp lệ lên một chuỗi rất dài (ví dụ `re.match(r'(a+)+c', text)`), Regex engine sẽ cố gắng tìm chữ `c`.
 Nó sẽ lấy toàn bộ chữ `a`, tìm `c` -> không thấy. Nó lùi lại nhả ra 1 chữ `a`, rồi tổ hợp lại thành 2 nhóm `(a+)` và tiếp tục tìm `c` -> không thấy. Quá trình chia nhóm chữ `a` này diễn ra theo cấp số nhân (độ phức tạp $O(2^N)$). Với 1 triệu chữ `a`, thời gian chạy sẽ lâu hơn cả tuổi thọ vũ trụ. Hiện tượng này làm treo hệ thống ngay lập tức!
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>

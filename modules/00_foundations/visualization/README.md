@@ -29,6 +29,7 @@ Sau chương này, bạn sẽ có thể:
 [Math Essentials] --> [CHƯƠNG NÀY] --> [Exploratory Data Analysis (EDA)]
                              │
                              └── dùng trong [Theo dõi Loss curve khi Train]
+
 ```
 
 ## 1. Intuition — Tại Sao Phải Vẽ?
@@ -69,3 +70,7 @@ Nếu cần tinh chỉnh từng pixel, vẽ biểu đồ cơ bản từ list/arr
 
 > ❌ **Sai:** Chỉ dùng `plt.plot()` mà không có Figure/Axes rõ ràng (State-based interface).
 > ✅ **Đúng:** Nên dùng Object-oriented interface (`fig, ax = plt.subplots()`) để dễ dàng quản lý nhiều biểu đồ con và tránh vẽ nhầm sang biểu đồ khác.
+
+## ⑯ Time Estimate
+
+Theory: ~1h · Code: ~1.5h · Exercises: ~1h

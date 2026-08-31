@@ -1,5 +1,7 @@
 # Code Notes: Fine-tuning Patterns
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: LoRA Layer From Scratch
@@ -28,6 +30,7 @@ class LoRALinear(nn.Module):
         orig_out = self.pretrained(x)
         lora_out = (x @ self.lora_A.T @ self.lora_B.T) * self.scaling
         return orig_out + lora_out
+
 ```
 
 **Ghi nhớ:** `lora_B` khởi tạo = 0, `lora_A` khởi tạo ngẫu nhiên. Output cộng thêm scaling.
@@ -36,7 +39,7 @@ class LoRALinear(nn.Module):
 
 ```python
 # Mô tả: Áp dụng LoRA vào model có sẵn bằng HuggingFace peft
-# Khi nào dùng: Trong thi đấu hoặc làm dự án thực tế
+# Khi nào dùng: Appendix learning online; trong thi chỉ khi package/model được profile chính thức cho phép
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForSequenceClassification
 
@@ -50,6 +53,7 @@ config = LoraConfig(
 )
 peft_model = get_peft_model(model, config)
 peft_model.print_trainable_parameters()
+
 ```
 
 **Ghi nhớ:** `LoraConfig` định nghĩa r, alpha, và target modules. `get_peft_model` bọc mô hình gốc lại.

@@ -1,5 +1,7 @@
 # Olympiad Transfer: Object Detection
 
+> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
+
 ## 1. Nhận diện trong đề
 
 Bài toán yêu cầu "Phát hiện", "Đếm số lượng", "Xác định tọa độ" của vật thể trong ảnh (Xe cộ, Biển số xe, Tế bào ung thư). Metric thường dùng là mAP@0.5 hoặc mAP@0.5:0.95.

@@ -1,5 +1,7 @@
 # Code Notes: SVM & KNN
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: Support Vector Machine
@@ -9,11 +11,12 @@ from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
-# SVM BẮT BUỘC phải scale dữ liệu, ta dùng pipeline cho an toàn
+# RBF-SVM thường cần scale feature liên tục; pipeline ngăn leakage
 model = make_pipeline(StandardScaler(), SVC(kernel='rbf', C=1.0))
 
 # Fit
 model.fit(X_train, y_train)
+
 ```
 
 ### Pattern 2: K-Nearest Neighbors
@@ -24,6 +27,7 @@ from sklearn.neighbors import KNeighborsClassifier
 # KNN cũng cần scale vì nó tính khoảng cách
 knn = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5))
 knn.fit(X_train, y_train)
+
 ```
 
 ## 📋 API Cheat Sheet

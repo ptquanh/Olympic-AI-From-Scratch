@@ -1,0 +1,8 @@
+# Licensing
+
+Olympic AI From Scratch uses two licenses:
+
+- Source code and Jupyter notebook code cells: MIT License, see `LICENSE-CODE`.
+- Original prose, diagrams, exercises and other educational content: Creative Commons Attribution-ShareAlike 4.0 International, see `LICENSE-CONTENT`.
+
+These licenses apply only to material owned by the project contributors. The optional local `CẨM NANG OLYMPIC AI.pdf`, quoted material, datasets, model weights and other third-party assets remain under their respective owners' terms. The repository does not redistribute the handbook. See `THIRD_PARTY_NOTICES.md`.

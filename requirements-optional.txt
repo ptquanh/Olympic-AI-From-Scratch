@@ -1,0 +1,12 @@
+# Optional learning extensions. These are not guaranteed to be competition-safe.
+xgboost
+lightgbm
+catboost
+faiss-cpu
+rank_bm25
+spacy
+nltk
+gensim
+fasttext-wheel
+pytorch-lightning
+

@@ -1,12 +1,14 @@
 # Lời giải: PyTorch Fundamentals
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 Vì `loss` thực chất vẫn là một node trong Đồ thị tính toán (Computation Graph) lưu trữ lịch sử các phép toán để phục vụ đạo hàm (chứa grad_fn). `.item()` trích xuất con số giá trị thuần túy khỏi đồ thị đó. Nếu bạn cộng dồn `loss` qua các vòng lặp mà không dùng `.item()` (vd: `total_loss += loss`), bạn sẽ lưu trữ lại toàn bộ đồ thị tính toán của mọi bước, dẫn đến tràn RAM/VRAM cực kỳ nhanh.
 
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 ```python
 import torch
@@ -20,11 +22,14 @@ print("Shape sau khi permute:", X.shape) # (100, 3, 32, 32)
 # 2. Làm phẳng (Flatten/Reshape)
 X_flat = X.reshape(100, -1) # -1 sẽ tự tính ra 3*32*32 = 3072
 print("Shape sau khi làm phẳng:", X_flat.shape) # (100, 3072)
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 (Mã nguồn tham khảo)
 
@@ -50,9 +55,12 @@ if torch.cuda.is_available():
     # Đợi GPU hoàn thành đồng bộ trước khi đếm giờ (vì CUDA chạy bất đồng bộ)
     torch.cuda.synchronize()
     print(f"GPU Time: {time.time() - start:.4f}s")
+
 ```
 
 Bạn sẽ thấy GPU nhanh hơn CPU hàng chục đến hàng trăm lần.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>
 
@@ -75,6 +83,7 @@ class ImagePathDataset(Dataset):
         # Giả lập trả về path và nhãn random 0 hoặc 1
         label = 0 if "cat" in path else 1
         return path, label
+
 ```
 
 </details>
@@ -101,6 +110,7 @@ for epoch in range(num_epochs):
 
         # Bước 5: Cập nhật trọng số
         optimizer.step()
+
 ```
 
 </details>

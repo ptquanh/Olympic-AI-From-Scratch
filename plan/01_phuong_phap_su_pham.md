@@ -28,6 +28,7 @@
 │  ⑮ Mastery Checkpoint                                    │
 │  ⑯ Time Estimate (cho người đọc, không phải soạn)       │
 └──────────────────────────────────────────────────────────┘
+
 ```
 
 ---
@@ -52,6 +53,7 @@ topic/
 ├── solutions.md           # Lời giải kiểm chứng được
 ├── olympiad_transfer.md   # Chuyển giao sang bài thi
 └── references.md          # Docs chính thức + tài liệu tự research
+
 ```
 
 **Ví dụ:** Linear Regression, Logistic Regression, Backprop, Convolution, Attention, Transformer, IoU/NMS/AP
@@ -68,7 +70,9 @@ topic/
 ├── lab.ipynb      # Demo tương tác
 ├── code_notes.md  # API patterns cần nhớ (cheat sheet)
 ├── exercises.md   # Bài tập (ít nhất 3 tầng)
+├── solutions.md   # Đáp án theo ID U/I/E, ẩn bằng details
 └── references.md  # Docs links + further reading
+
 ```
 
 **Ví dụ:** Activations, Metrics, Augmentation, Tokenization, Regularization, Regex, Data Loading
@@ -88,6 +92,7 @@ topic/
 ├── rubric.md        # Tiêu chí chấm: baseline → good → excellent
 ├── postmortem.md    # Sai ở đâu, học được gì, cải thiện thế nào
 └── references.md    # Docs + kaggle + related solutions
+
 ```
 
 **Ví dụ:** EDA pipeline, Validation workflow, Image Classification competition, mỗi bài Olympic
@@ -162,6 +167,7 @@ Chặng 2: ML Core → Linear/Logistic Reg → Metrics → Validation → Trees/
 Chặng 3: DL Core → Training Loop → Backprop → CNN → NLP basics
 Chặng 4: Advanced → Transformer → Fine-tuning → Transfer Learning
 Chặng 5: Competition → Pipeline → Problems → Mocks
+
 ```
 
 ### 🔴 Contest Track
@@ -170,6 +176,7 @@ Chặng 5: Competition → Pipeline → Problems → Mocks
 Diagnostic Test → Validation & Baselines → Gap Remediation
 → CV Task Labs → NLP Task Labs → ML Task Labs
 → Past Olympic Problems → Timed Mocks → Failure Remediation
+
 ```
 
 ### Đánh dấu trong mỗi module

@@ -40,6 +40,7 @@ Sau chương này, bạn sẽ có thể:
                         │
                         ├── dùng trong [Detection]
                         └── nền tảng cho [Transformer]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần?
@@ -97,6 +98,7 @@ def gradient_descent(X, y, lr=0.01, epochs=100):
         w -= lr * dw
         b -= lr * db
     return w, b
+
 ```
 
 **Ghi nhớ:** `dw = X.T @ error`, `db = sum(error)`, update = `param -= lr * grad`

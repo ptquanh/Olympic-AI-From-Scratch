@@ -1,6 +1,6 @@
 # Lời giải: Python Essentials
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 **1. Mutable vs Immutable**
 
@@ -12,14 +12,18 @@
 - Kết quả ở dòng 2: `['Apple', 'Banana']` chứ không phải chỉ `['Banana']`.
 - Lý do: Default argument `basket=[]` chỉ được khởi tạo MỘT LẦN duy nhất khi hàm được định nghĩa. Ở những lần gọi sau, hàm tiếp tục dùng chung cái list ban đầu đó (vì List là kiểu tham chiếu/mutable).
 - Cách sửa: Để `basket=None`, và trong hàm kiểm tra `if basket is None: basket = []`.
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 **1. Refactoring với Comprehension**
 
 ```python
 word_lengths = {word: len(word) for word in words if len(word) > 4}
+
 ```
 
 **2. Xây dựng Class Dataset**
@@ -37,14 +41,20 @@ class ImageDataset:
 
     def __getitem__(self, index):
         return (self.image_paths[index], self.labels[index])
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 **1. Memory Profiling**
 
 - Hàm 1 (List): Bắt buộc phải tính toán đủ 10 triệu con số và nạp TẤT CẢ vào RAM cùng một lúc. Rất dễ bị tràn RAM.
 - Hàm 2 (Generator): Tính toán "lazy" (đến đâu tính đến đó). Mỗi lần chỉ nhả ra 1 con số, gần như không tốn thêm RAM. Trong AI (nhất là xử lý ảnh/video), việc sinh dữ liệu theo kiểu yield/generator (DataLoader) là sống còn.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
+
 </details>

@@ -1,6 +1,8 @@
+# Learning runtime (CPU-compatible). Apply constraints-py310.txt.
 jupyterlab
 notebook
 ipywidgets
+ipykernel
 numpy
 pandas
 scipy
@@ -8,14 +10,6 @@ matplotlib
 seaborn
 plotly
 scikit-learn
-xgboost
-lightgbm
-catboost
-tqdm
-joblib
-requests
-beautifulsoup4
-lxml
 torch
 torchvision
 torchaudio
@@ -23,14 +17,10 @@ transformers
 sentence-transformers
 datasets
 evaluate
-faiss-cpu
-rank_bm25
-spacy
-nltk
-gensim
-fasttext-wheel
 opencv-python
+Pillow
 scikit-image
-pytorch-lightning
+tqdm
+joblib
 tensorboard
-ipykernel
+

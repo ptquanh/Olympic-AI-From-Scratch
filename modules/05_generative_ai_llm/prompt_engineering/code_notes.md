@@ -1,54 +1,74 @@
 # Code Notes: Prompt Engineering
 
+> API và quyền dùng LLM phụ thuộc provider/profile. Phần cốt lõi dưới đây chỉ tạo, kiểm và chấm prompt offline; không gọi dịch vụ ngoài.
+
 ## 🔑 Core Patterns
 
-### Pattern 1: Cấu trúc System Prompt + User Prompt (API)
+### Pattern 1: Prompt contract
 
 ```python
-# Mô tả: Cách gọi API tiêu chuẩn cho Chat Model
-# Khi nào dùng: Khi muốn LLM tuân thủ chặt chẽ một vai trò
-messages = [
-    {"role": "system", "content": "Bạn là một trợ lý ảo thông minh. Luôn trả lời ngắn gọn trong 1 câu."},
-    {"role": "user", "content": "Thủ đô của Pháp là gì?"}
-]
-# response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+contract = {
+    "task": "phân loại sentiment",
+    "labels": ["positive", "negative"],
+    "input": "Sản phẩm này tốt",
+    "output_schema": {"sentiment": "label", "confidence": "float[0,1]"},
+    "constraints": ["không thêm markdown", "không suy đoán trường thiếu"],
+}
+required = {"task", "input", "output_schema", "constraints"}
+assert required <= contract.keys()
+
 ```
 
-**Ghi nhớ:** Phân tách rõ Ràng giữa `system` (định hướng hành vi) và `user` (yêu cầu cụ thể).
+Tách nhiệm vụ, input, ràng buộc và output schema giúp test được prompt mà không phụ thuộc cú pháp SDK đang thay đổi.
 
-### Pattern 2: Ép kiểu output thành JSON
+### Pattern 2: Parse và validate output
 
 ```python
-# Mô tả: Hướng dẫn LLM trả về đúng chuẩn JSON để lập trình xử lý
-prompt = '''
-Phân loại câu sau: "Sản phẩm này tốt".
-Hãy trả về ĐÚNG MỘT JSON object có định dạng:
-{"sentiment": "positive" | "negative", "confidence": float}
-Không giải thích gì thêm.
-'''
+import json
+
+raw = '{"sentiment":"positive","confidence":0.82}'
+result = json.loads(raw)
+assert result["sentiment"] in {"positive", "negative"}
+assert 0.0 <= float(result["confidence"]) <= 1.0
+
 ```
 
-**Ghi nhớ:** Luôn cung cấp cấu trúc (schema) mẫu và thêm câu thần chú "Không giải thích gì thêm".
+Prompt không bảo đảm JSON hợp lệ. Parser/schema validation và retry policy phải nằm trong code; không dùng `eval` trên output của model.
+
+### Pattern 3: Evaluation harness
+
+```python
+gold = ["positive", "negative", "positive"]
+pred = ["positive", "positive", "positive"]
+accuracy = sum(a == b for a, b in zip(gold, pred)) / len(gold)
+assert accuracy == 2 / 3
+
+```
+
+So sánh zero-shot/few-shot trên cùng model version, temperature, test set và parser. Ghi cả metric, tỷ lệ parse thành công, latency và token usage.
 
 ## 📋 API Cheat Sheet
 
-| Việc cần làm    | Prompt Mẫu (Tiết kiệm Token)                                            |
-| --------------- | ----------------------------------------------------------------------- |
-| Fix bug PyTorch | `Fix bug: [Paste error]. Code: [Paste 5 lines]. Only code, no text.`    |
-| Viết Regex      | `Write regex for Python to extract emails from text. Just the pattern.` |
+| Thành phần    | Câu hỏi kiểm tra                                  |
+| ------------- | ------------------------------------------------- |
+| Task          | Động từ và phạm vi có rõ không?                   |
+| Context       | Chỉ đưa dữ liệu cần thiết, không chứa secret/PII? |
+| Constraints   | Ngôn ngữ, độ dài, tool và profile đã khóa?        |
+| Output schema | Parser có kiểm type/range/missing field?          |
+| Examples      | Bao phủ edge case, không làm lộ nhãn test?        |
+| Evaluation    | Có gold set và metric tái lập được?               |
 
 ## 🏋️ Bài Luyện Code Tay
 
-**Quy tắc:** Đóng tài liệu. Mở notebook trống. Hẹn giờ.
-
-| #   | Bài                                                                        | Thời gian | Hint (ẩn)                               |
-| --- | -------------------------------------------------------------------------- | --------- | --------------------------------------- |
-| 1   | Viết một few-shot prompt (text) với 3 ví dụ để phân loại tin giả/tin thật. | 5 phút    | Cấu trúc: Text: ... -> Label: Fake/Real |
+1. Viết prompt contract cho trích xuất tên/tuổi/điện thoại; định nghĩa `null` khi thiếu.
+2. Viết parser JSON và năm test: hợp lệ, thiếu field, sai type, ngoài range, có markdown thừa.
+3. Lập bảng ablation zero-shot/few-shot; chỉ thay một yếu tố mỗi lần.
 
 ## 🧠 Flashcards
 
-| Hỏi                                | Trả lời                                                                                    |
-| ---------------------------------- | ------------------------------------------------------------------------------------------ |
-| In-context learning là gì?         | Khả năng LLM "học" được task ngay từ prompt mà không cần cập nhật trọng số.                |
-| Zero-shot khác Few-shot thế nào?   | Zero-shot không đưa ví dụ mẫu. Few-shot đưa 1 vài ví dụ mẫu.                               |
-| Tại sao nên dùng Chain of Thought? | Ép LLM suy luận tuần tự, giảm thiểu việc đoán mò và sinh ra kết quả vô lý (hallucination). |
+| Hỏi                                     | Trả lời                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------- |
+| In-context learning là gì?              | Điều chỉnh hành vi từ context/ví dụ trong prompt mà không cập nhật trọng số. |
+| Zero-shot và few-shot khác gì?          | Few-shot thêm ví dụ input–output; không bảo đảm luôn tốt hơn.                |
+| Prompt tốt có loại hallucination không? | Không. Cần grounding, validation, tests và cơ chế từ chối/fallback.          |
+| Có được dùng LLM trong Olympic không?   | Chỉ khi quy chế đúng kỳ, năm và giai đoạn cho phép rõ ràng.                  |

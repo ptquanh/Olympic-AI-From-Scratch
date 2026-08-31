@@ -2,6 +2,10 @@
 
 > **Track:** Foundation ⭐ | Contest ⭐
 
+## ① Prerequisite Check
+
+Bạn cần giải thích được tokenization, attention mask, Transformer encoder và cosine similarity. Nếu chưa, học Text Preprocessing, Attention và Transformer trước. Đồng thời kiểm tra model có nằm trong cache và được profile kỳ thi cho phép hay không.
+
 ## ① Giới thiệu
 
 Thay vì huấn luyện Word2Vec cho từng từ, hay huấn luyện Transformer từ đầu (rất tốn kém), ta tải các mô hình khổng lồ (như BERT) đã được huấn luyện đọc hàng tỷ trang Wikipedia.

@@ -1,6 +1,6 @@
 # Lời giải: NumPy & Pandas
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 **1. Lỗi Broadcasting**
 
@@ -12,15 +12,19 @@
 - `df['col_name']`: Trả về một **Series** (1 chiều).
 - `df[['col_name']]`: Trả về một **DataFrame** (2 chiều).
 - Quan trọng vì các mô hình Scikit-learn (như LinearRegression) yêu cầu input X phải là ma trận 2 chiều, nếu truyền Series sẽ bị báo lỗi.
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 **1. Chuẩn hóa hình ảnh**
 
 ```python
 # Giả sử img là numpy array
 img_normalized = img / 255.0
+
 ```
 
 **2. RFM Analysis**
@@ -32,15 +36,21 @@ rfm = df.groupby('customer_id').agg(
     Frequency=('order_value', 'count')
 )
 # rfm đã tự động có index là customer_id
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 **1. Apply vs Vectorization**
 
 - Vectorization `df['A']**2 + df['A']` sẽ gọi thẳng xuống C, chạy nhanh gấp hàng chục đến hàng trăm lần.
 - `.apply()` bản chất vẫn là một vòng lặp `for` ngầm bằng Python thuần túy.
-- Kết luận: Luôn ưu tiên dùng các phép toán có sẵn của Pandas/NumPy. Chỉ dùng `.apply()` khi hàm quá phức tạp không thể viết dưới dạng vector (ví dụ gọi API ngoài, xử lý text regex phức tạp, hàm custom có lệnh if-else).
+- Kết luận: Ưu tiên phép toán NumPy/Pandas theo cột khi code rõ và đã đo là nút thắt. `.apply()` hoặc loop vẫn hợp lý cho logic tuần tự/custom; quyết định bằng tính đúng, khả năng đọc và benchmark thay vì quy tắc tuyệt đối.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
+
 </details>

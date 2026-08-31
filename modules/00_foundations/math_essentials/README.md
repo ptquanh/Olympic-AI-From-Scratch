@@ -29,6 +29,7 @@ Sau chương này, bạn sẽ có thể:
                           │
                           ├── dùng trong [Tính Loss & Backpropagation]
                           └── nền tảng cho [Đọc hiểu các paper/công thức]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần Toán?
@@ -90,5 +91,9 @@ $x_{new} = x_{old} - \text{learning\_rate} \times \nabla f(x_{old})$
 > ❌ **Sai:** Nhân 2 ma trận bằng phép nhân `*` trong Python.
 > ✅ **Đúng:** Phép `*` trong NumPy là Element-wise multiplication (nhân từng phần tử). Để nhân ma trận thật sự, phải dùng `np.dot(A, B)` hoặc toán tử `@` (ví dụ `A @ B`).
 
-> ❌ **Sai:** Học thuộc lòng các quy tắc đạo hàm phức tạp (như đạo hàm của hàm lượng giác, logarit bậc cao) để thi AI.
-> ✅ **Đúng:** Các framework (PyTorch/TensorFlow) có cơ chế AutoGrad (tự động tính đạo hàm). Bạn chỉ cần hiểu Chain Rule (quy tắc chuỗi) để biết gradient chảy từ đầu ra về đầu vào như thế nào.
+> ❌ **Sai:** Có autograd nên không cần hiểu đạo hàm hoặc gradient.
+> ✅ **Đúng:** Framework tính đạo hàm, nhưng bạn vẫn cần chain rule, partial derivative, shape và numerical gradient check để thiết kế loss và chẩn đoán graph sai.
+
+## ⑯ Time Estimate
+
+Theory: ~3h · Code: ~1.5h · Exercises: ~2h

@@ -29,6 +29,7 @@ Sau chương này, bạn sẽ có thể:
                                       │
                                       ├── nền tảng cho [Finetuning Patterns]
                                       └── ứng dụng trong [Text Generation]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần?
@@ -78,8 +79,12 @@ Câu mới: `["Tôi", "thích", "học"]`. Lặp lại bước trên để sinh 
 
 ## 5. Common Mistakes & Misconceptions
 
-> ❌ **Sai:** BERT có thể dùng để làm chatbot trả lời câu hỏi trực tiếp.
-> ✅ **Đúng:** BERT là Masked LM, chỉ phù hợp trích xuất đặc trưng (encoder). Chatbot (như ChatGPT) dùng GPT (Causal LM - decoder) để sinh text từng từ một.
+> ❌ **Sai:** Base BERT với masked-LM head sinh hội thoại tự hồi quy giống GPT.
+> ✅ **Đúng:** Base BERT là bidirectional encoder/Masked LM; generation thường dùng decoder-only hoặc encoder-decoder architecture phù hợp.
 
 > ❌ **Sai:** Loss của Language Model càng về 0 thì mô hình càng thông minh.
 > ✅ **Đúng:** Loss về gần 0 có thể do mô hình đã học thuộc lòng (overfit) tập dữ liệu huấn luyện. Khi đo PPL trên tập test, PPL sẽ vọt lên rất cao.
+
+## ⑯ Time Estimate
+
+Theory: ~1.5h · Code: ~1.5h · Exercises: ~1h

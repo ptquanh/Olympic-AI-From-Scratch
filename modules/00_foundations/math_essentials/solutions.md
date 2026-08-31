@@ -1,6 +1,6 @@
 # Lời giải: Math Essentials
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 **1. Phân biệt Phép Nhân**
 
@@ -12,9 +12,11 @@
 - Hướng `[2.5, -1.2]` là hướng đi **lên núi (dốc nhất)**. (Vì tính chất cốt lõi của Gradient là luôn chỉ theo hướng làm hàm số tăng nhanh nhất).
 - Để xuống núi (tìm cực tiểu), bạn phải bước đi theo **hướng ngược lại** của vector Gradient, tức là `[-2.5, 1.2]`. Đây chính là nguyên lý của thuật toán Gradient Descent.
 
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 **1. Softmax Function (Toán + Code)**
 
@@ -35,6 +37,7 @@ softmax_z = exp_z / sum_exp_z
 print(softmax_z)
 # Kết quả: [0.65900114 0.24243297 0.09856589]
 # Tổng luôn luôn bằng 1
+
 ```
 
 **2. Manual Matrix Multiplication**
@@ -62,11 +65,14 @@ C = A @ B  # hoặc np.dot(A, B)
 print(C)
 # [[17]
 #  [39]]
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 **Gradient Checking bằng Xấp Xỉ Số (Numeric Approximation)**
 
@@ -99,8 +105,11 @@ print(f"Sai số: {error:.10f}")
 # Đạo hàm giải tích (chính xác): 5.0
 # Đạo hàm xấp xỉ (Numeric):     5.00000001000072
 # Sai số: 0.0000000100
+
 ```
 
 Sai số vô cùng nhỏ ($10^{-8}$), cho thấy công thức xấp xỉ hoạt động cực kỳ chính xác. Trong thực tế, các framework như PyTorch vẫn thường dùng phương pháp này để Unit Test cho các hàm tính Gradient nội bộ của nó (gọi là kĩ thuật Gradient Checking).
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>

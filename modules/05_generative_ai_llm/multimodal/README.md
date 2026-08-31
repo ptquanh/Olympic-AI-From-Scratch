@@ -27,6 +27,7 @@ Sau chương này, bạn sẽ có thể:
 [Finetuning Patterns] --> [MULTIMODAL VLM]
                                  │
                                  └── Kết hợp [CNN/ViT] và [Language Modeling]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần Multimodal?
@@ -63,3 +64,7 @@ Quy trình:
 
 > ❌ **Sai:** Cứ ném ảnh chất lượng 4K vào VLM thì nó trả lời càng đúng.
 > ✅ **Đúng:** Vision Encoder thường sẽ resize ảnh về độ phân giải cố định (VD: 224x224 hoặc 336x336). Ảnh 4K sẽ bị bóp méo hoặc nén mất chi tiết. Muốn đọc chi tiết nhỏ (như OCR), cần các kỹ thuật cắt ảnh (tiling) chuyên dụng.
+
+## ⑯ Time Estimate
+
+Theory: ~1.5h · Code: ~1.5h · Exercises: ~1h

@@ -1,33 +1,35 @@
-# Olympiad Transfer: Attention Mechanism
+# Olympic transfer: Attention
 
-## 1. Nhận diện trong đề
+> **Profile mặc định:** General. Không có thời lượng, thư viện hay quyền truy cập mạng mặc định. Xem [competition profiles](../../../COMPETITION_PROFILES.md) trước khi dùng trong một kỳ thi cụ thể.
 
-Khi đề bài yêu cầu "trích xuất đặc trưng của tập hợp mà không phụ thuộc thứ tự", hoặc khi giải quyết bài toán trên đồ thị (Graph Neural Network), Attention là kỹ thuật ưu việt. Trong thi đấu NLP, bạn không phải viết tay Attention, nhưng **hiểu cách Attention bị OOM (Out Of Memory) với sequence dài** là mấu chốt.
+## Nhận diện trong đề
 
-## 2. Baseline tối thiểu
+Attention hữu ích khi mỗi phần tử cần tổng hợp thông tin từ các phần tử khác: văn bản, chuỗi thời gian, tập hợp hoặc đặc trưng ảnh. Đây không phải lựa chọn tự động cho mọi dữ liệu; với bảng nhỏ, mô hình cây thường là baseline nhanh và mạnh hơn.
 
-Thay vì viết tay, luôn gọi `nn.MultiheadAttention(embed_dim, num_heads, batch_first=True)` khi build custom module. Thuộc tính `batch_first=True` rất quan trọng vì mặc định của hàm này (do tàn dư lịch sử) là `batch_first=False`. Code baseline thường mất khoảng 10-15 phút để tích hợp.
+## Baseline tối thiểu
 
-## 3. Metric & Validation
+1. Chốt shape `(batch, sequence, embedding)`.
+2. Tạo padding/causal mask đúng semantics của API.
+3. Assert trọng số attention hữu hạn và tổng theo hàng xấp xỉ 1.
+4. So sánh với baseline không attention trên cùng split và metric.
 
-Thường không đánh giá trực tiếp module Attention mà đánh giá qua mô hình downstream (ví dụ classification dùng F1-score, translation dùng BLEU). Chú ý validation loss: nếu loss hội tụ chậm, có thể learning rate quá lớn, khiến softmax trong attention bão hòa.
+Trong learning profile có thể dùng `torch.nn.MultiheadAttention(batch_first=True)`. Trong contest profile, chỉ dùng khi PyTorch và API này có trong danh sách cho phép.
 
-## 4. Failure modes
+## Metric và validation
 
-- **Shape Mismatch trong quá trình transpose:** Trong MHA, khi transpose từ `(batch, seq, heads, d_k)` sang `(batch, heads, seq, d_k)` và gọi `view()` để gộp lại, nếu quên gọi `.contiguous()`, PyTorch sẽ báo lỗi văng RuntimeError.
-- **OOM (Out of memory):** Độ phức tạp bộ nhớ của Attention là $O(N^2)$ với $N$ là seq_len. GPU sẽ lập tức văng lỗi CUDA Out of memory nếu sequence quá dài. Giảm batch size hoặc dùng gradient accumulation.
+Attention không có metric downstream riêng. Dùng metric của nhiệm vụ: Macro F1 cho phân loại lệch lớp, BLEU/chrF cho dịch máy, ROUGE cho tóm tắt khi phù hợp. Giữ nguyên split khi so sánh kiến trúc và báo cả thời gian/VRAM.
 
-## 5. Sau baseline
+## Failure modes
 
-1. **Thêm Masking:** Nếu xử lý sequence có độ dài khác nhau, bắt buộc phải mask các padding tokens để chúng không ảnh hưởng đến Attention.
-2. **Flash Attention:** Tối ưu hóa GPU memory khi sequence quá dài, tích hợp Flash Attention hoặc dùng các xformers / scaled_dot_product_attention.
-3. **Thêm cơ chế Gating:** Tránh cho các head của attention chú ý vào những thứ không cần thiết.
+- Mask sai chiều hoặc ngược semantics làm mô hình chú ý vào padding/tương lai.
+- Logit lớn gây softmax bão hòa; cần chia `sqrt(d_k)` và softmax ổn định.
+- Bộ nhớ tăng theo `O(sequence_length²)`; giảm chiều dài, batch hoặc dùng kernel tối ưu nếu profile cho phép.
+- Gọi `view` sau `transpose` trên tensor không contiguous; dùng `reshape` hoặc `contiguous().view(...)`.
 
-## 6. Phân bổ thời gian
+## Sau baseline
 
-- **Vòng Sơ loại (4h):**
-  - 3h Public: Dùng 15 phút để tích hợp `MultiheadAttention` của PyTorch vào kiến trúc có sẵn (nếu cần model custom). Thời gian còn lại để EDA và tuning.
-  - 1h Private: Kiểm tra xem masking có hoạt động chuẩn trên tập validation không.
-- **Vòng Chung kết (6h):**
-  - 5h Public: Có thể custom một số attention variant (như Additive Attention) hoặc thêm Flash Attention nếu dữ liệu dài.
-  - 1h Private: Check lại inference speed.
+Chỉ thay đổi một yếu tố mỗi lần: số head, `d_model`, mask, pooling hoặc độ dài chuỗi. Lưu seed, config, metric và runtime. Không thêm FlashAttention/xFormers nếu package không nằm trong môi trường contest.
+
+## Timebox
+
+Không gán mốc 4h/6h chung. Dành tối đa 10–15% timebox của profile để dựng baseline và shape tests; giữ tối thiểu 15% cuối để infer, kiểm file nộp và chạy lại từ môi trường sạch.

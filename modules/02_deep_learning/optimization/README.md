@@ -39,7 +39,7 @@ Khi train mô hình LLM, 1000 bước đầu tiên người ta tăng dần Learn
 ## ⑩ Misconceptions
 
 ❌ **Sai:** Chỉ cần gọi `optimizer.step()` là xong.
-✅ **Đúng:** Bạn BẮT BUỘC phải gọi `optimizer.zero_grad()` TRƯỚC KHI gọi `loss.backward()`. Nếu quên, đạo hàm sẽ bị cộng dồn liên tục, khiến mô hình cập nhật sai bét và văng tung tóe (loss = NaN).
+✅ **Đúng:** PyTorch cộng dồn gradient mặc định. Trong loop thông thường, xóa gradient một lần trước `backward()` của bước mới; vị trí có thể ở đầu hoặc cuối iteration miễn logic nhất quán. Không xóa gradient là chủ ý hợp lệ khi dùng gradient accumulation.
 
 ## ⑮ Mastery Check
 

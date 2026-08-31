@@ -21,6 +21,7 @@ class MyModel(nn.Module):
         x = self.fc1(x)
         x = F.relu(x)  # Hoặc torch.relu(x)
         return self.fc2(x)
+
 ```
 
 ## 📋 API Cheat Sheet

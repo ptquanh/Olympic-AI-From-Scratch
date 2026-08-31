@@ -35,6 +35,7 @@ class PositionalEncoding(nn.Module):
         # x shape: (batch_size, seq_len, d_model)
         x = x + self.pe[:, :x.size(1)]
         return x
+
 ```
 
 ### Pattern 2: Pre-LN Transformer Encoder Block
@@ -70,6 +71,7 @@ class EncoderBlock(nn.Module):
         x = x + self.dropout2(ffn_out)
 
         return x
+
 ```
 
 ## 📋 API Cheat Sheet

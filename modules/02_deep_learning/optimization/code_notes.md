@@ -6,7 +6,7 @@
 import torch.optim as optim
 from torch.optim.lr_scheduler import StepLR, CosineAnnealingLR
 
-# 1. AdamW (Chuẩn mực hiện tại cho 90% bài toán)
+# 1. AdamW (baseline phổ biến; không mặc định tốt nhất cho mọi bài toán)
 optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-2)
 
 # 2. Đưa Scheduler vào vòng lặp huấn luyện
@@ -21,7 +21,16 @@ for epoch in range(100):
 
     # Ở cuối mỗi Epoch, gọi Scheduler để giảm dần Learning Rate
     scheduler.step()
+
 ```
+
+## 📋 API Cheat Sheet
+
+| API                   | Dùng khi                    |
+| --------------------- | --------------------------- |
+| `torch.optim.SGD`     | SGD/momentum                |
+| `torch.optim.AdamW`   | decoupled weight decay      |
+| `optimizer.zero_grad` | clear accumulated gradients |
 
 ## 🧠 Flashcards
 

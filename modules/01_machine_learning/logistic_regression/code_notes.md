@@ -19,6 +19,7 @@ y_pred = model.predict(X_test)
 
 # 4. Dự đoán Xác suất (Tỷ lệ %)
 y_prob = model.predict_proba(X_test) # Trả về mảng 2D: [prob_class_0, prob_class_1]
+
 ```
 
 **Ghi nhớ:** Hàm `predict_proba` rất quan trọng khi bạn muốn tự set ngưỡng (threshold) thay vì dùng 0.5 mặc định.
@@ -28,6 +29,7 @@ y_prob = model.predict_proba(X_test) # Trả về mảng 2D: [prob_class_0, prob
 ```python
 y_prob_positive = model.predict_proba(X_test)[:, 1] # Lấy cột xác suất của class 1
 custom_y_pred = (y_prob_positive >= 0.8).astype(int) # Chỉ tin tưởng nếu xác suất >= 80%
+
 ```
 
 ## 📋 API Cheat Sheet

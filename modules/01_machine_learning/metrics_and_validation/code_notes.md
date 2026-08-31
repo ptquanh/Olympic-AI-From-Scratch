@@ -9,6 +9,7 @@ from sklearn.metrics import classification_report
 
 # Rất hữu ích để xem nhanh toàn cảnh
 print(classification_report(y_true, y_pred))
+
 ```
 
 **Ghi nhớ:** Luôn dùng cái này khi làm bài tập phân loại. Cột `support` báo cho bạn biết số lượng dữ liệu mỗi class (giúp phát hiện imbalance).
@@ -22,6 +23,7 @@ from sklearn.metrics import roc_auc_score
 y_prob = model.predict_proba(X_test)[:, 1]
 auc = roc_auc_score(y_test, y_prob)
 print(f'AUC: {auc:.4f}')
+
 ```
 
 ### Pattern 3: K-Fold an toàn với Cross_val_score
@@ -32,6 +34,7 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score
 # StratifiedKFold đảm bảo tỷ lệ class giữa các fold là như nhau
 skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 scores = cross_val_score(model, X, y, cv=skf, scoring='f1_macro')
+
 ```
 
 **Ghi nhớ:** Luôn set `shuffle=True, random_state=42`. Nếu dữ liệu mất cân bằng, bắt buộc dùng `StratifiedKFold`.

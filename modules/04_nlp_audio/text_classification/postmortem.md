@@ -1,16 +1,29 @@
-# Postmortem: Text Classification
+# Postmortem: Text Classification Competition
 
-## 1. Bài học kinh nghiệm (What went right/wrong)
+## Kết quả baseline Beta
 
-- **OOM (Out Of Memory):** Bạn có bị văng lỗi CUDA OOM không? Nếu có, có lẽ `max_length` của bạn quá lớn (ví dụ 512) hoặc `batch_size` quá to. Mẹo trong NLP là thường giữ `max_length` ở 128 hoặc 256. Rất ít văn bản (hoặc phần quan trọng của nó) dài hơn mức đó.
-- **Learning Rate quá to:** Nếu bạn dùng `lr = 0.01` hay `0.001` (giống như ở các mô hình CNN/MLP cũ), mô hình BERT của bạn sẽ bị "Catastrophic Forgetting" - mất hoàn toàn kiến thức pre-trained và Loss sẽ ghim ở một mức không giảm. Với Transformer fine-tuning, Learning rate BẮT BUỘC phải nằm trong khoảng $1e-5$ đến $5e-5$.
+Dataset nhỏ chứa tín hiệu lexical có thể học được. Solution chạy `Data → EDA → Train → Validate → Infer → Submit` với TF–IDF + Logistic Regression, không phụ thuộc Internet/model hub. Mục tiêu là kiểm pipeline và validation trước khi fine-tune encoder.
 
-## 2. Các điểm mù (Blind spots)
+## Điều làm đúng
 
-- **Padding token:** Trong quá trình infer (dự đoán), việc padding token bằng 0 là chuẩn. Tuy nhiên nếu quên đẩy `attention_mask` vào model, BERT sẽ tự coi phần padding token đó là những từ "hợp lệ" và cố gắng phân tích, dẫn đến kết quả sai lệch.
-- **Tiếng Việt:** Tokenizer của BERT Tiếng Anh không biết cắt từ Tiếng Việt (nó sẽ cắt vụn ra thành các chữ cái). Luôn dùng `vinai/phobert-base` cho Tiếng Việt.
+- `TfidfVectorizer` nằm trong pipeline và chỉ fit trên train.
+- Split giữ tỷ lệ lớp và seed cố định.
+- Macro F1 được ưu tiên khi mỗi lớp quan trọng như nhau.
+- Submission giữ ID của test và kiểm schema.
 
-## 3. Cải tiến tiếp theo
+## Failure modes cần kiểm
 
-- Dùng kỹ thuật Freezing: Đóng băng 6 lớp Encoder đầu tiên của BERT, chỉ huấn luyện 6 lớp cuối để tăng tốc và tránh Overfitting.
-- Dùng LoRA / PEFT để fine-tune tiết kiệm RAM (rất hay dùng cho LLM hiện nay).
+- Duplicate hoặc near-duplicate đi qua train/validation làm score ảo.
+- Normalize quá mạnh làm mất dấu, phủ định, emoji hoặc mã định danh có tín hiệu.
+- Vocabulary được fit trên validation/test gây leakage.
+- Accuracy cao nhưng lớp hiếm có recall bằng 0.
+- Threshold được chọn trực tiếp trên test/public leaderboard.
+- Tokenizer/model pretrained thiếu cache khi phòng thi offline.
+
+## Cải tiến hợp lệ
+
+Thử n-gram, character features, class weight và calibrated threshold trước. Chỉ dùng pretrained encoder khi model/revision đã cache, package được profile cho phép và baseline chứng minh đủ thời gian/VRAM. Không có quy tắc “learning rate bắt buộc 1e-5–5e-5” hoặc “luôn dùng PhoBERT”; chọn theo model, dữ liệu và validation.
+
+## Checklist trước nộp
+
+Khởi động kernel sạch, bật offline, chạy lại solution, infer test, assert đúng số dòng/ID/cột/NaN và lưu vectorizer/model/config cùng submission.

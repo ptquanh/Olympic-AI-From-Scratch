@@ -1,37 +1,38 @@
-# Olympiad Transfer: PEFT & LoRA
+# Olympic transfer: Fine-tuning và LoRA
 
-## 1. Nhận diện trong đề
+> **Profile mặc định:** General. Phần cốt lõi dùng LoRA tự cài đặt trong NumPy/PyTorch cơ bản. `peft`, `bitsandbytes`, model hub và tải model là appendix online, **không competition-safe** nếu quy chế không cho phép rõ ràng. Xem [competition profiles](../../../COMPETITION_PROFILES.md).
 
-- Khi đề cung cấp một LLM rất lớn (7B, 14B tham số) và yêu cầu fine-tune với dữ liệu domain-specific (y tế, pháp luật).
-- Khi có giới hạn nghiêm ngặt về phần cứng (VD: chỉ cấp 1 GPU T4 16GB VRAM) mà bắt fine-tune LLM.
-- Bất cứ khi nào bạn dùng pre-trained model và không đủ VRAM để train.
+## Nhận diện trong đề
 
-## 2. Baseline tối thiểu
+LoRA đáng cân nhắc khi có model pretrained được cung cấp hợp lệ, full fine-tuning vượt giới hạn VRAM và nhiệm vụ đủ dữ liệu để adaptation có ý nghĩa. Không dùng LoRA chỉ vì đây là kỹ thuật phổ biến; baseline frozen encoder hoặc head tuyến tính có thể rẻ và ổn định hơn.
 
-Tích hợp `peft` vào mô hình gốc. Dùng `LoraConfig` với rank $r=8$ và alpha=16. Thường chỉ áp dụng vào các ma trận Attention (`q_proj`, `v_proj`). Mã nguồn baseline này chỉ mất 5 phút để viết.
+## Baseline tối thiểu
 
-## 3. Metric & Validation
+Với ma trận gốc `W` có shape `(out, in)`, dùng cập nhật `ΔW = scale * B @ A`, trong đó `A: (r, in)`, `B: (out, r)` và `scale = alpha/r`. Assert:
 
-- Đánh giá trực tiếp trên metric của bài toán downstream (F1-score cho text classification, ROUGE cho summarization).
-- Cần chú ý validation loss: nếu loss hội tụ cực nhanh rồi đi ngang, có thể tăng rank $r$.
+- output giữ shape `(batch, out)`;
+- số tham số trainable là `r * (in + out)`;
+- khi `B = 0`, output ban đầu bằng linear layer gốc;
+- gradient chỉ cập nhật adapter nếu base weight bị freeze.
 
-## 4. Failure modes
+Notebook framework của chương dùng `LoRALinear` tự viết; không cài package và không tải model.
 
-- **Quên đặt padding side = 'left' cho Decoder-only LM:** Gây lỗi khi sinh text.
-- **Model không học được:** Do quên đặt `target_modules` hoặc đặt sai tên layer. Sử dụng `model.print_trainable_parameters()` để đảm bảo có > 0% tham số được train.
-- **Save sai cách:** Chỉ dùng `peft_model.save_pretrained()`. Đừng save toàn bộ mô hình gốc (rất nặng).
+## Metric và validation
 
-## 5. Sau baseline
+Dùng metric downstream, đồng thời báo trainable parameter count, peak memory và runtime. So sánh LoRA với head-only/full fine-tune trên cùng split; không chọn rank từ test score.
 
-1. **Tăng số lượng target_modules:** Apply LoRA vào cả `k_proj`, `o_proj`, và các layer MLP.
-2. **QLoRA:** Dùng Quantization 4-bit (`bitsandbytes`) cho base model rồi áp dụng LoRA. Giảm VRAM xuống mức thấp nhất.
-3. **Tăng rank r:** Nâng r lên 16, 32, 64 nếu bài toán phức tạp và vẫn còn VRAM.
+## Failure modes
 
-## 6. Phân bổ thời gian
+- Nhầm thứ tự `A/B` hoặc scale khiến shape sai hay update quá lớn.
+- Khởi tạo cả `A` và `B` bằng 0 làm gradient ban đầu bị chặn; thường random một ma trận và zero ma trận còn lại.
+- Base parameters chưa freeze nên phép so sánh parameter-efficient không còn hợp lệ.
+- Rank cao hơn không đảm bảo metric tốt hơn và có thể overfit.
+- Adapter không tự chứa base model; artifact thiếu base revision sẽ không tái lập.
 
-- **Vòng Sơ loại (4h):**
-  - Thường bài NLP cỡ lớn sẽ không thi ở vòng 4h, hoặc chỉ dùng BERT (BERT có thể full fine-tune). Nếu bắt buộc dùng PEFT, hãy cấu hình chuẩn LoRA trong 30 phút đầu.
-- **Vòng Chung kết (6h):**
-  - 1h: Cấu hình môi trường, load model 4-bit, gắn QLoRA.
-  - 3h: Chạy training loop và đánh giá.
-  - 2h: Thử nghiệm target_modules khác nhau và merge weight để sinh kết quả nộp.
+## Appendix online: PEFT/QLoRA
+
+Chỉ tham khảo khi learning environment đã cài `peft`/`bitsandbytes`, model đã cache và giấy phép cho phép. Notebook không tự `pip install`, clone hay tải model. Trước thi phải đối chiếu danh sách package/model chính thức của đúng kỳ và năm.
+
+## Timebox
+
+Không áp PTIT 4h/6h cho các kỳ khác. Dùng tỷ lệ của profile: baseline và shape test 15%, train/ablation 60%, error analysis 10%, export–reload–infer 15%.

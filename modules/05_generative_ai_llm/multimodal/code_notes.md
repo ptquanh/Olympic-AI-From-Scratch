@@ -1,5 +1,7 @@
 # Code Notes: Multimodal VLM
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: Load và gọi mô hình VLM (HuggingFace)
@@ -18,6 +20,7 @@ print(captioner(img))
 # Bài toán VQA (Hỏi đáp trên ảnh)
 vqa_pipeline = pipeline("visual-question-answering", model="dandelin/vilt-b32-finetuned-vqa")
 print(vqa_pipeline(image=img, question="What is the cat sitting on?"))
+
 ```
 
 **Ghi nhớ:** Bài toán VQA yêu cầu cả `image` và `question`.

@@ -16,6 +16,7 @@ conv = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, paddin
 dummy_image = torch.randn(1, 3, 32, 32)
 output = conv(dummy_image)
 print(output.shape) # Output: (1, 16, 32, 32) (Do padding=1 nên H,W không đổi)
+
 ```
 
 ## 📋 API Cheat Sheet

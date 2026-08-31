@@ -1,5 +1,7 @@
 # 📚 Olympic AI From Scratch — Plan Soạn Giáo Trình v3 (Final)
 
+> **ARCHIVED PLAN:** Tài liệu này lưu lịch sử thiết kế ban đầu và có thể chứa cấu trúc/trạng thái cũ. Nguồn chuẩn hiện tại là `curriculum.yml`, thư mục `plan/` và `_dev/review_log.md`.
+
 ## Mục Tiêu
 
 > Xây dựng giáo trình AI tiếng Việt, open-source và có thể tái lập, giúp người học đi từ nền tảng cần thiết đến năng lực giải bài OlpAI; mỗi chương cung cấp lý thuyết rõ ràng, trực giác, implementation, thí nghiệm, bài tập phân tầng và bài thi liên quan.
@@ -43,6 +45,7 @@ Tác giả (bạn) vừa học vừa soạn. Nhưng sản phẩm cuối phải p
 │  ⑮ Mastery Checkpoint                                    │
 │  ⑯ Time Estimate (cho người đọc, không phải soạn)       │
 └──────────────────────────────────────────────────────────┘
+
 ```
 
 ---
@@ -68,6 +71,7 @@ topic/
 ├── solutions.md           # Lời giải kiểm chứng được (có thể dùng <details>)
 ├── olympiad_transfer.md   # ⑬: Chuyển giao sang bài thi (xem mục riêng)
 └── references.md          # ⑭: Docs chính thức + tài liệu tự research
+
 ```
 
 ### 📗 Concept Lesson
@@ -83,6 +87,7 @@ topic/
 ├── code_notes.md  # API patterns cần nhớ (ngắn gọn, dạng cheat sheet)
 ├── exercises.md   # Bài tập (ít nhất 3 tầng: Understand + Implement + Transfer)
 └── references.md  # Docs links + further reading
+
 ```
 
 ### 📙 Competition Lab
@@ -100,6 +105,7 @@ topic/
 ├── rubric.md        # Tiêu chí chấm: baseline → good → excellent
 ├── postmortem.md    # Sai ở đâu, học được gì, cải thiện thế nào
 └── references.md    # Docs + kaggle discussions + related solutions
+
 ```
 
 ---
@@ -191,6 +197,7 @@ Math Essentials → Linear/Logistic Regression → Metrics & Validation
 → Classical ML Overview → DL Core (Training Loop, Backprop)
 → CNN → NLP Fundamentals → Attention/Transformer
 → Competition Skills → Past Problems → Timed Mocks
+
 ```
 
 ### 🔴 Contest Track
@@ -201,6 +208,7 @@ Cho người đã biết cơ bản. Bắt đầu bằng diagnostic test.
 Diagnostic Test → Validation & Baselines → Gap Remediation
 → CV Task Labs → NLP Task Labs → ML Task Labs
 → Past Olympic Problems → Timed Mocks → Failure Remediation
+
 ```
 
 ### Đánh dấu trong mỗi module
@@ -320,6 +328,7 @@ olympic-ai-from-scratch/
     ├── authoring_checklist.md       # Checklist soạn từng chương
     ├── review_log.md                # Ghi chú review/feedback
     └── learner_test_log.md          # Ghi kết quả learner testing
+
 ```
 
 ---
@@ -330,6 +339,7 @@ Mỗi chương đi qua 6 trạng thái. PROGRESS.md theo dõi theo trạng thái
 
 ```
 Outlined → Drafted → Technically Reviewed → Learner Tested → Revised → Published
+
 ```
 
 | Trạng thái               | Ý nghĩa                                                 | Tiêu chí chuyển sang trạng thái tiếp        |
@@ -417,6 +427,7 @@ Sau chương này, bạn sẽ có thể:
                         │
                         ├── dùng trong [Detection]
                         └── nền tảng cho [Transformer]
+
 ```
 ````
 
@@ -507,6 +518,7 @@ def gradient_descent(X, y, lr=0.01, epochs=100):
         w -= lr * dw
         b -= lr * db
     return w, b
+
 `````
 
 **Ghi nhớ:** `dw = X.T @ error`, `db = sum(error)`, update = `param -= lr * grad`
@@ -522,6 +534,7 @@ for epoch in range(epochs):
         loss = criterion(output, y_batch)
         loss.backward()
         optimizer.step()
+
 ```
 
 **Ghi nhớ:** `zero_grad → forward → loss → backward → step`
@@ -593,6 +606,7 @@ for epoch in range(epochs):
 
 - [Kaggle notebook](link) — winning solution cho bài tương tự
 - [IOAI discussion](link) — nếu có
+
 `````
 
 ---
@@ -842,6 +856,7 @@ graph TD
     style DETMET fill:#4CAF50,color:#fff
     style ATT fill:#4CAF50,color:#fff
     style TRANS fill:#4CAF50,color:#fff
+
 ```
 
 <small>🟢 = Core Chapter (from-scratch bắt buộc)</small>

@@ -1,10 +1,13 @@
 # Lời giải: Object Detection
 
-<details><summary><b>Tầng 1: Understand</b></summary>
-Mô hình sẽ sinh ra rất nhiều box chồng chéo lên nhau quanh chiếc xe hơi (vì nhiều ô lưới cùng tự tin rằng nó chứa xe hơi). NMS sẽ duyệt qua các box này, nó giữ lại box có độ tự tin cao nhất, sau đó "xóa sổ" toàn bộ các box khác bị trùng lặp (có IoU với box xịn > Threshold). 
+<details><summary><b>U-1 — Understand</b></summary>
+Mô hình sẽ sinh ra rất nhiều box chồng chéo lên nhau quanh chiếc xe hơi (vì nhiều ô lưới cùng tự tin rằng nó chứa xe hơi). NMS sẽ duyệt qua các box này, nó giữ lại box có độ tự tin cao nhất, sau đó "xóa sổ" toàn bộ các box khác bị trùng lặp (có IoU với box xịn > Threshold).
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 ```python
 def compute_iou(boxA, boxB):
@@ -24,11 +27,14 @@ def compute_iou(boxA, boxB):
     # Tránh chia cho 0
     iou = interArea / float(boxAArea + boxBArea - interArea + 1e-6)
     return iou
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 ```python
 import torch
@@ -48,11 +54,14 @@ print("Keep Index (0.5):", keep_idx)
 keep_idx_high = ops.nms(boxes, scores, 0.9)
 print("Keep Index (0.9):", keep_idx_high)
 # Output: [0, 2, 1]. Box 1 được giữ lại vì IoU của Box 0 và 1 chưa đạt 90%.
+
 ```
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>
 
-<details><summary><b>Tầng 4: Transfer</b></summary>
+<details><summary><b>T-1 — Transfer</b></summary>
 
 ```python
 def yolo_to_voc(yolo_box, W, H):
@@ -69,6 +78,17 @@ def yolo_to_voc(yolo_box, W, H):
     y2 = y_c + h / 2
 
     return [x1, y1, x2, y2]
+
 ```
+
+**Lỗi thường gặp:** fit preprocessing/chọn threshold trên test, dùng metric sai hoặc bỏ qua failure mode.
+
+</details>
+
+<details><summary><b>O-1 — Olympiad</b></summary>
+
+Đáp án là một quy trình: baseline sớm, validation chống leakage, lưu seed/config, theo dõi metric và dành thời gian tái chạy artifact cuối. Chi tiết phụ thuộc profile kỳ thi; xem `olympiad_transfer.md`.
+
+**Lỗi thường gặp:** áp luật của kỳ thi khác, không lưu config/artifact hoặc hết timebox mà chưa chạy infer cuối.
 
 </details>

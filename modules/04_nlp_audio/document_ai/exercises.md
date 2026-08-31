@@ -1,17 +1,25 @@
 # Bài tập: Document AI
 
-## Tầng 1: Understand
+## U-1 — Understand
 
-Tại sao phải dùng LayoutLM (mô hình Multimodal) để trích xuất hóa đơn, thay vì đưa ảnh qua OCR lấy toàn bộ text rồi đưa text vào BERT?
+**Learning outcome:** Giải thích đúng khái niệm, giả định và giới hạn bằng lập luận kiểm chứng được.
 
-## Tầng 2: Implement
+Vì sao OCR text → BERT có thể kém layout-aware model trên hóa đơn? Nêu một trường hợp mà text-only vẫn đủ.
 
-Chạy thử kịch bản EasyOCR với một ảnh chụp màn hình chứa chữ bất kỳ. Đếm số từ được nhận diện.
+**Kết quả mong đợi:** Giải thích mất tọa độ/reading order; text-only có thể đủ khi tài liệu tuyến tính và schema không phụ thuộc vị trí.
 
-## Tầng 3: Experiment
+## I-1 — Implement
 
-**Mục tiêu:** Thử nghiệm Pipeline OCR.
+**Learning outcome:** Cài đặt phần cốt lõi, nêu input/output và vượt qua shape/edge-case tests.
 
-- Cài đặt `easyocr` hoặc `pytesseract`.
-- Chụp một hóa đơn tiếng Việt và chạy OCR.
-- **Yêu cầu:** Đánh giá bằng mắt xem công cụ nhận diện sai ở những chỗ nào (số liệu, dấu chấm phẩy, hay font chữ lạ).
+Viết hàm chuẩn hóa box `[x1,y1,x2,y2]` từ trang `width×height` sang `[0,1000]`. Validate thứ tự tọa độ và clip biên.
+
+**Kết quả mong đợi:** Box `[10,20,50,60]` trên trang `100×200` thành `[100,100,500,300]`; box sai thứ tự bị từ chối.
+
+## E-1 — Experiment
+
+**Learning outcome:** Thiết kế thí nghiệm một biến, tái lập được và giải thích kết quả bằng evidence.
+
+Cho hai tập OCR tokens/boxes: bản sạch và bản dịch box theo trục x 10%. Đo tỷ lệ cặp key–value còn cùng dòng và trong khoảng cách cho phép.
+
+**Kết quả mong đợi:** Bảng clean/shifted với metric layout-pair accuracy; phân tích lỗi do coordinate shift thay vì đổ lỗi chung cho encoder.

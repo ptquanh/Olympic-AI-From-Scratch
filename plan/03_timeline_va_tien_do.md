@@ -1,5 +1,7 @@
 # ⏱️ Timeline, Tiến Độ & Quality Gates
 
+> **Tài liệu lịch sử:** Timeline 10 tuần bên dưới là kế hoạch soạn ban đầu, không phải trạng thái release hiện tại và không phải lịch thi chính thức. Dùng `../curriculum.yml` cho trạng thái chương; kiểm tra website ban tổ chức cho lịch thi.
+
 > [← Quay lại Tổng Quan](00_tong_quan.md)
 
 ---
@@ -152,6 +154,7 @@
 
 ```
 Outlined → Drafted → Technically Reviewed → Learner Tested → Revised → Published
+
 ```
 
 | Trạng thái               | Ý nghĩa                                              | Tiêu chí chuyển            |
@@ -231,4 +234,5 @@ outline(transformer): skeleton with outcomes
 review(linreg): fix gradient derivation
 template(cv): update image classification pipeline
 release(v0.1): tag pre-competition release
+
 ```

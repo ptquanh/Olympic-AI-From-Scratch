@@ -30,6 +30,7 @@ Sau chương này, bạn sẽ có thể:
                           │
                           ├── dùng trong [Text Preprocessing]
                           └── nền tảng cho [Data Loading Pipeline]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần Regex & Pathlib?
@@ -89,15 +90,20 @@ pattern = r'[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
 emails = re.findall(pattern, text)
 print(emails)
 # Output: ['support@olpai.vn', 'admin-team_2026@gmail.com']
+
 ```
 
 ## 5. Common Mistakes & Misconceptions
 
-> ❌ **Sai:** Dùng regex để parse (phân tích cú pháp) HTML/XML phức tạp.
-> ✅ **Đúng:** Dùng BeautifulSoup hoặc thư viện chuyên dụng. Regex không thể xử lý tốt các thẻ HTML lồng nhau.
+> ❌ **Sai:** Dùng regex để parse toàn bộ HTML/XML lồng nhau.
+> ✅ **Đúng:** Dùng parser phù hợp trong môi trường học. `BeautifulSoup` không thuộc danh sách PTIT 2026 trong PDF, vì vậy không giả định có trong competition profile.
 
 > ❌ **Sai:** Dùng `re.match()` để tìm kiếm chuỗi ở giữa văn bản.
 > ✅ **Đúng:** `re.match()` chỉ kiểm tra ở **đầu** chuỗi. Phải dùng `re.search()` nếu muốn tìm ở bất kỳ đâu, hoặc `re.findall()` để tìm tất cả.
 
 > ❌ **Sai:** Thường xuyên dùng `os.path.join(path1, path2)`.
 > ✅ **Đúng:** Nên dùng `pathlib.Path(path1) / path2`. Cú pháp ngắn gọn, hướng đối tượng và hoạt động đa nền tảng.
+
+## ⑯ Time Estimate
+
+Theory: ~1.5h · Code: ~1.5h · Exercises: ~1h

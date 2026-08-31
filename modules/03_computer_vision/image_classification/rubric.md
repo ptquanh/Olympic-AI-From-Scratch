@@ -1,21 +1,15 @@
-# Rubric Chấm Điểm
+# Rubric: Image Classification Competition
 
-Tổng điểm: 100đ. Cần đạt >= 80đ để xem như "qua môn" chương này.
+Tổng 100 điểm. Baseline Beta dùng dữ liệu ảnh nhỏ có tín hiệu hình học, chạy offline; pretrained model không bắt buộc.
 
-## 1. Data Pipeline (30đ)
+| Hạng mục        | Điểm | Evidence bắt buộc                                                                           |
+| --------------- | ---: | ------------------------------------------------------------------------------------------- |
+| Data & EDA      |   15 | Kiểm schema/shape/dtype/class balance; hiển thị mẫu theo lớp; ID không trùng                |
+| Split & leakage |   15 | Split tái lập, stratified khi phù hợp; preprocessing chỉ fit trên train; test không có nhãn |
+| Baseline        |   20 | Pipeline chạy end-to-end; seed/config rõ; metric validation được tính đúng                  |
+| Experiment      |   15 | Một giả thuyết, một thay đổi, bảng kết quả và giải thích; không chọn theo test              |
+| Error analysis  |   10 | Confusion matrix hoặc nhóm lỗi; nêu ít nhất một failure mode                                |
+| Infer & submit  |   15 | Load artifact/transform nhất quán; đúng ID, cột, số dòng, thứ tự và không NaN               |
+| Reproducibility |   10 | Chạy lại thành công trong `OAI_FAST_MODE=1`, offline, không auto-install/download           |
 
-- [ ] (10đ) Kế thừa chuẩn `torch.utils.data.Dataset`. Hàm `__len__` và `__getitem__` hoạt động không có lỗi.
-- [ ] (10đ) Sử dụng ít nhất 2 phương pháp Augmentation (VD: HorizontalFlip, ColorJitter) vào tập Train.
-- [ ] (10đ) Áp dụng đúng `transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])` của ImageNet.
-
-## 2. Model & Training (40đ)
-
-- [ ] (10đ) Tải thành công Pre-trained model và sửa lại số Output Classes chuẩn xác.
-- [ ] (10đ) Vòng lặp Train đúng 5 bước chuẩn mực (Zero grad -> Forward -> Loss -> Backward -> Step).
-- [ ] (10đ) Vòng lặp Validation đúng chuẩn (`model.eval()` và `torch.no_grad()`).
-- [ ] (10đ) Viết code lưu lại file `best_model.pth` khi Valid Loss giảm.
-
-## 3. Evaluation & Inference (30đ)
-
-- [ ] (15đ) Load lại file `best_model.pth` và chạy dự đoán thử trên 1 tấm ảnh bên ngoài (Ảnh tải trên mạng xuống).
-- [ ] (15đ) Sử dụng `sklearn.metrics.confusion_matrix` kết hợp `seaborn.heatmap` để vẽ ma trận nhầm lẫn đẹp mắt.
+Gate bắt buộc: nếu có leakage, submission sai schema hoặc pipeline không chạy từ đầu đến cuối thì tối đa 50 điểm. Transfer learning là cải tiến tùy profile, không phải tiêu chí mặc định.

@@ -1,6 +1,6 @@
 # Lời giải: Visualization
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 
 **1. Matplotlib vs Seaborn**
 
@@ -10,9 +10,12 @@
 **2. Outlier**
 
 - Trên Boxplot, outlier là các điểm chấm nhỏ nằm ngoài hai thanh râu (whiskers).
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 **1. Heatmap Ma trận Tương quan**
 
@@ -24,11 +27,14 @@ corr = df.corr()
 sns.heatmap(corr, annot=True, cmap='coolwarm')
 plt.title("Correlation Matrix")
 plt.show()
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 **1. Subplots Layout**
 
@@ -46,6 +52,9 @@ axes[1].set_title("Plot 2")
 
 plt.tight_layout()
 plt.show()
+
 ```
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>

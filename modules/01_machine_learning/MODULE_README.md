@@ -8,8 +8,8 @@ Nắm vững các thuật toán cốt lõi của Học máy. Hiểu sâu (From-s
 
 | Chương                                                      | Loại      | Nội dung chính                              | Foundation Track | Contest Track |
 | ----------------------------------------------------------- | --------- | ------------------------------------------- | ---------------- | ------------- |
-| 1. [Linear Regression](linear_regression/README.md)         | [Core]    | Hồi quy tuyến tính, Gradient Descent, L1/L2 | ⭐ Bắt buộc      | ⏭️ Bỏ qua     |
-| 2. [Logistic Regression](logistic_regression/README.md)     | [Core]    | Hàm Sigmoid, Binary Cross-Entropy           | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
+| 1. [Linear Regression](linear_regression/README.md)         | [Core]    | Hồi quy tuyến tính, Gradient Descent, L1/L2 | ⭐ Bắt buộc      | 📖 Đọc lướt   |
+| 2. [Logistic Regression](logistic_regression/README.md)     | [Core]    | Hàm Sigmoid, Binary Cross-Entropy           | ⭐ Bắt buộc      | 📖 Đọc lướt   |
 | 3. [Metrics & Validation](metrics_and_validation/README.md) | [Core]    | Accuracy, F1, ROC/AUC, k-fold               | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 4. [Tree Ensembles](tree_ensembles/README.md)               | [Concept] | Decision Tree, Random Forest, XGBoost       | ⭐ Bắt buộc      | ⭐ Bắt buộc   |
 | 5. [SVM & KNN](svm_knn/README.md)                           | [Concept] | SVM, KNN — khi nào dùng                     | 📖 Đọc lướt      | ⏭️ Bỏ qua     |

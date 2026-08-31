@@ -1,11 +1,14 @@
 # Lời giải: Activation Functions
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 1. Sigmoid bóp dữ liệu về khoảng [0, 1], rất phù hợp để biến đổi output thành xác suất (Probability) trong bài toán phân loại nhị phân. Nếu dùng nó ở các Hidden Layer, nó sẽ gây ra Vanishing Gradient do đạo hàm quá nhỏ.
-2. Đạo hàm của ReLU bằng 0 với mọi x < 0. Nếu trong quá trình huấn luyện, trọng số cập nhật khiến đầu vào của ReLU luôn âm, đạo hàm truyền ngược sẽ luôn bằng 0. Trọng số đó vĩnh viễn không bao giờ được cập nhật nữa (Nơ-ron chết).
+2. Đạo hàm ReLU bằng 0 khi pre-activation âm. Nếu một neuron nhận pre-activation âm cho mọi mẫu trong thời gian dài, nhánh qua ReLU không truyền gradient; tuy vậy bias/đường truyền khác hoặc batch tương lai có thể thay đổi trạng thái, nên cần đo activation/gradient trước khi kết luận neuron “chết”.
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 ```python
 import numpy as np
@@ -29,10 +32,16 @@ ax2.plot(x, tanh_grad, label='Tanh Grad', linestyle='--')
 ax2.set_title("Tanh")
 ax2.legend()
 plt.show()
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
-Output của lớp đầu tiên luôn bằng 0 (vì Input * Trọng số âm ra kết quả âm, đi qua ReLU biến thành 0). Vì Output bằng 0, đạo hàm của lớp đó cũng bằng 0. Do đó đạo hàm không thể truyền ngược về các lớp trước đó. Cả mạng Neural hoàn toàn tê liệt và Loss không suy suyển một chút nào trong suốt quá trình train.
+<details><summary><b>E-1 — Experiment</b></summary>
+Chỉ khi **pre-activation** của lớp đầu âm cho toàn bộ mẫu thì ReLU trả 0 và gradient qua nhánh đó bằng 0. Dấu của trọng số âm một mình chưa đủ kết luận vì input/bias có thể âm hoặc dương. Hãy in tỷ lệ activation bằng 0 và gradient norm trên batch kiểm thử.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
+
 </details>

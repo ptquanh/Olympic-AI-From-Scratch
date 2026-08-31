@@ -22,7 +22,16 @@ class MyRobustModel(nn.Module):
         x = self.relu(x)
         x = self.dropout(x)
         return self.fc2(x)
+
 ```
+
+## 📋 API Cheat Sheet
+
+| API                | Dùng khi                                  |
+| ------------------ | ----------------------------------------- |
+| `torch.nn.Dropout` | stochastic activation masking             |
+| `weight_decay`     | optimizer-level L2/decoupled decay        |
+| `model.train/eval` | toggle dropout and normalization behavior |
 
 ## 🧠 Flashcards
 

@@ -1,16 +1,35 @@
-# Lời giải: Generative Cv
+# Lời giải: Generative CV
 
-<details><summary><b>Tầng 1: Understand</b></summary>
-Cố gắng tối đa hóa xác suất đoán ĐÚNG ảnh thật (cho điểm 1) và đoán ĐÚNG ảnh giả (cho điểm 0).
-</details>
+<details><summary><b>U-1 — Understand</b></summary>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+GAN discriminator nhận ảnh thật/giả và học binary classification; generator nhận gradient qua discriminator để làm mẫu khó phân biệt. Failure modes gồm training mất cân bằng và mode collapse. DDPM thường lấy `x0`, timestep và noise `ε`, tạo `x_t`, rồi tối ưu model dự đoán noise/velocity/target tương ứng. Failure modes gồm sampling chậm và schedule/parameterization không phù hợp.
 
-(Phần này là lý thuyết, vì Diffusion model rất khó code chay tầng Implement cơ bản. Bạn chỉ cần hiểu là Diffusion phải chạy qua vòng lặp nhiều bước (scheduler.step())).
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
-- **CFG thấp (VD: 1.0 - 3.0):** Model sẽ tự do sáng tạo, ít bám sát vào prompt, ảnh trông tự nhiên hơn, nghệ thuật hơn nhưng có thể xuất hiện vật thể lạ không liên quan.
-- **CFG cao (VD: 10.0 - 15.0):** Model tuân thủ răm rắp đoạn prompt của bạn, ép bức ảnh phải có đầy đủ chi tiết. Tuy nhiên màu sắc thường bị quá bão hòa (oversaturated) và ảnh trông có vẻ "cứng" (nhân tạo). Ngưỡng chuẩn thường là 7.0 - 7.5.
+<details><summary><b>I-1 — Implement</b></summary>
+
+```python
+def q_sample(x0, noise, alpha_bar):
+    if not 0 <= alpha_bar <= 1:
+        raise ValueError("alpha_bar must be in [0, 1]")
+    if x0.shape != noise.shape:
+        raise ValueError("x0 and noise must have the same shape")
+    return np.sqrt(alpha_bar) * x0 + np.sqrt(1-alpha_bar) * noise
+
+```
+
+`np.allclose(q_sample(x0,n,1),x0)` và `np.allclose(q_sample(x0,n,0),n)` phải đúng.
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
+
+</details>
+
+<details><summary><b>E-1 — Experiment</b></summary>
+
+Giữ `x0/noise` cố định để chỉ thay một biến. Với `x0=np.ones(1000)` và Gaussian noise seed 42, tính `np.mean((xt-x0)**2)`. Giá trị cụ thể phụ thuộc mẫu noise, nhưng trend tăng khi `alpha_bar` giảm. Không so các timestep bằng noise seed khác vì variance ngẫu nhiên làm mờ causal effect.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
+
 </details>

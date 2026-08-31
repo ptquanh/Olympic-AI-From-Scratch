@@ -2,20 +2,43 @@
 
 > **Track:** Foundation ⚡ | Contest 📖
 
-## ① Giới thiệu
+## ① Prerequisite Check
 
-Máy tính biểu diễn âm thanh như thế nào? Chương này giúp bạn nắm kiến thức nền tảng để tiền xử lý file âm thanh (WAV/MP3).
+Bạn cần hiểu array, sampling và sin/cos cơ bản. Nếu chưa, đọc NumPy và Math Essentials.
 
 ## ② Learning Outcomes
 
-- Hiểu về Waveform (Dạng sóng) và Sampling Rate (Tần số lấy mẫu).
-- Chuyển Waveform thành Spectrogram (Đồ thị phổ âm thanh). Đưa âm thanh về bài toán Thị giác máy tính (CV).
+- Tính duration từ số sample và sampling rate; phân biệt mono/stereo.
+- Giải thích frame, hop length, STFT, magnitude và spectrogram.
+- Resample/crop/pad mà không làm lệch label hoặc đơn vị thời gian.
+- Chọn augmentation phù hợp và kiểm tra nó không phá semantic.
+
+## ③ Concept Map
+
+`Waveform → framing/STFT → spectrogram/features → audio encoder → classification/ASR`
 
 ## ④ Intuition
 
-Âm thanh là sự rung động của không khí (áp suất). Micro biến dao động đó thành điện áp. ADC (Analog to Digital Converter) ghi lại mức điện áp đó $N$ lần mỗi giây (VD: Sampling rate 16000Hz nghĩa là đo 16,000 lần/giây). Một file âm thanh 1 giây bản chất chỉ là 1 mảng (vector) gồm 16,000 con số (Waveform).
-Biến đổi Fourier (FFT) phân tích sóng này thành các dải tần số thấp, trung, cao. Vẽ lên hình 2D ta được Spectrogram (trục ngang là thời gian, trục dọc là tần số, màu sắc là cường độ). Từ đây, ta dùng CNN/Transformer để xử lý bức ảnh này!
+Waveform cho biết amplitude theo thời gian nhưng không trực tiếp cho biết tần số xuất hiện lúc nào. STFT chia tín hiệu thành cửa sổ ngắn, áp Fourier transform cho từng cửa sổ và tạo time–frequency representation.
+
+## ⑤ Math & Worked Example
+
+Tín hiệu 16,000 samples ở 16 kHz dài đúng 1 giây. Với frame length 400 và hop 160, số frame không padding là `1 + floor((16000-400)/160) = 98`. Shape spectrogram còn phụ thuộc số frequency bins, thường `n_fft/2+1` cho real FFT.
+
+## ⑧ Framework / Lab
+
+Lab tạo waveform tổng hợp để quan sát sampling và metric mà không tải file. Full dataset phải ghi license, sampling rate, channel policy và cache.
+
+## ⑩ Misconceptions
+
+- ❌ **Sai:** Hai file cùng số samples có cùng duration. → ✅ Còn phụ thuộc sampling rate.
+- ❌ **Sai:** Normalize từng file luôn tốt. → ✅ Có thể xóa thông tin loudness có ích.
+- ❌ **Sai:** Time shift luôn giữ label. → ✅ Không đúng với task định vị sự kiện chính xác.
+
+## ⑮ Mastery Check
+
+Tính đúng shape/duration và giải thích được mỗi preprocessing step thay đổi tín hiệu gì.
 
 ## ⑯ Time Estimate
 
-Theory: ~0.5h, Code: ~0.5h, Exercises: ~0.5h
+Theory: ~1h · Code: ~1h · Exercises: ~1h

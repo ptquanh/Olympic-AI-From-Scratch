@@ -1,5 +1,7 @@
 # 📚 Olympic AI From Scratch — Tổng Quan Giáo Trình
 
+> **Cập nhật 2026-08-31:** Bản triển khai hiện tại là Technical Review Beta, chỉ gồm module 00–05. Trạng thái chương lấy từ `../curriculum.yml`; module 06–08 là roadmap chưa được tạo.
+
 ## Mục Tiêu
 
 > Xây dựng giáo trình AI tiếng Việt, open-source và có thể tái lập, giúp người không biết hoặc biết ít AI có thể nắm vững và chuyên sâu kiến thức để thi tốt các kỳ thi Olympic AI — bao gồm **OlpAI Sinh viên**, **Olympic AI PTIT**, **VOAI**, **IOAI**, và các kỳ thi quốc tế liên quan.
@@ -69,6 +71,7 @@ Tác giả (bạn) vừa học vừa soạn. Nhưng sản phẩm cuối phải p
 
 ## Trạng Thái Hiện Tại
 
-- **Đội thi:** Đã có đội 2-3 người
-- **Tiến độ:** Đang chốt plan. Chưa scaffold code.
-- **Kỳ thi gần nhất:** OlpAI Vòng Khu Vực — 01/11/2026
+- **Phạm vi Beta:** 41 chương thuộc module 00–05.
+- **Quality target:** `technically_reviewed`; chưa gọi `published` trước learner testing.
+- **Nguồn trạng thái:** `curriculum.yml` và `_dev/review_log.md`.
+- **Roadmap:** Competition Pipeline, Olympiad Problems và Team Competition chưa nằm trong release này.

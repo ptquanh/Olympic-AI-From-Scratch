@@ -22,7 +22,7 @@
 
 Linear Regression dự đoán giá trị liên tục (vd: $120.5$). Nhưng nếu ta muốn dự đoán "Email này có phải Spam không?" (Chỉ có 0 hoặc 1), Linear Regression sẽ thất bại vì nó có thể dự đoán ra $-0.5$ hoặc $1.2$.
 Để ép kết quả về xác suất (từ 0 đến 1), ta bọc hàm hồi quy tuyến tính bằng một hàm chữ S (Sigmoid).
-Và vì ta đang tính xác suất, ta không thể dùng MSE (sẽ tạo ra hàm bị lồi lõm nhiều đáy), mà phải dùng **Cross-Entropy Loss**.
+Với logistic regression tuyến tính, Binary Cross-Entropy theo logit cho objective và gradient thuận lợi hơn MSE sau sigmoid. MSE vẫn tính được nhưng nói chung làm mất tính convex theo trọng số và gradient dễ nhỏ khi sigmoid bão hòa.
 
 ## ⑤ Math / Derivation
 

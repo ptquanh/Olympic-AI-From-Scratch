@@ -1,20 +1,26 @@
 # Lời giải: Segmentation
 
-<details><summary><b>Tầng 1: Understand</b></summary>
+<details><summary><b>U-1 — Understand</b></summary>
 Kỹ thuật Skip-connection ngang trong U-Net giúp nhánh Decoder lấy lại được các chi tiết không gian (spatial details) cực kỳ sắc nét đã bị mất đi do các phép Max Pooling ở nhánh Encoder, từ đó tạo ra mask dự đoán có biên mượt mà và chính xác hơn.
+
+**Lỗi thường gặp:** nhắc lại định nghĩa nhưng không nêu giả định hoặc không kiểm tra được kết luận.
+
 </details>
 
-<details><summary><b>Tầng 2: Implement</b></summary>
+<details><summary><b>I-1 — Implement</b></summary>
 
 ```python
 def dice_coeff(a, b):
     inter = (a * b).sum()
     return 2. * inter / (a.sum() + b.sum() + 1e-6)
+
 ```
+
+**Lỗi thường gặp:** copy code mà không assert input, output, shape và edge case.
 
 </details>
 
-<details><summary><b>Tầng 3: Experiment</b></summary>
+<details><summary><b>E-1 — Experiment</b></summary>
 
 ```python
 import torch
@@ -31,8 +37,11 @@ mask_pred_07 = (pred_prob > 0.7).float()
 
 print("Dice (Th=0.3):", dice_coeff(mask_pred_03, mask_true).item())
 print("Dice (Th=0.7):", dice_coeff(mask_pred_07, mask_true).item())
+
 ```
 
 Việc chọn Threshold đóng vai trò lớn trong độ nhạy (Recall) và độ đặc hiệu (Precision) của mô hình phân đoạn.
+
+**Lỗi thường gặp:** đổi nhiều biến cùng lúc, không cố định seed/split hoặc chỉ báo một lần chạy thuận lợi.
 
 </details>

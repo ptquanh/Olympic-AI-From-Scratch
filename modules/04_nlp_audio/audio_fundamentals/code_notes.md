@@ -15,6 +15,7 @@ mel_specgram = transform(waveform)
 
 plt.imshow(mel_specgram.log2()[0,:,:].numpy(), aspect='auto')
 plt.show()
+
 ```
 
 ### 🏋️ Bài Luyện Code Tay
@@ -23,6 +24,14 @@ plt.show()
 | --- | --------------------------------------------------- | --------- | ------------------------------------------------------------------------- |
 | 1   | Load file .wav và resample về 16kHz bằng torchaudio | 10p       | Dùng `torchaudio.load` và `torchaudio.transforms.Resample`                |
 | 2   | Vẽ đồ thị Mel-Spectrogram từ Waveform               | 15p       | Dùng `torchaudio.transforms.MelSpectrogram` và `matplotlib.pyplot.imshow` |
+
+## 📋 API Cheat Sheet
+
+| API                  | Dùng khi                     |
+| -------------------- | ---------------------------- |
+| `numpy.fft.rfft`     | one-sided spectrum           |
+| `numpy.fft.rfftfreq` | frequency bins               |
+| `torchaudio.load`    | learning profile file loader |
 
 ### 🧠 Flashcards
 

@@ -1,20 +1,25 @@
 # Bài tập: Audio Fundamentals
 
-## Tầng 1: Understand
+## U-1 — Understand
 
-Nếu bạn có một mảng numpy độ dài 48,000 biểu diễn âm thanh với sample rate là 16,000 Hz, file âm thanh này dài bao nhiêu giây?
+**Learning outcome:** Giải thích đúng khái niệm, giả định và giới hạn bằng lập luận kiểm chứng được.
 
-## Tầng 2: Implement
+Waveform có 48,000 samples ở 16 kHz dài bao nhiêu giây? Nếu cùng samples nhưng metadata ghi 8 kHz thì duration thay đổi thế nào?
 
-**Mục tiêu:** Code các phép biến đổi Audio.
+**Kết quả mong đợi:** Dùng `duration = samples / sample_rate`, lần lượt được 3 và 6 giây.
 
-- Dùng `torchaudio`. Load 1 file audio mẫu.
-- Viết code cắt file audio đó thành 2 phần bằng nhau (theo độ dài mẫu).
-- Chuyển 1 nửa thành Spectrogram.
+## I-1 — Implement
 
-## Tầng 3: Experiment
+**Learning outcome:** Cài đặt phần cốt lõi, nêu input/output và vượt qua shape/edge-case tests.
 
-**Mục tiêu:** Data Augmentation cho Audio.
+Tạo sine 440 Hz dài 1 giây ở 16 kHz. Chia thành hai nửa và dùng `np.fft.rfft` tìm frequency bin có magnitude lớn nhất.
 
-- Viết code thêm nhiễu trắng (White Gaussian Noise) vào waveform.
-- Chuyển cả bản gốc và bản có nhiễu sang Mel-Spectrogram và plot lên để xem sự khác biệt.
+**Kết quả mong đợi:** Hai đoạn 8,000 samples; peak frequency xấp xỉ 440 Hz trong sai số một FFT bin.
+
+## E-1 — Experiment
+
+**Learning outcome:** Thiết kế thí nghiệm một biến, tái lập được và giải thích kết quả bằng evidence.
+
+Thêm Gaussian noise ở ba mức chuẩn `0.01, 0.1, 0.5`; tính SNR và so sánh spectrum peak/noise floor.
+
+**Kết quả mong đợi:** Bảng noise level–SNR–peak; SNR giảm và noise floor tăng khi noise mạnh hơn.

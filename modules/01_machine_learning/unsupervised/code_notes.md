@@ -18,6 +18,7 @@ clusters = kmeans.fit_predict(X)
 plt.scatter(X[:, 0], X[:, 1], c=clusters, cmap='viridis')
 plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], color='red', marker='X')
 plt.show()
+
 ```
 
 ### Pattern 2: Giảm chiều với PCA
@@ -31,6 +32,7 @@ X_pca = pca.fit_transform(X)
 
 # 2. Xem mức độ dữ liệu được giữ lại
 print(f"Variance ratio: {sum(pca.explained_variance_ratio_):.2f}")
+
 ```
 
 ## 📋 API Cheat Sheet

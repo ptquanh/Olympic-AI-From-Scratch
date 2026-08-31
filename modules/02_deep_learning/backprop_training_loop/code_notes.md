@@ -22,6 +22,7 @@ class Neuron:
 
     def parameters(self):
         return self.w + [self.b]
+
 ```
 
 ### Pattern 2: Cấu trúc của một Tầng (Layer) và Mạng (MLP)
@@ -51,6 +52,7 @@ class MLP:
 
     def parameters(self):
         return [p for layer in self.layers for p in layer.parameters()]
+
 ```
 
 ### Pattern 3: Training Loop From Scratch
@@ -77,6 +79,7 @@ for k in range(20):
     # 5. Gradient Descent (Cập nhật trọng số)
     for p in n.parameters():
         p.data -= 0.05 * p.grad
+
 ```
 
 ## 📋 API Cheat Sheet

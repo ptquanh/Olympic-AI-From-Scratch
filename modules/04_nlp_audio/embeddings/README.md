@@ -29,6 +29,7 @@ $$ \text{Cosine Similarity}(A, B) = \frac{A \cdot B}{\|A\| \|B\|} $$
 ## ⑥ Worked Example
 
 Công thức huyền thoại của Word2Vec:
+
 `King - Man + Woman = Queen`
 Toán học trên vector đã phản ánh được giới tính và tước vị!
 

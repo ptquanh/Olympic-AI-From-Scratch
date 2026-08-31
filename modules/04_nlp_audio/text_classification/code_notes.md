@@ -1,5 +1,7 @@
 # Code Notes: Text Classification Pipeline
 
+> ⚠️ **Online/optional appendix:** một số snippet bên dưới cần package hoặc model cache bổ sung và có thể tải dữ liệu ở lần chạy đầu. Chúng không competition-safe nếu profile chính thức không cho phép rõ ràng. Notebook chính của chương luôn có đường chạy fast/offline và không tự cài/tải.
+
 ## 🔑 Core Patterns
 
 ### Pattern 1: Chuẩn bị Dataset cho HuggingFace
@@ -38,6 +40,7 @@ class TextDataset(Dataset):
             'attention_mask': encoding['attention_mask'].flatten(),
             'labels': torch.tensor(label, dtype=torch.long)
         }
+
 ```
 
 ### Pattern 2: Fine-Tuning Loop cho HuggingFace Model
@@ -62,6 +65,7 @@ for batch in train_loader:
 
     optimizer.step()
     scheduler.step() # Nhớ step cả scheduler!
+
 ```
 
 ## 📋 API Cheat Sheet
@@ -70,6 +74,11 @@ for batch in train_loader:
 | ------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Tải Tokenizer       | `AutoTokenizer.from_pretrained('tên_model')`                                    | [AutoTokenizer](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoTokenizer)                           |
 | Tải Model Phân loại | `AutoModelForSequenceClassification.from_pretrained('tên_model', num_labels=2)` | [AutoModelForSeqCls](https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForSequenceClassification) |
+
+## 🏋️ Bài Luyện Code Tay
+
+1. Viết split stratified và kiểm tra không trùng ID.
+2. Tạo TF–IDF baseline rồi kiểm tra submission schema.
 
 ### 🧠 Flashcards
 

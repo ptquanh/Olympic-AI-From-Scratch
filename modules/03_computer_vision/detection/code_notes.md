@@ -12,14 +12,16 @@ def calculate_area(box):
     width = max(0, box[2] - box[0])
     height = max(0, box[3] - box[1])
     return width * height
+
 ```
 
 ## 📋 API Cheat Sheet
 
 Thường dùng thư viện `torchvision.ops` cho các hàm Detection chuẩn.
-| Việc cần làm | Code | Link Docs |
-|-------------|------|-----------|
-| Chạy NMS chuẩn | `torchvision.ops.nms(boxes, scores, iou_threshold)` | [NMS](https://pytorch.org/vision/stable/generated/torchvision.ops.nms.html) |
+
+| Việc cần làm      | Code                                                  | Link Docs                                                                                   |
+| ----------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Chạy NMS chuẩn    | `torchvision.ops.nms(boxes, scores, iou_threshold)`   | [NMS](https://pytorch.org/vision/stable/generated/torchvision.ops.nms.html)                 |
 | Chuyển format box | `torchvision.ops.box_convert(boxes, in_fmt, out_fmt)` | [box_convert](https://pytorch.org/vision/stable/generated/torchvision.ops.box_convert.html) |
 
 ## 🏋️ Bài Luyện Code Tay

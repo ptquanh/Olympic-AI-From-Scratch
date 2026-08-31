@@ -20,7 +20,7 @@ PyTorch Fundamentals ➔ **Convolution** ➔ CNN Architectures
 
 ## ④ Intuition
 
-Một bức ảnh có thể lên tới hàng triệu pixel. Nếu dùng mạng MLP cũ, ta phải nối từng pixel với mọi nơ-ron, tạo ra hàng tỷ trọng số (không thể huấn luyện). Convolution (Tích chập) giải quyết vấn đề này bằng cách dùng một chiếc "kính lúp" (Kernel/Filter) nhỏ xíu (VD: 3x3). Kính lúp này chứa các trọng số cố định, quét qua toàn bộ bức ảnh từ trái sang phải, từ trên xuống dưới. Điều này giúp mạng:
+Một bức ảnh có thể có hàng triệu pixel. Fully connected layer trên ảnh lớn tạo rất nhiều tham số và bỏ qua cấu trúc không gian. Convolution dùng kernel nhỏ (ví dụ 3×3) với **trọng số được học và chia sẻ theo vị trí**, quét trên ảnh. Điều này giúp mạng:
 
 1. Chia sẻ trọng số (cùng một kính lúp quét mọi nơi).
 2. Bảo toàn tính không gian (nhận diện được mắt nằm trên miệng).

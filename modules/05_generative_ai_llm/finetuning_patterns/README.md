@@ -28,6 +28,7 @@ Sau chương này, bạn sẽ có thể:
 [Prompt Engineering] --> [FINE-TUNING PATTERNS] --> [Multimodal]
                               │
                               └── ứng dụng trong [Text/Audio/Vision Classification]
+
 ```
 
 ## 1. Intuition — Tại Sao Cần PEFT/LoRA?
@@ -96,8 +97,12 @@ Tại bước feed-forward đầu tiên với input $x = [1, 1, 1, 1]^T$:
 
 ## 5. Common Mistakes & Misconceptions
 
-> ❌ **Sai:** LoRA làm chậm quá trình inference (dự đoán) so với mô hình gốc.
-> ✅ **Đúng:** Sau khi train xong, ta có thể cộng trực tiếp $W_{merged} = W_0 + BA$. Mô hình lúc inference vẫn chỉ có một phép nhân ma trận, hoàn toàn không bị chậm đi.
+> ❌ **Sai:** LoRA luôn làm inference chậm.
+> ✅ **Đúng:** Có thể merge update vào base weight khi dtype/quantization và deployment cho phép. Nếu giữ adapter tách rời hoặc base quantized, overhead và khả năng merge phụ thuộc implementation.
 
 > ❌ **Sai:** LoRA chỉ dùng cho LLM (Text).
 > ✅ **Đúng:** LoRA có thể dùng cho mọi mạng Neural có layer Linear/Conv2d (như Vision Transformers, Diffusion Models, Audio encoders).
+
+## ⑯ Time Estimate
+
+Theory: ~2h · Code: ~2h · Exercises: ~1.5h
