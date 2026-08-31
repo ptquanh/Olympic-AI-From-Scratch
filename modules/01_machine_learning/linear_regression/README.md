@@ -28,19 +28,23 @@ Chúng ta yêu cầu máy tính vẽ một đường thẳng đi qua các điể
 
 ## ⑤ Math / Derivation
 
+_(Quy ước ký hiệu: Dấu chấm $\cdot$ thể hiện phép nhân vô hướng hoặc nhân ma trận)_
+
 **1. Hàm giả thuyết (Hypothesis)**
-Với 1 biến: $y = wx + b$
-Với nhiều biến (Ma trận): $\hat{Y} = XW$ (Đã gộp bias $b$ vào $W$ bằng cách thêm cột 1 vào $X$)
+Với 1 biến: $\hat{y} = w \cdot x + b$
+Với nhiều biến (Ma trận): $\hat{Y} = X \cdot W$ (Đã gộp bias $b$ vào ma trận trọng số $W$ bằng cách thêm một cột chứa toàn số 1 vào ma trận input $X$)
 
 **2. Hàm mất mát (Loss Function - MSE)**
-$J(W) = \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i - y_i)^2 = \frac{1}{N} ||XW - Y||^2$
+Trung bình bình phương sai số:
+$J(W) = \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i - y_i)^2 = \frac{1}{N} ||X \cdot W - Y||^2$
 
 **3. Đạo hàm (Gradients)**
-Để tối thiểu hóa $J(W)$, ta tìm đạo hàm theo $W$:
-$\frac{\partial J}{\partial W} = \frac{2}{N} X^T (XW - Y)$
+Để tối thiểu hóa $J(W)$, ta tính đạo hàm của hàm Loss theo trọng số $W$:
+$\nabla W = \frac{\partial J}{\partial W} = \frac{2}{N} X^T \cdot (X \cdot W - Y)$
 
 **4. Cập nhật trọng số (Gradient Descent)**
-$W = W - \alpha \frac{\partial J}{\partial W}$ (với $\alpha$ là learning rate).
+$W_{new} = W_{old} - \alpha \cdot \nabla W$
+(với $\alpha$ là learning rate - tốc độ học).
 
 ## ⑥ Worked Example
 
