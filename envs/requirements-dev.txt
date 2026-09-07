@@ -3,3 +3,4 @@ PyYAML
 nbclient
 nbformat
 pytest
+nbstripout
