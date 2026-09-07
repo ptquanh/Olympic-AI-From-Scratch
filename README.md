@@ -1,7 +1,7 @@
 # 🏆 Olympic AI From Scratch
 
 > **Technical Review Beta · v0.2.0**  
-> Phạm vi hiện có: Module 00–05. Nội dung chưa được gọi là `Published` cho đến khi hoàn thành learner testing với người học thật.
+> Phạm vi hiện tại: Module 00–05. Dự án đang trong giai đoạn thử nghiệm, nội dung đang được review và kiểm thử.
 
 Giáo trình AI tiếng Việt, open-source, đi từ nền tảng Python và toán đến Machine Learning, Deep Learning, Computer Vision, NLP/Audio và Generative AI. Hai mục tiêu được duy trì song song:
 
@@ -15,7 +15,7 @@ Giáo trình không coi luật của một cuộc thi là luật chung. Nội du
 1. Đọc [hướng dẫn học](HOW_TO_STUDY.md) và chọn track.
 2. Cài môi trường theo [SETUP.md](SETUP.md).
 3. Chọn đúng luật tại [COMPETITION_PROFILES.md](COMPETITION_PROFILES.md) nếu học Contest Track.
-4. Xem [PROGRESS_TRACKER.md](PROGRESS_TRACKER.md) và `curriculum.yml` để biết trạng thái thật của từng chương.
+4. Xem [PROGRESS_TRACKER.md](PROGRESS_TRACKER.md) để theo dõi tiến độ và `curriculum.yml` để biết trạng thái của từng chương.
 5. Trong mỗi chương: README → notebook → code notes → exercises → solutions.
 
 ## Nội dung hiện có
@@ -60,7 +60,7 @@ Language Modeling · Prompt Engineering · Fine-tuning Patterns · Multimodal
 
 `outlined → drafted → technically_reviewed → learner_tested → revised → published`
 
-Beta này đặt mục tiêu `technically_reviewed`. Hiện 31/41 chương đã đạt; 10 chương GPU vẫn ở `drafted` dù local CUDA full-run pass vì còn thiếu portability evidence trên Colab/Kaggle. Một chương chỉ đạt mốc khi lý thuyết và đáp án đã được đối chiếu, notebook chạy từ đầu đến cuối, audit cấu trúc pass và có review log. Xem `_dev/review_checklist.md` và `_dev/review_log.md`.
+Beta này đặt mục tiêu `technically_reviewed`. Hiện 31/41 chương đã đạt; 10 chương GPU vẫn ở `drafted` dù local CUDA full-run pass vì còn thiếu portability evidence trên Colab/Kaggle. Một chương chỉ đạt mốc khi lý thuyết và đáp án đã được đối chiếu, notebook chạy từ đầu đến cuối và audit cấu trúc pass. (Các log và tiến trình review nội bộ được lưu trong thư mục `_dev/` dành cho contributor).
 
 ## Roadmap ngoài phạm vi Beta
 

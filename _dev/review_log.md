@@ -5,7 +5,7 @@
 ## Phạm vi và nguyên tắc
 
 - 41 chương, 222 file Markdown và 63 notebook công khai theo manifest.
-- Ba notebook hình thức của PyTorch Fundamentals được thay bằng một lab Concept; 6 notebook `*_practice` cá nhân bị loại khỏi scope.
+- Ba notebook hình thức của PyTorch Fundamentals được thay bằng một lab Concept; 6 notebook `*_practice` bị loại khỏi scope.
 - Static audit đọc contract, metadata, exercise/solution parity, code notes, references, source code và liên kết. Automated pass không thay learner testing.
 - Report JSON là CI/release artifact tạm gắn với commit, không phải nội dung version-control.
 

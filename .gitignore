@@ -1,14 +1,14 @@
 # ==========================================
-# CUSTOM RULES FOR SELF-STUDY & PRACTICE
+# PRACTICE & DRAFT NOTEBOOKS
 # ==========================================
-# Bỏ qua các file duplicate để bạn tự code tay/luyện tập
+# Personal practice notebooks (not part of curriculum)
 *_practice.ipynb
 *_draft.ipynb
 *_self.ipynb
 *_learn.ipynb
 *practice*.*
 
-# Bỏ qua các thư mục không gian làm việc cá nhân (nếu bạn muốn tạo riêng)
+# Personal workspace directories
 workspace/
 practice/
 my_code/

@@ -1,5 +1,5 @@
 .PHONY: format
 
-# Format tất cả các file markdown trong dự án
+# Format all markdown files in the project
 format:
 	npx prettier --write "**/*.md"

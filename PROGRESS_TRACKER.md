@@ -19,9 +19,9 @@ Trạng thái theo evidence 2026-08-31:
 
 Chi tiết 41/41 nằm trong `_dev/review_log.md`. Report JSON không được version-control: PR chạy notebook bị ảnh hưởng, còn full run là gate định kỳ/phát hành và được lưu bằng CI artifact gắn với commit.
 
-## Checklist cá nhân
+## Checklist theo dõi học tập
 
-Với mỗi chapter ID trong `curriculum.yml`, sao chép mẫu sau vào learning log riêng:
+Với mỗi chapter ID trong `curriculum.yml`, sao chép mẫu sau để theo dõi tiến độ:
 
 ```markdown
 - [ ] Prerequisite check

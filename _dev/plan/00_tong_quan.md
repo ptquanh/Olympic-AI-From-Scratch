@@ -48,9 +48,9 @@ Giáo trình bám sát:
 
 ---
 
-## Vai Trò Của Tác Giả
+## Nguyên tắc soạn nội dung
 
-Tác giả (bạn) vừa học vừa soạn. Nhưng sản phẩm cuối phải phục vụ **người học**, không phải ghi lại quá trình học của tác giả. Mỗi chương phải đọc được bởi sinh viên không quen biết bạn.
+Sản phẩm cuối cùng phục vụ **người học**. Mỗi chương phải được thiết kế sao cho một sinh viên mới hoàn toàn có thể đọc hiểu và thực hành mà không cần sự hỗ trợ trực tiếp.
 
 ---
 

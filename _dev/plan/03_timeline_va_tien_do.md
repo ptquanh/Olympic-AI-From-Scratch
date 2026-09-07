@@ -208,7 +208,7 @@ Outlined → Drafted → Technically Reviewed → Learner Tested → Revised →
 
 ### Budget 10 tuần (~200-270h)
 
-**20-27h/tuần ≈ 3-4h/ngày.** Ngày bận trường 2h, ngày nghỉ 5-6h.
+**20-27h/tuần ≈ 3-4h/ngày.** (Có thể linh hoạt điều chỉnh theo lịch cá nhân).
 
 ### Cắt giảm nếu thiếu thời gian (ưu tiên bỏ)
 
