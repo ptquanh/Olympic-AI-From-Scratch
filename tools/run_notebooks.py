@@ -25,13 +25,13 @@ from jupyter_client.kernelspec import KernelSpecManager
 ROOT = Path(__file__).resolve().parents[1]
 NUMBER = re.compile(r"(?<![\w.])[-+]?(?:\d+\.\d*|\.\d+|\d+)(?:[eE][-+]?\d+)?")
 FULL_RUN_FILES = {
-    "constraints-py310.txt",
-    "environment.yml",
-    "environment-gpu.yml",
-    "requirements.txt",
-    "requirements-dev.txt",
-    "requirements-contest.txt",
-    "requirements-optional.txt",
+    "envs/constraints-py310.txt",
+    "envs/environment.yml",
+    "envs/environment-gpu.yml",
+    "envs/requirements.txt",
+    "envs/requirements-dev.txt",
+    "envs/requirements-contest.txt",
+    "envs/requirements-optional.txt",
     "tools/run_notebooks.py",
 }
 

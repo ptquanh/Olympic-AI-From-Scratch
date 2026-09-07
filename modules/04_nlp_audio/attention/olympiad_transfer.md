@@ -1,6 +1,6 @@
 # Olympic transfer: Attention
 
-> **Profile mặc định:** General. Không có thời lượng, thư viện hay quyền truy cập mạng mặc định. Xem [competition profiles](../../../COMPETITION_PROFILES.md) trước khi dùng trong một kỳ thi cụ thể.
+> **Profile mặc định:** General. Không có thời lượng, thư viện hay quyền truy cập mạng mặc định. Xem [competition profiles](../../../docs/COMPETITION_PROFILES.md) trước khi dùng trong một kỳ thi cụ thể.
 
 ## Nhận diện trong đề
 

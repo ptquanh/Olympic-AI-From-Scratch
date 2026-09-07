@@ -7,7 +7,7 @@ Repo hỗ trợ ba profile tách biệt để không nhầm môi trường học
 Yêu cầu Python 3.10. Tạo virtual environment hoặc Conda environment, sau đó:
 
 ```bash
-python -m pip install -r requirements.txt -c constraints-py310.txt
+python -m pip install -r envs/requirements.txt -c envs/constraints-py310.txt
 python -m ipykernel install --user --name olympic-ai --display-name "Python (Olympic AI)"
 jupyter lab
 
@@ -25,7 +25,7 @@ Khi chuẩn bị release, bỏ `--match` để chạy toàn bộ. Trên pull req
 
 ## 2. Learning GPU
 
-Dùng `environment-gpu.yml` trên máy NVIDIA đã có driver tương thích CUDA 12.8; file dùng official PyTorch wheel index và lock `torch/torchvision/torchaudio` tương thích. Nếu driver/nền tảng khác, lấy đúng lệnh từ selector chính thức của PyTorch rồi cài phần còn lại bằng `requirements.txt` + constraints. Trên Colab/Kaggle, giữ PyTorch/CUDA tương thích do nền tảng cung cấp; không ép CUDA build của máy local. `environment.yml` là profile CPU.
+Dùng `envs/environment-gpu.yml` trên máy NVIDIA đã có driver tương thích CUDA 12.8; file dùng official PyTorch wheel index và lock `torch/torchvision/torchaudio` tương thích. Nếu driver/nền tảng khác, lấy đúng lệnh từ selector chính thức của PyTorch rồi cài phần còn lại bằng `envs/requirements.txt` + constraints. Trên Colab/Kaggle, giữ PyTorch/CUDA tương thích do nền tảng cung cấp; không ép CUDA build của máy local. `envs/environment.yml` là profile CPU.
 
 Sau khi tạo environment, kiểm tra trước khi chạy full gate:
 
@@ -40,7 +40,7 @@ Notebook ghi `gpu_full: true` trong `curriculum.yml` vẫn phải có CPU smoke 
 
 ## 3. Competition-safe
 
-`requirements-contest.txt` chỉ phản ánh danh sách dự kiến trong PDF Olympic AI PTIT 2026, không bảo đảm cho kỳ thi khác hoặc mùa khác. Trong phòng thi:
+`envs/requirements-contest.txt` chỉ phản ánh danh sách dự kiến trong PDF Olympic AI PTIT 2026, không bảo đảm cho kỳ thi khác hoặc mùa khác. Trong phòng thi:
 
 - dùng environment do ban tổ chức cấp;
 - không chạy `pip install`, `conda install` hoặc `git clone`;
@@ -68,6 +68,6 @@ Fast mode giảm số mẫu/epoch nhưng không được bỏ qua bước Data �
 
 ## Tái lập
 
-Mỗi notebook đặt seed cho Python, NumPy và framework sử dụng. Seed không bảo đảm kết quả giống từng bit giữa mọi GPU hoặc phiên bản thư viện; runner so sánh numeric output với `rtol=1e-5`, `atol=1e-7` khi dùng `--repeats 2`. `constraints-py310.txt` là lock cho CI/contest-compatible Python 3.10. Report ghi môi trường thực tế nhưng chỉ được giữ như CI/release artifact, không commit vào repository.
+Mỗi notebook đặt seed cho Python, NumPy và framework sử dụng. Seed không bảo đảm kết quả giống từng bit giữa mọi GPU hoặc phiên bản thư viện; runner so sánh numeric output với `rtol=1e-5`, `atol=1e-7` khi dùng `--repeats 2`. `envs/constraints-py310.txt` là lock cho CI/contest-compatible Python 3.10. Report ghi môi trường thực tế nhưng chỉ được giữ như CI/release artifact, không commit vào repository.
 
 Nếu setup không hoạt động, mở issue kèm hệ điều hành, Python, output của `python -m pip freeze`, notebook và traceback đầy đủ.

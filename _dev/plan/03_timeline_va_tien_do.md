@@ -13,7 +13,7 @@
 | **v0.1 — OlpAI Core**        | Trước 01/11   | Curriculum map, Contest Track, ~10 Core chapters drafted, competition pipeline, templates |
 | **v0.2 — Post-Regional**     | 02/11 → 30/11 | Foundation Track, from-scratch sâu hơn, postmortems từ vòng khu vực                       |
 | **v0.5 — Pre-Finals**        | 01/12 → 07/12 | Solutions, hình minh họa, learner testing batch 1, audio/document AI                      |
-| **v1.0 — Community Release** | 01/2027+      | Tất cả chương Published, MkDocs site, CONTRIBUTING.md active                              |
+| **v1.0 — Community Release** | 01/2027+      | Tất cả chương Published, MkDocs site, `.github/CONTRIBUTING.md` active                    |
 
 ---
 

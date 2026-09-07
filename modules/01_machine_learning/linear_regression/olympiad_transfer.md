@@ -1,6 +1,6 @@
 # Olympiad Transfer: Linear Regression
 
-> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
+> **Profile áp dụng:** General, trừ các mục ghi rõ PTIT 2026. Các mốc 4h/6h trong tài liệu này chỉ là timebox của PTIT 2026, không phải luật chung. Đã kiểm chứng 2026-08-31; xem [competition profiles](../../../docs/COMPETITION_PROFILES.md) và ưu tiên thông báo chính thức mới hơn.
 
 ## 1. Nhận diện trong đề
 

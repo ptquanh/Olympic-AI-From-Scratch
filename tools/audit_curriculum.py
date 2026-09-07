@@ -254,7 +254,7 @@ def notebook_source(path: Path) -> tuple[dict, str, str]:
 def declared_packages() -> set[str]:
     result = set()
     for name in ("requirements.txt", "requirements-optional.txt", "requirements-dev.txt"):
-        for raw in (ROOT / name).read_text(encoding="utf-8").splitlines():
+        for raw in (ROOT / "envs" / name).read_text(encoding="utf-8").splitlines():
             line = raw.split("#", 1)[0].strip()
             if not line or line.startswith("-"):
                 continue
@@ -343,12 +343,12 @@ def strip_code_fences(text: str) -> str:
 def check_local_links(audit: Audit) -> None:
     candidates = [
         ROOT / "README.md",
-        ROOT / "HOW_TO_STUDY.md",
-        ROOT / "SETUP.md",
-        ROOT / "PROGRESS_TRACKER.md",
-        ROOT / "CONTRIBUTING.md",
-        ROOT / "COMPETITION_PROFILES.md",
-        ROOT / "THIRD_PARTY_NOTICES.md",
+        ROOT / "docs" / "HOW_TO_STUDY.md",
+        ROOT / "docs" / "SETUP.md",
+        ROOT / "docs" / "PROGRESS_TRACKER.md",
+        ROOT / ".github" / "CONTRIBUTING.md",
+        ROOT / "docs" / "COMPETITION_PROFILES.md",
+        ROOT / "docs" / "THIRD_PARTY_NOTICES.md",
         ROOT / "CHANGELOG.md",
     ]
     candidates.extend((ROOT / "modules").rglob("*.md"))

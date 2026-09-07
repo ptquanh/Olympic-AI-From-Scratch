@@ -12,10 +12,10 @@ Giáo trình không coi luật của một cuộc thi là luật chung. Nội du
 
 ## Bắt đầu
 
-1. Đọc [hướng dẫn học](HOW_TO_STUDY.md) và chọn track.
-2. Cài môi trường theo [SETUP.md](SETUP.md).
-3. Chọn đúng luật tại [COMPETITION_PROFILES.md](COMPETITION_PROFILES.md) nếu học Contest Track.
-4. Xem [PROGRESS_TRACKER.md](PROGRESS_TRACKER.md) để theo dõi tiến độ và `curriculum.yml` để biết trạng thái của từng chương.
+1. Đọc [hướng dẫn học](docs/HOW_TO_STUDY.md) và chọn track.
+2. Cài môi trường theo [SETUP.md](docs/SETUP.md).
+3. Chọn đúng luật tại [COMPETITION_PROFILES.md](docs/COMPETITION_PROFILES.md) nếu học Contest Track.
+4. Xem [PROGRESS_TRACKER.md](docs/PROGRESS_TRACKER.md) để theo dõi tiến độ và `curriculum.yml` để biết trạng thái của từng chương.
 5. Trong mỗi chương: README → notebook → code notes → exercises → solutions.
 
 ## Nội dung hiện có
@@ -68,4 +68,4 @@ Module 06 Competition Pipeline, Module 07 Olympiad Problems và Module 08 Team C
 
 ## Đóng góp và giấy phép
 
-Xem [CONTRIBUTING.md](CONTRIBUTING.md) và [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Code/notebook dùng MIT; nội dung giáo dục gốc dùng CC BY-SA 4.0. PDF cẩm nang và tài sản bên thứ ba không được cấp lại theo các giấy phép này; xem [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Xem [CONTRIBUTING.md](.github/CONTRIBUTING.md) và [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md). Code/notebook dùng MIT; nội dung giáo dục gốc dùng CC BY-SA 4.0. PDF cẩm nang và tài sản bên thứ ba không được cấp lại theo các giấy phép này; xem [THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md).

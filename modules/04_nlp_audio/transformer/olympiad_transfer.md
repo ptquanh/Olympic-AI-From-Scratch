@@ -1,6 +1,6 @@
 # Olympic transfer: Transformer
 
-> **Profile mặc định:** General. Model pretrained, Internet và Hugging Face không được coi là có sẵn. Xem [competition profiles](../../../COMPETITION_PROFILES.md).
+> **Profile mặc định:** General. Model pretrained, Internet và Hugging Face không được coi là có sẵn. Xem [competition profiles](../../../docs/COMPETITION_PROFILES.md).
 
 ## Nhận diện trong đề
 

@@ -1,6 +1,6 @@
 # Olympic transfer: Fine-tuning và LoRA
 
-> **Profile mặc định:** General. Phần cốt lõi dùng LoRA tự cài đặt trong NumPy/PyTorch cơ bản. `peft`, `bitsandbytes`, model hub và tải model là appendix online, **không competition-safe** nếu quy chế không cho phép rõ ràng. Xem [competition profiles](../../../COMPETITION_PROFILES.md).
+> **Profile mặc định:** General. Phần cốt lõi dùng LoRA tự cài đặt trong NumPy/PyTorch cơ bản. `peft`, `bitsandbytes`, model hub và tải model là appendix online, **không competition-safe** nếu quy chế không cho phép rõ ràng. Xem [competition profiles](../../../docs/COMPETITION_PROFILES.md).
 
 ## Nhận diện trong đề
 
