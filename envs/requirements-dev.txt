@@ -4,3 +4,4 @@ nbclient
 nbformat
 pytest
 nbstripout
+black[jupyter]
