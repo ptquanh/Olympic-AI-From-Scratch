@@ -4,8 +4,8 @@
 
 ## Phạm vi và nguyên tắc
 
-- 41 chương, 222 file Markdown và 63 notebook công khai theo manifest.
-- Ba notebook hình thức của PyTorch Fundamentals được thay bằng một lab Concept; 6 notebook `*_practice` bị loại khỏi scope.
+- 48 chương, 266 file Markdown và 74 notebook công khai theo manifest.
+- Ba notebook hình thức của PyTorch Fundamentals được thay bằng một lab Concept; 6 notebook `*_practice` cá nhân bị loại khỏi scope.
 - Static audit đọc contract, metadata, exercise/solution parity, code notes, references, source code và liên kết. Automated pass không thay learner testing.
 - Report JSON là CI/release artifact tạm gắn với commit, không phải nội dung version-control.
 
@@ -16,7 +16,7 @@
 - Full CPU run chạy theo lịch Chủ nhật hoặc thủ công trước release; GPU/cloud full run là release gate cho chương `gpu_full: true`.
 - CI artifact và commit/CI run URL là bằng chứng thực thi; không commit report JSON.
 
-## Review record 41/41
+## Review record — 48 chương trong manifest
 
 | Chương                            | Archetype   | Track                                             | Runtime policy                                       | Manifest status      |
 | --------------------------------- | ----------- | ------------------------------------------------- | ---------------------------------------------------- | -------------------- |
@@ -61,6 +61,13 @@
 | `genai.prompt_engineering`        | concept     | Foundation: skim; Contest: required               | incremental CPU + scheduled full                     | technically_reviewed |
 | `genai.finetuning_patterns`       | core        | Foundation: advanced; Contest: required           | incremental CPU + scheduled full + release GPU/cloud | drafted              |
 | `genai.multimodal`                | concept     | Foundation: advanced; Contest: skim               | incremental CPU + scheduled full                     | technically_reviewed |
+| `pipeline.eda`                    | competition | Foundation: required; Contest: required           | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.validation`             | competition | Foundation: required; Contest: required           | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.data_from_public_test`  | concept     | Foundation: skim; Contest: required               | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.debugging_ml`           | competition | Foundation: required; Contest: required           | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.ensembling`             | competition | Foundation: skim; Contest: required               | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.jupyterlab_workflow`    | concept     | Foundation: required; Contest: required           | incremental CPU + scheduled full                     | drafted              |
+| `pipeline.experiment_tracking`    | concept     | Foundation: skim; Contest: required               | incremental CPU + scheduled full                     | drafted              |
 
 ## Release decision
 

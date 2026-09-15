@@ -20,17 +20,17 @@ Nội dung module được thiết kế dựa trên:
 
 ## Tổng Quan Modules
 
-| #   | Module                     | Ánh xạ Cẩm nang                                              | Ánh xạ 5 Chặng | Số chapters |
-| --- | -------------------------- | ------------------------------------------------------------ | -------------- | ----------- |
-| 00  | **Python & Toán Nền Tảng** | Phần 15: Lập trình + Toán                                    | Chặng 1        | 5           |
-| 01  | **Machine Learning**       | Phần 15: Học có/không giám sát + Đánh giá + Khoa học dữ liệu | Chặng 2        | 8           |
-| 02  | **Deep Learning**          | Phần 15: Mạng nơ ron + Kiến trúc + Tối ưu + Chính quy        | Chặng 3        | 7           |
-| 03  | **Computer Vision**        | Phần 15: Thị giác máy tính (toàn bộ)                         | Chặng 3-4      | 8           |
-| 04  | **NLP & Audio**            | Phần 15: NLP + Audio (toàn bộ)                               | Chặng 3-4      | 9           |
-| 05  | **Generative AI & LLM**    | Phần 15: Fine-tuning + Prompt                                | Chặng 4        | 4           |
-| 06  | **Competition Pipeline**   | Phần 11-12: Chuẩn bị + Chiến thuật thi                       | Chặng 5        | 7           |
-| 07  | **Olympiad Problems**      | Phần 17: Đề thật                                             | Chặng 5        | ongoing     |
-| 08  | **Team Competition**       | Phần 10: Nộp bài + FINAL                                     | Chặng 5        | 5           |
+| #   | Module                     | Ánh xạ Cẩm nang                                              | Ánh xạ 5 Chặng | Số chapters    |
+| --- | -------------------------- | ------------------------------------------------------------ | -------------- | -------------- |
+| 00  | **Python & Toán Nền Tảng** | Phần 15: Lập trình + Toán                                    | Chặng 1        | 5              |
+| 01  | **Machine Learning**       | Phần 15: Học có/không giám sát + Đánh giá + Khoa học dữ liệu | Chặng 2        | 8              |
+| 02  | **Deep Learning**          | Phần 15: Mạng nơ ron + Kiến trúc + Tối ưu + Chính quy        | Chặng 3        | 7              |
+| 03  | **Computer Vision**        | Phần 15: Thị giác máy tính (toàn bộ)                         | Chặng 3-4      | 8              |
+| 04  | **NLP & Audio**            | Phần 15: NLP + Audio (toàn bộ)                               | Chặng 3-4      | 9              |
+| 05  | **Generative AI & LLM**    | Phần 15: Fine-tuning + Prompt                                | Chặng 4        | 4              |
+| 06  | **Competition Pipeline**   | Phần 11-12: Chuẩn bị + Chiến thuật thi                       | Chặng 5        | 7              |
+| 07  | **Olympiad Problems**      | Phần 17: Đề thật                                             | Chặng 5        | resource layer |
+| 08  | **Team Competition**       | Phần 10: Nộp bài + FINAL                                     | Chặng 5        | resource layer |
 
 ---
 
@@ -214,6 +214,7 @@ Nội dung module được thiết kế dựa trên:
 
 - **THÊM MỚI `aichallenge_ptit/`** — Cẩm nang Phần 11+17 khuyến nghị luyện trên aichallenge.ptit.edu.vn
 - Tách rõ **OlpAI SV** và **Olympic AI PTIT**
+- **ĐÃ TRIỂN KHAI 2026-09-15:** source policy, diagnostic, IOAI 2024–2026, Polish OAI, registry Việt Nam, mock contest và problem index. Nội dung đề/dataset vẫn lấy từ nguồn chính thức thay vì mirror.
 
 ---
 
@@ -233,6 +234,7 @@ Nội dung module được thiết kế dựa trên:
 
 - Thêm **`final_folder_template.md`** — Cẩm nang Phần 10 quy định rõ cấu trúc FINAL
 - Sửa **`workflow_4h_6h.md`** — Vòng sơ loại 4h, chung kết 6h
+- **ĐÃ TRIỂN KHAI 2026-09-15:** đủ 5 tài liệu operations và `MODULE_README.md`; vẫn ở ngoài manifest 48 chương.
 
 ---
 

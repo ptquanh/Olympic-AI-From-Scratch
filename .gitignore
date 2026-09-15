@@ -65,3 +65,6 @@ _dev/repro_smoke.json
 _dev/notebook_retry.json
 _dev/jupyter/
 _dev/cpu_patch_*.json
+
+# Generated lesson artifacts (logs, submissions, arrays and fitted models).
+outputs/

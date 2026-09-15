@@ -4,20 +4,44 @@
 
 ## Trạng thái repository
 
-| Scope        |     Chapters | Target                      |
-| ------------ | -----------: | --------------------------- |
-| Module 00–05 |           41 | Technically Reviewed Beta   |
-| Module 06–08 | 0 trong repo | Roadmap, ngoài phạm vi Beta |
+| Scope        |       Chapters | Target                                  |
+| ------------ | -------------: | --------------------------------------- |
+| Module 00–05 |             41 | Technically Reviewed Beta               |
+| Module 06    |              7 | Drafted; 11 notebook CPU offline        |
+| Module 07–08 | Resource layer | Đã triển khai, ngoài manifest 48 chương |
 
-Trạng thái theo evidence 2026-08-31:
+Trạng thái: baseline 00–05 ngày 2026-08-31, bổ sung Module 06 ngày 2026-09-15:
 
-| Status                       | Số chương | Lý do                                                               |
-| ---------------------------- | --------: | ------------------------------------------------------------------- |
-| `technically_reviewed`       |        31 | Static + CPU x2 + clean Python 3.10 pass                            |
-| `drafted`                    |        10 | Local GPU full đã pass; còn thiếu Colab/Kaggle portability evidence |
-| `learner_tested`/`published` |         0 | Chưa có learner testing với người thật                              |
+| Status                       | Số chương | Lý do                                                            |
+| ---------------------------- | --------: | ---------------------------------------------------------------- |
+| `technically_reviewed`       |        31 | Static + CPU x2 + clean Python 3.10 pass                         |
+| `drafted`                    |        17 | 10 chương GPU chờ portability; 7 chương Module 06 mới triển khai |
+| `learner_tested`/`published` |         0 | Chưa có learner testing với người thật                           |
 
-Chi tiết 41/41 nằm trong `_dev/review_log.md`. Report JSON không được version-control: PR chạy notebook bị ảnh hưởng, còn full run là gate định kỳ/phát hành và được lưu bằng CI artifact gắn với commit.
+Manifest hiện có 48 chương. Chi tiết nằm trong `_dev/review_log.md`. Report JSON không được version-control: PR chạy notebook bị ảnh hưởng, còn full run là gate định kỳ/phát hành và được lưu bằng CI artifact gắn với commit.
+
+## Module 06 — Competition Pipeline
+
+| Chương                                                                                  | Archetype   | Status  |
+| --------------------------------------------------------------------------------------- | ----------- | ------- |
+| [EDA](../modules/06_competition_pipeline/eda/README.md)                                 | Competition | drafted |
+| [Validation](../modules/06_competition_pipeline/validation/README.md)                   | Competition | drafted |
+| [Public Test](../modules/06_competition_pipeline/data_from_public_test/README.md)       | Concept     | drafted |
+| [Debugging ML](../modules/06_competition_pipeline/debugging_ml/README.md)               | Competition | drafted |
+| [Ensembling](../modules/06_competition_pipeline/ensembling/README.md)                   | Competition | drafted |
+| [JupyterLab Workflow](../modules/06_competition_pipeline/jupyterlab_workflow/README.md) | Concept     | drafted |
+| [Experiment Tracking](../modules/06_competition_pipeline/experiment_tracking/README.md) | Concept     | drafted |
+
+Bài mô phỏng chạy CPU offline; chất lượng trên đề thật, thao tác UI JupyterLab và thời gian học thực tế cần người học kiểm chứng. Không gọi các chương này Published từ kết quả kiểm tra tự động.
+
+## Module 07–08 — Practice & Team Operations
+
+- [Module 07 — Olympiad Problems](../modules/07_olympiad_problems/MODULE_README.md): curated links, practice protocol, diagnostic, IOAI/Polish OAI/PTIT registry, mock playlists và postmortem template.
+- [Module 08 — Team Competition](../modules/08_team_competition/MODULE_README.md): team roles, workflow 4h/6h, contest toolkit, notebook checklist, FINAL folder và technical report template.
+
+Kiểm chứng thực tế được ghi tại `_dev/real_problem_log.md`; gap lặp lại qua nhiều đề được tổng hợp tại `_dev/curriculum_gap_log.md`.
+
+Hai module này chưa có chapter status trong `curriculum.yml`; chúng được review như tài liệu hỗ trợ và phải tiếp tục cập nhật nguồn theo từng mùa thi.
 
 ## Checklist theo dõi học tập
 

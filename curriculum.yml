@@ -1,6 +1,7 @@
 schema_version: 1
 release: 0.2.0-beta
-scope: modules/00-05
+scope: modules/00-06
+chapter_count: 48
 status_values:
   [outlined, drafted, technically_reviewed, learner_tested, revised, published]
 competition_profiles:
@@ -693,4 +694,118 @@ chapters:
       gpu_full: false,
       network: required_first_run,
       profiles: [general, ioai_2026],
+    }
+  - {
+      id: pipeline.eda,
+      module: 6,
+      order: 1,
+      title: EDA — Khám phá dữ liệu trước baseline,
+      path: modules/06_competition_pipeline/eda,
+      archetype: competition,
+      foundation: required,
+      contest: required,
+      prerequisites: [foundations.numpy_pandas, ml.metrics_and_validation],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.validation,
+      module: 6,
+      order: 2,
+      title: Validation — Đo đúng khả năng tổng quát hóa,
+      path: modules/06_competition_pipeline/validation,
+      archetype: competition,
+      foundation: required,
+      contest: required,
+      prerequisites: [pipeline.eda, ml.metrics_and_validation],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.data_from_public_test,
+      module: 6,
+      order: 3,
+      title: Public Test — Pseudo-labeling và Test-Time Augmentation,
+      path: modules/06_competition_pipeline/data_from_public_test,
+      archetype: concept,
+      foundation: skim,
+      contest: required,
+      prerequisites: [pipeline.validation, cv.augmentation],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.debugging_ml,
+      module: 6,
+      order: 4,
+      title: Debugging ML — Tìm lỗi bằng kiểm chứng nhỏ,
+      path: modules/06_competition_pipeline/debugging_ml,
+      archetype: competition,
+      foundation: required,
+      contest: required,
+      prerequisites: [pipeline.validation, dl.backprop_training_loop],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.ensembling,
+      module: 6,
+      order: 5,
+      title: Ensembling — Averaging,
+      Blending và Stacking,
+      path: modules/06_competition_pipeline/ensembling,
+      archetype: competition,
+      foundation: skim,
+      contest: required,
+      prerequisites: [pipeline.validation, ml.tree_ensembles],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.jupyterlab_workflow,
+      module: 6,
+      order: 6,
+      title: JupyterLab Workflow — Kernel sạch và bài nộp tái lập,
+      path: modules/06_competition_pipeline/jupyterlab_workflow,
+      archetype: concept,
+      foundation: required,
+      contest: required,
+      prerequisites:
+        [foundations.python_essentials, foundations.regex_data_handling],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
+    }
+  - {
+      id: pipeline.experiment_tracking,
+      module: 6,
+      order: 7,
+      title: Experiment Tracking — Ghi lại để tái lập quyết định,
+      path: modules/06_competition_pipeline/experiment_tracking,
+      archetype: concept,
+      foundation: skim,
+      contest: required,
+      prerequisites: [pipeline.validation, pipeline.jupyterlab_workflow],
+      status: drafted,
+      cpu_smoke: "<1m",
+      gpu_full: false,
+      network: none,
+      profiles: [general],
     }

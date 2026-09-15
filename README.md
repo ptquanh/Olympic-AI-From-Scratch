@@ -1,7 +1,7 @@
 # 🏆 Olympic AI From Scratch
 
 > **Technical Review Beta · v0.2.0**  
-> Phạm vi hiện tại: Module 00–05. Dự án đang trong giai đoạn thử nghiệm, nội dung đang được review và kiểm thử.
+> Phạm vi hiện tại: Module 00–06, 48 chương. Module 06 mới được triển khai ở mức Drafted; dự án đang được review và kiểm thử.
 
 Giáo trình AI tiếng Việt, open-source, đi từ nền tảng Python và toán đến Machine Learning, Deep Learning, Computer Vision, NLP/Audio và Generative AI. Hai mục tiêu được duy trì song song:
 
@@ -44,6 +44,19 @@ Text Preprocessing · Embeddings · Attention · Transformer · Pre-trained Enco
 
 Language Modeling · Prompt Engineering · Fine-tuning Patterns · Multimodal
 
+### [Module 06 — Competition Pipeline](modules/06_competition_pipeline/MODULE_README.md)
+
+EDA · Validation · Public Test / Pseudo-labeling / TTA · Debugging ML · Ensembling · JupyterLab Workflow · Experiment Tracking
+
+4 Competition Lab và 3 Concept Lesson, gồm 11 notebook CPU offline. Học từ tuần 1 cùng ML baseline; mở JupyterLab Workflow trước nếu chưa quen notebook.
+
+### Practice layer ngoài manifest
+
+- [Module 07 — Olympiad Problems](modules/07_olympiad_problems/MODULE_README.md): curated link registry, practice protocol, IOAI/Polish OAI/PTIT sources, mock playlists và postmortem.
+- [Module 08 — Team Competition](modules/08_team_competition/MODULE_README.md): phân vai đội 2–3 người, workflow 4h/6h, contest toolkit, notebook checklist, FINAL template và technical report.
+
+Hai module này là tài liệu luyện thi/operations, chưa được tính vào `chapter_count: 48` và không mang status trong manifest.
+
 ## Ba loại chương
 
 | Loại        | Mục tiêu                                     | Bài thực hành                                         |
@@ -60,11 +73,11 @@ Language Modeling · Prompt Engineering · Fine-tuning Patterns · Multimodal
 
 `outlined → drafted → technically_reviewed → learner_tested → revised → published`
 
-Beta này đặt mục tiêu `technically_reviewed`. Hiện 31/41 chương đã đạt; 10 chương GPU vẫn ở `drafted` dù local CUDA full-run pass vì còn thiếu portability evidence trên Colab/Kaggle. Một chương chỉ đạt mốc khi lý thuyết và đáp án đã được đối chiếu, notebook chạy từ đầu đến cuối và audit cấu trúc pass. (Các log và tiến trình review nội bộ được lưu trong thư mục `_dev/` dành cho contributor).
+Beta này đặt mục tiêu `technically_reviewed`. Trong 48 chương, 31 chương đã đạt; 10 chương GPU và 7 chương Module 06 mới ở `drafted`. Các chương GPU còn thiếu portability evidence trên Colab/Kaggle; Module 06 chưa có learner testing. Một chương chỉ đạt mốc khi lý thuyết và đáp án được đối chiếu, notebook chạy từ đầu đến cuối và audit cấu trúc pass. Log review nội bộ nằm trong `_dev/`.
 
-## Roadmap ngoài phạm vi Beta
+## Ngoài phạm vi quality gate 48 chương
 
-Module 06 Competition Pipeline, Module 07 Olympiad Problems và Module 08 Team Competition vẫn là roadmap. Chúng chưa tồn tại trong bản phát hành này và không được tính vào tỷ lệ hoàn thành 00–05.
+Module 07 và 08 đã có resource layer để luyện đề và mô phỏng thi đội, nhưng chưa nằm trong manifest 48 chương. Đề thật chỉ được tham chiếu bằng link nguồn; statement, dataset, notebook và code của cuộc thi không được mirror vào repo.
 
 ## Đóng góp và giấy phép
 

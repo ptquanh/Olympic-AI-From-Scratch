@@ -29,7 +29,7 @@ python tools/verify_notebook_report.py _dev/notebook_report.json --profile cpu -
 
 ## Báo cáo review
 
-Ghi kết quả vào `_dev/review_log.md`: phạm vi, nguồn đã đối chiếu, commit/CI run, kết quả và giới hạn chưa kiểm chứng. Chạy `python tools/build_review_records.py` để tái tạo bảng 41 chương. Reviewer không được ghi `pass` nếu chỉ kiểm tra việc file tồn tại.
+Ghi kết quả vào `_dev/review_log.md`: phạm vi, nguồn đã đối chiếu, commit/CI run, kết quả và giới hạn chưa kiểm chứng. Chạy `python tools/build_review_records.py` để tái tạo bảng chương theo manifest. Reviewer không được ghi `pass` nếu chỉ kiểm tra việc file tồn tại.
 
 ## Quyền sử dụng đóng góp
 

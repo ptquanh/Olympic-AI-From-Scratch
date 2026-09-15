@@ -1,6 +1,6 @@
 # 📚 Olympic AI From Scratch — Tổng Quan Giáo Trình
 
-> **Cập nhật 2026-08-31:** Bản triển khai hiện tại là Technical Review Beta, chỉ gồm module 00–05. Trạng thái chương lấy từ `../curriculum.yml`; module 06–08 là roadmap chưa được tạo.
+> **Cập nhật 2026-09-15:** Manifest hiện tại gồm module 00–06, 48 chương; Module 06 gồm 7 chương drafted. Module 07–08 đã có resource layer luyện đề và team operations nhưng chưa tham gia quality gate 48 chương.
 
 ## Mục Tiêu
 
@@ -71,7 +71,7 @@ Sản phẩm cuối cùng phục vụ **người học**. Mỗi chương phải 
 
 ## Trạng Thái Hiện Tại
 
-- **Phạm vi Beta:** 41 chương thuộc module 00–05.
+- **Phạm vi Beta:** 48 chương thuộc module 00–06; 7 chương Module 06 mới ở drafted.
 - **Quality target:** `technically_reviewed`; chưa gọi `published` trước learner testing.
 - **Nguồn trạng thái:** `curriculum.yml` và `_dev/review_log.md`.
-- **Roadmap:** Competition Pipeline, Olympiad Problems và Team Competition chưa nằm trong release này.
+- **Resource layer:** Olympiad Problems và Team Competition đã triển khai ngoài manifest; Competition Pipeline nằm trong manifest ở trạng thái drafted.

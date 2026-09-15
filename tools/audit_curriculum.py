@@ -118,8 +118,11 @@ def load_manifest(audit: Audit) -> list[dict]:
                 audit.error(MANIFEST, f"{profile_id}: year-specific profile needs verified date")
             if not any(key.endswith("source") for key in profile):
                 audit.error(MANIFEST, f"{profile_id}: year-specific profile needs an official source")
-    if len(chapters) != 41:
-        audit.error(MANIFEST, f"expected 41 chapters, found {len(chapters)}")
+    expected_count = data.get("chapter_count")
+    if type(expected_count) is not int or expected_count < 1:
+        audit.error(MANIFEST, "chapter_count must be a positive integer")
+    elif len(chapters) != expected_count:
+        audit.error(MANIFEST, f"expected {expected_count} chapters, found {len(chapters)}")
     ids = [c.get("id") for c in chapters]
     paths = [c.get("path") for c in chapters]
     if len(ids) != len(set(ids)):

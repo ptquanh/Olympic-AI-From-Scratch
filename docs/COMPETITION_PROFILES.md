@@ -34,7 +34,7 @@ Nguồn: [Thông báo VOAI của Hội Tin học Việt Nam](https://www.olp.vn/
 
 IOAI công bố syllabus và contest rules theo từng mùa. Curriculum dùng syllabus để định hướng chủ đề, nhưng không suy diễn thời lượng hay công cụ từ PTIT/VOAI. Trước mỗi mùa phải khóa URL, phiên bản và ngày kiểm chứng.
 
-Nguồn: [IOAI 2026 contest rules](https://ioai-official.org/2026-contest-rules/), [IOAI 2026 syllabus](https://ioai-official.org/2026-syllabus/), [IOAI regulations](https://ioai-official.org/regulations/).
+Nguồn: [IOAI 2026 contest rules](https://ioai-official.org/republic-of-kazakhstan/2026-contest-rules/), [IOAI 2026 syllabus](https://ioai-official.org/republic-of-kazakhstan/syllabus-2026/), [IOAI regulations](https://ioai-official.org/regulations/).
 
 ## Thứ tự ưu tiên nguồn
 

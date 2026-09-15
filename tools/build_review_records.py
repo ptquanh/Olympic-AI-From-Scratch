@@ -25,7 +25,7 @@ def main() -> None:
         "",
         "## Phạm vi và nguyên tắc",
         "",
-        f"- 41 chương, {module_markdown} file Markdown và {public_notebooks} notebook công khai theo manifest.",
+        f"- {len(manifest['chapters'])} chương, {module_markdown} file Markdown và {public_notebooks} notebook công khai theo manifest.",
         "- Ba notebook hình thức của PyTorch Fundamentals được thay bằng một lab Concept; 6 notebook `*_practice` cá nhân bị loại khỏi scope.",
         "- Static audit đọc contract, metadata, exercise/solution parity, code notes, references, source code và liên kết. Automated pass không thay learner testing.",
         "- Report JSON là CI/release artifact tạm gắn với commit, không phải nội dung version-control.",
@@ -37,7 +37,7 @@ def main() -> None:
         "- Full CPU run chạy theo lịch Chủ nhật hoặc thủ công trước release; GPU/cloud full run là release gate cho chương `gpu_full: true`.",
         "- CI artifact và commit/CI run URL là bằng chứng thực thi; không commit report JSON.",
         "",
-        "## Review record 41/41",
+        f"## Review record — {len(manifest['chapters'])} chương trong manifest",
         "",
         "| Chương | Archetype | Track | Runtime policy | Manifest status |",
         "|---|---|---|---|---|",
@@ -62,7 +62,7 @@ def main() -> None:
         ]
     )
     (ROOT / "_dev" / "review_log.md").write_text("\n".join(lines), encoding="utf-8")
-    print("Built 41-chapter review log without persisted execution reports.")
+    print(f"Built {len(manifest['chapters'])}-chapter review log without persisted execution reports.")
 
 
 if __name__ == "__main__":
